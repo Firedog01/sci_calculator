@@ -1,0 +1,42 @@
+[
+{
+  "directory": "/home/user/code_projects/sci_calculator/build",
+  "command": "/usr/bin/c++  -I/home/user/code_projects/sci_calculator/. -I/home/user/code_projects/sci_calculator/managers/lib -I/home/user/code_projects/sci_calculator/node/lib -g -std=gnu++14 -o CMakeFiles/sci_calculator.dir/managers/src/constant_manager.cpp.o -c /home/user/code_projects/sci_calculator/managers/src/constant_manager.cpp",
+  "file": "/home/user/code_projects/sci_calculator/managers/src/constant_manager.cpp"
+},
+{
+  "directory": "/home/user/code_projects/sci_calculator/build",
+  "command": "/usr/bin/c++  -I/home/user/code_projects/sci_calculator/. -I/home/user/code_projects/sci_calculator/managers/lib -I/home/user/code_projects/sci_calculator/node/lib -g -std=gnu++14 -o CMakeFiles/sci_calculator.dir/node/src/constant_node.cpp.o -c /home/user/code_projects/sci_calculator/node/src/constant_node.cpp",
+  "file": "/home/user/code_projects/sci_calculator/node/src/constant_node.cpp"
+},
+{
+  "directory": "/home/user/code_projects/sci_calculator/build",
+  "command": "/usr/bin/c++  -I/home/user/code_projects/sci_calculator/. -I/home/user/code_projects/sci_calculator/managers/lib -I/home/user/code_projects/sci_calculator/node/lib -g -std=gnu++14 -o CMakeFiles/sci_calculator.dir/node/src/embeded_node.cpp.o -c /home/user/code_projects/sci_calculator/node/src/embeded_node.cpp",
+  "file": "/home/user/code_projects/sci_calculator/node/src/embeded_node.cpp"
+},
+{
+  "directory": "/home/user/code_projects/sci_calculator/build",
+  "command": "/usr/bin/c++  -I/home/user/code_projects/sci_calculator/. -I/home/user/code_projects/sci_calculator/managers/lib -I/home/user/code_projects/sci_calculator/node/lib -g -std=gnu++14 -o CMakeFiles/sci_calculator.dir/node/src/function_node.cpp.o -c /home/user/code_projects/sci_calculator/node/src/function_node.cpp",
+  "file": "/home/user/code_projects/sci_calculator/node/src/function_node.cpp"
+},
+{
+  "directory": "/home/user/code_projects/sci_calculator/build",
+  "command": "/usr/bin/c++  -I/home/user/code_projects/sci_calculator/. -I/home/user/code_projects/sci_calculator/managers/lib -I/home/user/code_projects/sci_calculator/node/lib -g -std=gnu++14 -o CMakeFiles/sci_calculator.dir/node/src/int_node.cpp.o -c /home/user/code_projects/sci_calculator/node/src/int_node.cpp",
+  "file": "/home/user/code_projects/sci_calculator/node/src/int_node.cpp"
+},
+{
+  "directory": "/home/user/code_projects/sci_calculator/build",
+  "command": "/usr/bin/c++  -I/home/user/code_projects/sci_calculator/. -I/home/user/code_projects/sci_calculator/managers/lib -I/home/user/code_projects/sci_calculator/node/lib -g -std=gnu++14 -o CMakeFiles/sci_calculator.dir/node/src/math_node.cpp.o -c /home/user/code_projects/sci_calculator/node/src/math_node.cpp",
+  "file": "/home/user/code_projects/sci_calculator/node/src/math_node.cpp"
+},
+{
+  "directory": "/home/user/code_projects/sci_calculator/build",
+  "command": "/usr/bin/c++  -I/home/user/code_projects/sci_calculator/. -I/home/user/code_projects/sci_calculator/managers/lib -I/home/user/code_projects/sci_calculator/node/lib -g -std=gnu++14 -o CMakeFiles/sci_calculator.dir/main.cpp.o -c /home/user/code_projects/sci_calculator/main.cpp",
+  "file": "/home/user/code_projects/sci_calculator/main.cpp"
+},
+{
+  "directory": "/home/user/code_projects/sci_calculator/build",
+  "command": "/usr/bin/c++  -I/home/user/code_projects/sci_calculator/. -I/home/user/code_projects/sci_calculator/managers/lib -I/home/user/code_projects/sci_calculator/node/lib -g -std=gnu++14 -o CMakeFiles/sci_calculator.dir/parser.cpp.o -c /home/user/code_projects/sci_calculator/parser.cpp",
+  "file": "/home/user/code_projects/sci_calculator/parser.cpp"
+}
+]

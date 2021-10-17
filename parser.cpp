@@ -211,7 +211,7 @@ node_ptr parser::create_constant_node(string name, bool min, bool div, bool pow)
 }
 
 node_ptr parser::create_function_node(string name, string arguments, bool min, bool div, bool pow) {
-
+    return nullptr;
 }
 
 string parser::display_tree() {

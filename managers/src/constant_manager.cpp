@@ -19,7 +19,7 @@ std::string constant_manager::get_field(std::string str, int& i) {
 constant_manager::constant_manager() {
     fstream file;
     string line;
-    file.open("memory/constants", ios::in | ios::out);
+    file.open("../memory/constants", ios::in | ios::out);
     if(file.good()) {
         while(getline(file, line)) {
             int i = 0;
