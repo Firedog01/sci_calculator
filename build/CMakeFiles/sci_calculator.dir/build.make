@@ -69,94 +69,10 @@ include CMakeFiles/sci_calculator.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/sci_calculator.dir/flags.make
 
-CMakeFiles/sci_calculator.dir/managers/src/constant_manager.cpp.o: CMakeFiles/sci_calculator.dir/flags.make
-CMakeFiles/sci_calculator.dir/managers/src/constant_manager.cpp.o: ../managers/src/constant_manager.cpp
-CMakeFiles/sci_calculator.dir/managers/src/constant_manager.cpp.o: CMakeFiles/sci_calculator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/user/code_projects/sci_calculator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sci_calculator.dir/managers/src/constant_manager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sci_calculator.dir/managers/src/constant_manager.cpp.o -MF CMakeFiles/sci_calculator.dir/managers/src/constant_manager.cpp.o.d -o CMakeFiles/sci_calculator.dir/managers/src/constant_manager.cpp.o -c /home/user/code_projects/sci_calculator/managers/src/constant_manager.cpp
-
-CMakeFiles/sci_calculator.dir/managers/src/constant_manager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sci_calculator.dir/managers/src/constant_manager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/code_projects/sci_calculator/managers/src/constant_manager.cpp > CMakeFiles/sci_calculator.dir/managers/src/constant_manager.cpp.i
-
-CMakeFiles/sci_calculator.dir/managers/src/constant_manager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sci_calculator.dir/managers/src/constant_manager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/code_projects/sci_calculator/managers/src/constant_manager.cpp -o CMakeFiles/sci_calculator.dir/managers/src/constant_manager.cpp.s
-
-CMakeFiles/sci_calculator.dir/node/src/constant_node.cpp.o: CMakeFiles/sci_calculator.dir/flags.make
-CMakeFiles/sci_calculator.dir/node/src/constant_node.cpp.o: ../node/src/constant_node.cpp
-CMakeFiles/sci_calculator.dir/node/src/constant_node.cpp.o: CMakeFiles/sci_calculator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/user/code_projects/sci_calculator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/sci_calculator.dir/node/src/constant_node.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sci_calculator.dir/node/src/constant_node.cpp.o -MF CMakeFiles/sci_calculator.dir/node/src/constant_node.cpp.o.d -o CMakeFiles/sci_calculator.dir/node/src/constant_node.cpp.o -c /home/user/code_projects/sci_calculator/node/src/constant_node.cpp
-
-CMakeFiles/sci_calculator.dir/node/src/constant_node.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sci_calculator.dir/node/src/constant_node.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/code_projects/sci_calculator/node/src/constant_node.cpp > CMakeFiles/sci_calculator.dir/node/src/constant_node.cpp.i
-
-CMakeFiles/sci_calculator.dir/node/src/constant_node.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sci_calculator.dir/node/src/constant_node.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/code_projects/sci_calculator/node/src/constant_node.cpp -o CMakeFiles/sci_calculator.dir/node/src/constant_node.cpp.s
-
-CMakeFiles/sci_calculator.dir/node/src/embeded_node.cpp.o: CMakeFiles/sci_calculator.dir/flags.make
-CMakeFiles/sci_calculator.dir/node/src/embeded_node.cpp.o: ../node/src/embeded_node.cpp
-CMakeFiles/sci_calculator.dir/node/src/embeded_node.cpp.o: CMakeFiles/sci_calculator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/user/code_projects/sci_calculator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/sci_calculator.dir/node/src/embeded_node.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sci_calculator.dir/node/src/embeded_node.cpp.o -MF CMakeFiles/sci_calculator.dir/node/src/embeded_node.cpp.o.d -o CMakeFiles/sci_calculator.dir/node/src/embeded_node.cpp.o -c /home/user/code_projects/sci_calculator/node/src/embeded_node.cpp
-
-CMakeFiles/sci_calculator.dir/node/src/embeded_node.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sci_calculator.dir/node/src/embeded_node.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/code_projects/sci_calculator/node/src/embeded_node.cpp > CMakeFiles/sci_calculator.dir/node/src/embeded_node.cpp.i
-
-CMakeFiles/sci_calculator.dir/node/src/embeded_node.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sci_calculator.dir/node/src/embeded_node.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/code_projects/sci_calculator/node/src/embeded_node.cpp -o CMakeFiles/sci_calculator.dir/node/src/embeded_node.cpp.s
-
-CMakeFiles/sci_calculator.dir/node/src/function_node.cpp.o: CMakeFiles/sci_calculator.dir/flags.make
-CMakeFiles/sci_calculator.dir/node/src/function_node.cpp.o: ../node/src/function_node.cpp
-CMakeFiles/sci_calculator.dir/node/src/function_node.cpp.o: CMakeFiles/sci_calculator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/user/code_projects/sci_calculator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/sci_calculator.dir/node/src/function_node.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sci_calculator.dir/node/src/function_node.cpp.o -MF CMakeFiles/sci_calculator.dir/node/src/function_node.cpp.o.d -o CMakeFiles/sci_calculator.dir/node/src/function_node.cpp.o -c /home/user/code_projects/sci_calculator/node/src/function_node.cpp
-
-CMakeFiles/sci_calculator.dir/node/src/function_node.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sci_calculator.dir/node/src/function_node.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/code_projects/sci_calculator/node/src/function_node.cpp > CMakeFiles/sci_calculator.dir/node/src/function_node.cpp.i
-
-CMakeFiles/sci_calculator.dir/node/src/function_node.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sci_calculator.dir/node/src/function_node.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/code_projects/sci_calculator/node/src/function_node.cpp -o CMakeFiles/sci_calculator.dir/node/src/function_node.cpp.s
-
-CMakeFiles/sci_calculator.dir/node/src/int_node.cpp.o: CMakeFiles/sci_calculator.dir/flags.make
-CMakeFiles/sci_calculator.dir/node/src/int_node.cpp.o: ../node/src/int_node.cpp
-CMakeFiles/sci_calculator.dir/node/src/int_node.cpp.o: CMakeFiles/sci_calculator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/user/code_projects/sci_calculator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/sci_calculator.dir/node/src/int_node.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sci_calculator.dir/node/src/int_node.cpp.o -MF CMakeFiles/sci_calculator.dir/node/src/int_node.cpp.o.d -o CMakeFiles/sci_calculator.dir/node/src/int_node.cpp.o -c /home/user/code_projects/sci_calculator/node/src/int_node.cpp
-
-CMakeFiles/sci_calculator.dir/node/src/int_node.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sci_calculator.dir/node/src/int_node.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/code_projects/sci_calculator/node/src/int_node.cpp > CMakeFiles/sci_calculator.dir/node/src/int_node.cpp.i
-
-CMakeFiles/sci_calculator.dir/node/src/int_node.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sci_calculator.dir/node/src/int_node.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/code_projects/sci_calculator/node/src/int_node.cpp -o CMakeFiles/sci_calculator.dir/node/src/int_node.cpp.s
-
-CMakeFiles/sci_calculator.dir/node/src/math_node.cpp.o: CMakeFiles/sci_calculator.dir/flags.make
-CMakeFiles/sci_calculator.dir/node/src/math_node.cpp.o: ../node/src/math_node.cpp
-CMakeFiles/sci_calculator.dir/node/src/math_node.cpp.o: CMakeFiles/sci_calculator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/user/code_projects/sci_calculator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/sci_calculator.dir/node/src/math_node.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sci_calculator.dir/node/src/math_node.cpp.o -MF CMakeFiles/sci_calculator.dir/node/src/math_node.cpp.o.d -o CMakeFiles/sci_calculator.dir/node/src/math_node.cpp.o -c /home/user/code_projects/sci_calculator/node/src/math_node.cpp
-
-CMakeFiles/sci_calculator.dir/node/src/math_node.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sci_calculator.dir/node/src/math_node.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/code_projects/sci_calculator/node/src/math_node.cpp > CMakeFiles/sci_calculator.dir/node/src/math_node.cpp.i
-
-CMakeFiles/sci_calculator.dir/node/src/math_node.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sci_calculator.dir/node/src/math_node.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/code_projects/sci_calculator/node/src/math_node.cpp -o CMakeFiles/sci_calculator.dir/node/src/math_node.cpp.s
-
 CMakeFiles/sci_calculator.dir/main.cpp.o: CMakeFiles/sci_calculator.dir/flags.make
 CMakeFiles/sci_calculator.dir/main.cpp.o: ../main.cpp
 CMakeFiles/sci_calculator.dir/main.cpp.o: CMakeFiles/sci_calculator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/user/code_projects/sci_calculator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/sci_calculator.dir/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/user/code_projects/sci_calculator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/sci_calculator.dir/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sci_calculator.dir/main.cpp.o -MF CMakeFiles/sci_calculator.dir/main.cpp.o.d -o CMakeFiles/sci_calculator.dir/main.cpp.o -c /home/user/code_projects/sci_calculator/main.cpp
 
 CMakeFiles/sci_calculator.dir/main.cpp.i: cmake_force
@@ -170,7 +86,7 @@ CMakeFiles/sci_calculator.dir/main.cpp.s: cmake_force
 CMakeFiles/sci_calculator.dir/parser.cpp.o: CMakeFiles/sci_calculator.dir/flags.make
 CMakeFiles/sci_calculator.dir/parser.cpp.o: ../parser.cpp
 CMakeFiles/sci_calculator.dir/parser.cpp.o: CMakeFiles/sci_calculator.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/user/code_projects/sci_calculator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/sci_calculator.dir/parser.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/user/code_projects/sci_calculator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/sci_calculator.dir/parser.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sci_calculator.dir/parser.cpp.o -MF CMakeFiles/sci_calculator.dir/parser.cpp.o.d -o CMakeFiles/sci_calculator.dir/parser.cpp.o -c /home/user/code_projects/sci_calculator/parser.cpp
 
 CMakeFiles/sci_calculator.dir/parser.cpp.i: cmake_force
@@ -183,29 +99,17 @@ CMakeFiles/sci_calculator.dir/parser.cpp.s: cmake_force
 
 # Object files for target sci_calculator
 sci_calculator_OBJECTS = \
-"CMakeFiles/sci_calculator.dir/managers/src/constant_manager.cpp.o" \
-"CMakeFiles/sci_calculator.dir/node/src/constant_node.cpp.o" \
-"CMakeFiles/sci_calculator.dir/node/src/embeded_node.cpp.o" \
-"CMakeFiles/sci_calculator.dir/node/src/function_node.cpp.o" \
-"CMakeFiles/sci_calculator.dir/node/src/int_node.cpp.o" \
-"CMakeFiles/sci_calculator.dir/node/src/math_node.cpp.o" \
 "CMakeFiles/sci_calculator.dir/main.cpp.o" \
 "CMakeFiles/sci_calculator.dir/parser.cpp.o"
 
 # External object files for target sci_calculator
 sci_calculator_EXTERNAL_OBJECTS =
 
-sci_calculator: CMakeFiles/sci_calculator.dir/managers/src/constant_manager.cpp.o
-sci_calculator: CMakeFiles/sci_calculator.dir/node/src/constant_node.cpp.o
-sci_calculator: CMakeFiles/sci_calculator.dir/node/src/embeded_node.cpp.o
-sci_calculator: CMakeFiles/sci_calculator.dir/node/src/function_node.cpp.o
-sci_calculator: CMakeFiles/sci_calculator.dir/node/src/int_node.cpp.o
-sci_calculator: CMakeFiles/sci_calculator.dir/node/src/math_node.cpp.o
 sci_calculator: CMakeFiles/sci_calculator.dir/main.cpp.o
 sci_calculator: CMakeFiles/sci_calculator.dir/parser.cpp.o
 sci_calculator: CMakeFiles/sci_calculator.dir/build.make
 sci_calculator: CMakeFiles/sci_calculator.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/user/code_projects/sci_calculator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable sci_calculator"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/user/code_projects/sci_calculator/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable sci_calculator"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sci_calculator.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

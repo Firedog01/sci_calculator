@@ -2,6 +2,11 @@ bin
 cmake-build-debug
 .vscode
 .idea
+CMakeFiles
+build
+CmakeCache.txt
+
+# todo zrobić revert popchnięcie tego
 
 # Prerequisites
 *.d

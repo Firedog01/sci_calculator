@@ -2,7 +2,7 @@
 
 using namespace std;
 
-constants::constants(int id, string name, long double value):
+constants::constants(int id, string name, dong value):
     id(id), name(name), value(value) {}
 
 
@@ -25,7 +25,7 @@ constant_manager::constant_manager() {
             int i = 0;
             int id = stoi(get_field(line, i));
             string name = get_field(line, i);
-            long double value = stold(get_field(line, i));
+            dong value = stold(get_field(line, i));
             constants c(id, name, value);
             this->const_list.push_back(c);
         }
@@ -44,12 +44,12 @@ string constant_manager::get_name(int id) {
     return "";
 }
 
-long double constant_manager::get_value(constant_ptr node) {
+dong constant_manager::get_value(constant_ptr node) {
     int id = node->get_id_const();
     return get_value(id);
 }
 
-long double constant_manager::get_value(int id) {
+dong constant_manager::get_value(int id) {
     for(int i = 0; i < const_list.size(); i++) {
         if(const_list[i].id == id) {
             return const_list[i].value;

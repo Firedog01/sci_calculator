@@ -2,14 +2,12 @@
 #include <vector>
 #include <fstream>
 
-//todo check if works
-
 struct constants {
     int id;
     std::string name;
-    long double value;
+    dong value;
 
-    constants(int id, std::string name, long double value);
+    constants(int id, std::string name, dong value);
 };
 
 class constant_manager 
@@ -20,7 +18,7 @@ class constant_manager
 public:
     constant_manager();
     std::string get_name(int id);
-    long double get_value(constant_ptr node);
-    long double get_value(int id);
+    dong get_value(constant_ptr node);
+    dong get_value(int id);
     int get_id(std::string name);
 };

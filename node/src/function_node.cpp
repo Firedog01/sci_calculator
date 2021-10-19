@@ -1,13 +1,25 @@
 #include "../lib/function_node.h"
 
-function_node::function_node(int id_func, bool min, bool div, bool pow):
-        math_node(min, div, pow) {
-    set_func(id_func);
+using namespace std;
+
+function_node::function_node(int id_func, std::vector<node_ptr> args, fpt func, bool min, bool div, bool pow):
+        math_node(min, div, pow), id_func(id_func), args(args), func(func) {}
+
+int function_node::get_id_func() {
+    return id_func;
 }
-// std::string function_node::get_func();
-void function_node::set_func(int id) {
-    this->id_func = id;
+
+node_ptr function_node::get_embed(int pos) {
+    if(pos >= 0 && pos <= args.size()) 
+        return args.at(pos);
+    else 
+        return nullptr;
 }
-// long double function_node::enumerate();
-// std::string function_node::get_cont();
-// void function_node::set_cont(std::string cont);
+
+vector<node_ptr> function_node::get_args() {
+    return args;
+}
+
+dong function_node::enumerate() {
+    return (*func)(get_args());
+}

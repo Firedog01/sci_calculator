@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/user/code_projects/sci_calculator/. -I/home/user/code_projects/sci_calculator/managers/lib -I/home/user/code_projects/sci_calculator/node/lib
+CXX_INCLUDES = 
 
-CXX_FLAGS = -g -std=gnu++14
+CXX_FLAGS = -g
 
