@@ -1,1 +1,0 @@
-/usr/bin/c++ -g -rdynamic CMakeFiles/sci_calculator.dir/main.cpp.o CMakeFiles/sci_calculator.dir/parser.cpp.o -o sci_calculator 

@@ -3,13 +3,13 @@
 #include <stdexcept>
 #include <iostream>
 
-#include "node/lib/math_node.h"
-#include "node/lib/int_node.h"
-#include "node/lib/embeded_node.h"
-#include "node/lib/constant_node.h"
-#include "node/lib/function_node.h"
+#include "lib/node/math_node.h"
+#include "lib/node/int_node.h"
+#include "lib/node/embeded_node.h"
+#include "lib/node/constant_node.h"
+#include "lib/node/function_node.h"
 
-#include "managers/lib/constant_manager.h"
+#include "lib/manager/constant_manager.h"
 
 
 class parser {
