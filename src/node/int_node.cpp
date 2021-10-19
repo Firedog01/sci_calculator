@@ -1,4 +1,4 @@
-#include "../lib/int_node.h"
+#include "../../lib/node/int_node.h"
 
 int_node::int_node(const uint64_t& x, bool min, bool div, bool pow) :
         math_node(min, div, pow) {

@@ -1,4 +1,4 @@
-#include "../lib/sin.h"
+#include "../../lib/func/sin.h"
 
 using namespace std;
 
@@ -8,4 +8,5 @@ dong sin::enumerate(vector<node_ptr> args) {
     } else {
         // enumerate_tree(args.at(0));
     }
+    return 0;
 }

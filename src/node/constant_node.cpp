@@ -1,4 +1,4 @@
-#include "../lib/constant_node.h"
+#include "../../lib/node/constant_node.h"
 
 constant_node::constant_node(int id_const, bool min, bool div, bool pow):
         id_const(id_const), math_node(min, div, pow) {

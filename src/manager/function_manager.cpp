@@ -1,4 +1,4 @@
-#include "../lib/function_manager.h"
+#include "../../lib/manager/function_manager.h"
 
 function::function(int id, std::string name, fpt ptr) : id(id), name(name), ptr(ptr) {}
 

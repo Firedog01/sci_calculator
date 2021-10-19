@@ -1,4 +1,4 @@
-#include "../../node/lib/constant_node.h"
+#include "../node/constant_node.h"
 #include <vector>
 #include <fstream>
 

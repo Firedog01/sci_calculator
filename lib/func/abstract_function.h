@@ -1,7 +1,7 @@
 #include <vector>
 #include <cmath>
 #include <stdexcept>
-#include "../../includes.h"
+#include "../includes.h"
 
 class abstract_function 
 {

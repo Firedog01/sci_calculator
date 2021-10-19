@@ -3,51 +3,56 @@
 #include <stdexcept>
 #include <iostream>
 
-#include "lib/node/math_node.h"
-#include "lib/node/int_node.h"
-#include "lib/node/embeded_node.h"
-#include "lib/node/constant_node.h"
-#include "lib/node/function_node.h"
+#include "node/int_node.h"
+#include "node/embedded_node.h"
+#include "node/constant_node.h"
+#include "node/function_node.h"
 
-#include "lib/manager/constant_manager.h"
+#include "manager/constant_manager.h"
+#include "manager/function_manager.h"
+#include "manager/tree_manager.h"
 
 
 class parser {
 private:
     node_ptr root;
     constant_manager c_man;
-
-    std::string debug;
+    function_manager f_man;
+    tree_manager t_man;
 
     //misc functions 
-    void remove_spaces(std::string& str);
-    std::string get_num(std::string str, int& i);
-    std::string get_embeded(std::string str, int& i);
-    std::string get_name(std::string str, int& i);
-    bool check_name_character(char c);
+    static void remove_spaces(std::string& str);
+    static std::string get_num(std::string str, int& i);
+    static std::string get_embedded(std::string str, int& i);
+    static std::string get_name(std::string str, int& i);
+    static bool check_name_character(char c);
 
 
     // creating nodes
-    node_ptr create_embeded_branch(std::string str);
+    node_ptr create_embedded_branch(std::string str);
 
     node_ptr create_node(std::string str, int& i, op& op);
-    node_ptr create_int_node(std::string cont, bool min, bool div, bool pow);
-    node_ptr create_embeded_node(std::string cont, bool min, bool div, bool pow);
-    node_ptr create_constant_node(std::string name, bool min, bool div, bool pow);
+    node_ptr create_int_node(const std::string& cont, bool min, bool div, bool pow);
+    node_ptr create_embedded_node(std::string cont, bool min, bool div, bool pow);
+    node_ptr create_constant_node(const std::string& name, bool min, bool div, bool pow);
     node_ptr create_function_node(std::string name, std::string arguments, bool min, bool div, bool pow);
     
 
     //displaying
-    std::string display_subtree(node_ptr node, op op);
-    std::string get_math_operator(op op, bool min, bool div, bool pow);
+    std::string display_subtree(const node_ptr& node, op op);
+    static std::string get_math_operator(op op, bool min, bool div, bool pow);
 
 
     //tree optimalisation
-    void flatten_tree();
+//    void flatten_tree();
 
     
 public:
-    parser(std::string str);
     std::string test();
     std::string display_tree();
+
+    parser(std::string str);
+
+    node_ptr getRoot();
+    dong enumerate_root();
 };

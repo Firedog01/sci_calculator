@@ -1,5 +1,5 @@
-#include "../../node/lib/function_node.h"
-#include "../../functions/lib/abstract_function.h"
+#include "../node/function_node.h"
+#include "../func/abstract_function.h"
 
 struct function {
     int id;

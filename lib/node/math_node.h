@@ -1,11 +1,10 @@
-
 /* flags
  * 0b0000000x - minus flag      -
  * 0b000000x0 - division flag   /
  * 0b00000x00 - power flag      ^
  * 0b00xxx000 - val flags:
  *     000    - int
- *     001    - embeded
+ *     001    - embedded
  *     010    - variable
  *     011    - constant
  *     100    - function
@@ -14,9 +13,10 @@
 #ifndef MATH_NODE
 #define MATH_NODE
 
-#include "../../includes.h"
+#include "../includes.h"
 #include <cstdint>
 #include <string>
+#include <utility>
 
 class math_node {
 private:
@@ -35,13 +35,13 @@ public:
     node_ptr get_mul_node();
     void set_mul_node(node_ptr node);
 
-    bool is_min();
+    bool is_min() const;
     void set_min(bool val);
-    bool is_div();
+    bool is_div() const;
     void set_div(bool val);
-    bool is_pow();
+    bool is_pow() const;
     void set_pow(bool val);
-    std::string get_type();
+    std::string get_type() const;
 };
 #endif
 

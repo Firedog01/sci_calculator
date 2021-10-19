@@ -1,4 +1,4 @@
-#include "parser.h"
+#include "../lib/parser.h"
 
 using namespace std;
 
@@ -22,13 +22,13 @@ string parser::test() {
 //
 //
 parser::parser(string str): 
-        c_man() {
-    this->remove_spaces(str);
+        c_man(), t_man() {
+    parser::remove_spaces(str);
     cout << "skrocony string: " + str + '\n';
-    this->root = create_embeded_branch(str);
+    this->root = create_embedded_branch(str);
 }
 
-node_ptr parser::create_embeded_branch(std::string str) {
+node_ptr parser::create_embedded_branch(std::string str) {
     int i = 0;
     op cur_op = add;
     cout << "emb_root\n";
@@ -38,7 +38,7 @@ node_ptr parser::create_embeded_branch(std::string str) {
              active_mul = emb_root;
 
     shared_ptr<int_node> ptr;
-    ptr = static_pointer_cast<int_node>(emb_root);
+//    ptr = static_pointer_cast<int_node>(emb_root);
     
 
     while(i < str.length()) {
@@ -53,7 +53,7 @@ node_ptr parser::create_embeded_branch(std::string str) {
             active_plus->set_plus_node(new_node);
             active_mul = new_node;
             active_plus = new_node;
-        } else if(cur_op = mul) {
+        } else if(cur_op == mul) {
             cout << "nowy mul node: ";
             ptr = static_pointer_cast<int_node>(new_node);
             cout << get_math_operator(cur_op, ptr->is_min(), ptr->is_div(), ptr->is_pow()) << '\n';
@@ -70,9 +70,9 @@ node_ptr parser::create_embeded_branch(std::string str) {
 
 void parser::remove_spaces(string& str) {
     string replace;
-    for(int i = 0; i < str.length(); i++) {
-        if(str[i] != ' ') {
-            replace += str[i];
+    for(char i : str) {
+        if(i != ' ') {
+            replace += i;
         }
     }
     str = replace;
@@ -87,8 +87,8 @@ string parser::get_num(string str, int& i) {
     return num;
 }
 
-std::string parser::get_embeded(std::string str, int& i) {
-    string embeded;
+std::string parser::get_embedded(std::string str, int& i) {
+    string embedded;
     int brackets = 1; // +1 for opening -1 for closing
 
     i++;
@@ -99,11 +99,11 @@ std::string parser::get_embeded(std::string str, int& i) {
         if(str[i] == '(') {
             brackets++;
         }
-        embeded += str[i];
+        embedded += str[i];
         i++;
     } while(brackets > 0);
-    embeded.pop_back();
-    return embeded;
+    embedded.pop_back();
+    return embedded;
 }
 
 std::string parser::get_name(std::string str, int& i) {
@@ -167,7 +167,7 @@ node_ptr parser::create_node(string str, int& i, op& op) {
             return create_int_node(get_num(str, i), min, div, pow);
 
         case '(':  
-            return create_embeded_node(get_embeded(str, i), min, div, pow);
+            return create_embedded_node(get_embedded(str, i), min, div, pow);
         
         // case '?':
         //     i++;
@@ -187,17 +187,17 @@ node_ptr parser::create_node(string str, int& i, op& op) {
     return nullptr;
 }
 
-node_ptr parser::create_int_node(string cont, bool min, bool div, bool pow) {
+node_ptr parser::create_int_node(const string& cont, bool min, bool div, bool pow) {
     unsigned long long val = stoull(cont); 
     return make_shared<int_node>(val, min, div, pow);
 }
 
-node_ptr parser::create_embeded_node(string cont, bool min, bool div, bool pow) {
-    node_ptr root_branch = create_embeded_branch(cont);
-    return make_shared<embeded_node>(root_branch, min, div, pow);
+node_ptr parser::create_embedded_node(string cont, bool min, bool div, bool pow) {
+    node_ptr root_branch = create_embedded_branch(std::move(cont));
+    return make_shared<embedded_node>(root_branch, min, div, pow);
 }
 
-node_ptr parser::create_constant_node(string name, bool min, bool div, bool pow) {
+node_ptr parser::create_constant_node(const string& name, bool min, bool div, bool pow) {
     int id_const = c_man.get_id(name);
     if(id_const == -1) {
         string err = "constant: ";
@@ -218,7 +218,7 @@ string parser::display_tree() {
     return display_subtree(root, add);
 }
 
-string parser::display_subtree(node_ptr node, op op) {
+string parser::display_subtree(const node_ptr& node, op op) {
     string ret, type;
     type = node->get_type();
     ret += get_math_operator(op, node->is_min(), node->is_div(), node->is_pow());
@@ -227,8 +227,8 @@ string parser::display_subtree(node_ptr node, op op) {
         int_ptr ptr = static_pointer_cast<int_node>(node);
         ret += to_string(ptr->get_cont());
 
-    } else if(type == "embeded") {
-        embeded_ptr ptr = static_pointer_cast<embeded_node>(node);
+    } else if(type == "embedded") {
+        embedded_ptr ptr = static_pointer_cast<embedded_node>(node);
         ret += "(";
         ret += display_subtree(ptr->get_cont(), add);
         ret += ")";
@@ -285,4 +285,12 @@ std::string parser::get_math_operator(op op, bool min, bool div, bool pow) {
     }
     string empty;
     return empty;
+}
+
+node_ptr parser::getRoot() {
+    return this->root;
+}
+
+dong parser::enumerate_root() {
+    return t_man.enumerate_tree(root);
 }

@@ -1,8 +1,10 @@
-#include "../lib/math_node.h"
+#include "../../lib/node/math_node.h"
+
+#include <utility>
 
 
 math_node::math_node(bool min, bool div, bool pow): 
-        plus_node(nullptr), mul_node(nullptr) {
+        plus_node(nullptr), mul_node(nullptr), flags(0) {
     set_min(min);
     set_div(div);
     set_pow(pow);
@@ -10,7 +12,7 @@ math_node::math_node(bool min, bool div, bool pow):
 }
 
 
-bool math_node::is_min() {
+bool math_node::is_min() const {
     return (flags & (1 << 0));
 }
 
@@ -19,7 +21,7 @@ void math_node::set_min(bool val) {
 }
 
 
-bool math_node::is_div() {
+bool math_node::is_div() const {
     return (flags & (1 << 1));
 }
 
@@ -28,7 +30,7 @@ void math_node::set_div(bool val) {
 }
 
 
-bool math_node::is_pow() {
+bool math_node::is_pow() const {
     return (flags & (1 << 2));
 }
 
@@ -43,14 +45,14 @@ void math_node::set_flag(bool val, int disp) {
 
 
 void math_node::set_plus_node(node_ptr node) {
-    this->plus_node = node;
+    this->plus_node = std::move(node);
 }
 node_ptr math_node::get_plus_node() {
     return this->plus_node;
 }
 
 void math_node::set_mul_node(node_ptr node) {
-    this->mul_node = node;
+    this->mul_node = std::move(node);
 }
 node_ptr math_node::get_mul_node() {
     return this->mul_node;
@@ -58,16 +60,16 @@ node_ptr math_node::get_mul_node() {
 using namespace std;
 
 
-string math_node::get_type() {
+string math_node::get_type() const {
     string ret;
-    char flag = (this->flags>>3 & 7);
+    char flag = this->flags >> 3 & 7;
     switch(flag) {
         case 0:
         ret = "int";
         break;
 
         case 1:
-        ret = "embeded";
+        ret = "embedded";
         break;
         
         case 2:

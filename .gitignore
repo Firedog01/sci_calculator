@@ -4,7 +4,7 @@ cmake-build-debug
 .idea
 CMakeFiles
 build
-CmakeCache.txt
+CMakeCache.txt
 
 # todo zrobić revert popchnięcie tego
 

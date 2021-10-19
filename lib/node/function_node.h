@@ -1,5 +1,5 @@
 #include "math_node.h"
-#include "../../functions/lib/sin.h"
+#include "../func/sin.h"
 #include <vector>
 
 class function_node : public math_node

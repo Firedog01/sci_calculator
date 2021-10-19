@@ -1,4 +1,4 @@
-#include "../lib/function_node.h"
+#include "../../lib/node/function_node.h"
 
 using namespace std;
 
