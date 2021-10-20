@@ -22,3 +22,13 @@ int main(int argc, char** argv) {
     }
     return 0;
 }
+
+/*
+todo:
+    zaimplementować obsługę funkcji
+    zaimplementować funkcje optymalizujące drzewo
+    funkcję która wyświelta wszystkie liczby jako inty
+    checker składni
+    klasy wyjątków
+    dołożyć destruktor
+ */

@@ -43,9 +43,9 @@ private:
     static std::string get_math_operator(op op, bool min, bool div, bool pow);
 
 
-    //tree optimalisation
-//    void flatten_tree();
-
+    //checks
+    bool syntax_checker(std::string str);
+    std::string syntax_checker_verboose(std::string str);
     
 public:
     std::string test();

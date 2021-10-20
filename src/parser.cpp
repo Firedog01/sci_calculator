@@ -291,6 +291,26 @@ std::string parser::get_math_operator(op op, bool min, bool div, bool pow) {
     return empty;
 }
 
+bool parser::syntax_checker(string str) {
+    bool ret = true;
+    //+^
+    //()
+    //1.2.3
+    //other caracters
+    //*na początku
+    //operator bez liczby
+    //czy dana nazwa funkcji/stałej jest poprawna
+    //czy funkcje mają poprawną ilość argumentów
+    //czy nie ma dwóch liczb oddzielonych tylko spacją
+    return ret;
+}
+
+string parser::syntax_checker_verboose(string str) {
+    string ret;
+
+    return ret;
+}
+
 node_ptr parser::getRoot() {
     return this->root;
 }
