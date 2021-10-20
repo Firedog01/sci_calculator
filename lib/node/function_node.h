@@ -1,3 +1,6 @@
+#ifndef FUNCTION_NODE
+#define FUNCTION_NODE
+
 #include "math_node.h"
 #include "../func/sin.h"
 #include <vector>
@@ -14,3 +17,4 @@ public:
     std::vector<node_ptr> get_args();
     dong enumerate();
 };
+#endif

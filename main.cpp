@@ -5,7 +5,8 @@
 using namespace std;
 
 int main(int argc, char** argv) {
-    string default_text = "123 - 341 / _pi 4((23 - 7)* 15) + 34 * 8";
+    // ~90,935
+    string default_text = "1 - 2/_pi^3 + 5(2(3^2))2";
     if(argc == 1) {
         parser parser(default_text);
         cout << parser.test() << endl;

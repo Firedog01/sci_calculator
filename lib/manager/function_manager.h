@@ -1,3 +1,5 @@
+#ifndef FUNCTION_MANAGER
+#define FUNCTION_MANAGER
 #include "../node/function_node.h"
 #include "../func/abstract_function.h"
 
@@ -17,3 +19,4 @@ public:
     std::string get_name(int id);
     int get_id(std::string name);
 };
+#endif

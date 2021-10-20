@@ -9,6 +9,7 @@ string parser::test() {
     for(int i = 0; i < 2; i++) {
         cout << c_man.get_name(i) << " " << c_man.get_value(i) <<"\n";
     } 
+    cout << "value: " << t_man.enumerate_tree(root) << endl;
     return "";
 }
 
@@ -166,7 +167,10 @@ node_ptr parser::create_node(string str, int& i, op& op) {
             }
             return create_int_node(get_num(str, i), min, div, pow);
 
-        case '(':  
+        case '(':
+            if(op == def) {
+                op = mul;
+            }
             return create_embedded_node(get_embedded(str, i), min, div, pow);
         
         // case '?':
@@ -193,7 +197,7 @@ node_ptr parser::create_int_node(const string& cont, bool min, bool div, bool po
 }
 
 node_ptr parser::create_embedded_node(string cont, bool min, bool div, bool pow) {
-    node_ptr root_branch = create_embedded_branch(std::move(cont));
+    node_ptr root_branch = create_embedded_branch(cont);
     return make_shared<embedded_node>(root_branch, min, div, pow);
 }
 

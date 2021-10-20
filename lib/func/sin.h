@@ -1,3 +1,6 @@
+#ifndef SING
+#define SING
+
 #include <vector>
 #include <cmath>
 #include <stdexcept>
@@ -8,3 +11,4 @@ class sin
 public:
     virtual dong enumerate(std::vector<node_ptr> args);
 };
+#endif

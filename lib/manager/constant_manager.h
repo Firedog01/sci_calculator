@@ -1,3 +1,6 @@
+#ifndef CONSTANT_MANAGER
+#define CONSTANT_MANAGER
+
 #include "../node/constant_node.h"
 #include <vector>
 #include <fstream>
@@ -22,3 +25,4 @@ public:
     dong get_value(int id);
     int get_id(std::string name);
 };
+#endif

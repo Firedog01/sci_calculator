@@ -1,3 +1,5 @@
+#ifndef TREE_MANAGER
+#define TREE_MANAGER
 #include <utility>
 #include <cmath>
 
@@ -7,11 +9,16 @@
 #include "../node/constant_node.h"
 #include "../node/function_node.h"
 
+#include "../manager/constant_manager.h"
+
 class tree_manager 
 {
-    dong renum(node_ptr node); //recursively enumerate tree
+    constant_manager c_man;
+
+    dong get_tree_value(node_ptr node); //recursively enumerate tree
     dong get_node_value(node_ptr node);
-    dong pow_node_value(dong val, node_ptr node); // powers val and returns answer
 public:
+    tree_manager() : c_man() {}
     dong enumerate_tree(node_ptr root);
 };
+#endif

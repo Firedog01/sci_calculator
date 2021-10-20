@@ -1,3 +1,5 @@
+#ifndef MATH_NODE
+#define MATH_NODE
 /* flags
  * 0b0000000x - minus flag      -
  * 0b000000x0 - division flag   /
@@ -10,8 +12,6 @@
  *     100    - function
  *     111    - undefined
  */
-#ifndef MATH_NODE
-#define MATH_NODE
 
 #include "../includes.h"
 #include <cstdint>

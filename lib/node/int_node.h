@@ -1,3 +1,5 @@
+#ifndef INT_NODE
+#define INT_NODE
 #include "math_node.h"
 
 class int_node : public math_node{
@@ -10,3 +12,4 @@ public:
 
     int_ptr operator=(node_ptr);
 };
+#endif 
