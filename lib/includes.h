@@ -24,4 +24,6 @@ typedef dong (*fpt)(std::vector<node_ptr>);
 //needed by parser
 enum op {add, mul, def};
 
+class syntax_error : public std::logic_error {};
+
 #endif

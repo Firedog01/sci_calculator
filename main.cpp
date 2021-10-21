@@ -1,6 +1,6 @@
 #include <iostream>
 #include <limits>
-#include "lib/parser.h"
+#include "lib/component/parser.h"
 
 using namespace std;
 

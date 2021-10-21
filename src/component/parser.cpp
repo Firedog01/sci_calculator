@@ -1,4 +1,4 @@
-#include "../lib/parser.h"
+#include "../../lib/component/parser.h"
 
 using namespace std;
 
@@ -24,7 +24,7 @@ string parser::test() {
 //
 parser::parser(string str): 
         c_man(), t_man() {
-    parser::remove_spaces(str);
+    string_handling::remove_spaces(str);
     cout << "skrocony string: " + str + '\n';
     this->root = create_embedded_branch(str);
 }
@@ -69,64 +69,6 @@ node_ptr parser::create_embedded_branch(std::string str) {
 
 
 
-void parser::remove_spaces(string& str) {
-    string replace;
-    for(char i : str) {
-        if(i != ' ') {
-            replace += i;
-        }
-    }
-    str = replace;
-}
-
-string parser::get_num(string str, int& i) {
-    string num;
-    while(str[i] >= '0' && str[i] <= '9') {
-        num += str[i];
-        i++;
-    }
-    return num;
-}
-
-std::string parser::get_embedded(std::string str, int& i) {
-    string embedded;
-    int brackets = 1; // +1 for opening -1 for closing
-
-    i++;
-    do {
-        if(str[i] == ')') {
-            brackets--;
-        }
-        if(str[i] == '(') {
-            brackets++;
-        }
-        embedded += str[i];
-        i++;
-    } while(brackets > 0);
-    embedded.pop_back();
-    return embedded;
-}
-
-std::string parser::get_name(std::string str, int& i) {
-    string name;
-    while(check_name_character(str[i])) {
-        name += str[i];
-        i++;
-    }
-    return name;
-}
-
-bool parser::check_name_character(char c) {
-    bool check = false;
-    if(c >= 'a' && c <='z') {
-        check = true;
-    }
-    if(c == '_') {
-        check = true;
-    }
-    return check;
-}
-
 node_ptr parser::create_node(string str, int& i, op& op) {
     bool min = false, 
          div = false, 
@@ -161,25 +103,34 @@ node_ptr parser::create_node(string str, int& i, op& op) {
             break;
 
         case '0': case '1': case '2': case '3': case '4':
-        case '5': case '6': case '7': case '8': case '9':
+        case '5': case '6': case '7': case '8': case '9': {
             if(op == def) {
                 op = mul;
             }
-            return create_int_node(get_num(str, i), min, div, pow);
+            string num = string_handling::get_num(str, i);
+            return create_int_node(num, min, div, pow);
+        }
 
-        case '(':
+        case '(': {
             if(op == def) {
                 op = mul;
             }
-            return create_embedded_node(get_embedded(str, i), min, div, pow);
+            string embedded = string_handling::get_embedded(str, i);
+            return create_embedded_node(embedded, min, div, pow);
+        }
         
-        // case '?':
+        // case string_handling::FUNC_C: {
         //     i++;
+        //     string name = string_handling::get_name(str, i);
         //     return create_function_node(get_name(str, i), );
+        // }
+        
 
-        case '_':
+        case string_handling::CONST_C: {
             i++;
-            return create_constant_node(get_name(str, i), min, div, pow);
+            string name = string_handling::get_name(str, i);
+            return create_constant_node(name, min, div, pow);
+        }
             
         default:
             string err = "unknown operator ";
@@ -238,11 +189,11 @@ string parser::display_subtree(const node_ptr& node, op op) {
         ret += ")";
     } else if(type == "constant") {
         constant_ptr ptr = static_pointer_cast<constant_node>(node);
-        ret += '_';
+        ret += string_handling::CONST_C;
         ret += c_man.get_name(ptr->get_id_const());
     } else if(type == "function") {
         function_ptr ptr = static_pointer_cast<function_node>(node);
-        ret += '?';
+        ret += string_handling::FUNC_C;
         
     } else {
         ret += "type not set";
@@ -289,26 +240,6 @@ std::string parser::get_math_operator(op op, bool min, bool div, bool pow) {
     }
     string empty;
     return empty;
-}
-
-bool parser::syntax_checker(string str) {
-    bool ret = true;
-    //+^
-    //()
-    //1.2.3
-    //other caracters
-    //*na początku
-    //operator bez liczby
-    //czy dana nazwa funkcji/stałej jest poprawna
-    //czy funkcje mają poprawną ilość argumentów
-    //czy nie ma dwóch liczb oddzielonych tylko spacją
-    return ret;
-}
-
-string parser::syntax_checker_verboose(string str) {
-    string ret;
-
-    return ret;
 }
 
 node_ptr parser::getRoot() {

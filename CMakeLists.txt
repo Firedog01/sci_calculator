@@ -5,7 +5,9 @@ set(CMAKE_CXX_STANDARD 17)
 
 set(SOURCE_FILES
         main.cpp
-        src/parser.cpp
+        src/calculator.cpp
+        src/component/checker.cpp
+        src/component/parser.cpp
         src/func/abstract_function.cpp
         src/func/sin.cpp
         src/manager/constant_manager.cpp
