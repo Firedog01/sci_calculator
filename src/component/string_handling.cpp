@@ -59,3 +59,16 @@ bool string_handling::check_name_character(char c) {
     }
     return check;
 }
+
+bool string_handling::check_after_operator_character(char c) {
+    bool check = false;
+    if(c >= '0' && c <= '9') {
+        check = true;
+    }
+    if(c == CONST_C) {
+        check = true;
+    }
+    if(c == FUNC_C) {
+        check = true;
+    }
+}

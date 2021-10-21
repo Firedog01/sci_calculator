@@ -2,6 +2,7 @@
 #define CHECKER
 
 #include "parser.h"
+#include "string_handling.h"
 
     //other caracters
 

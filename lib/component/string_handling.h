@@ -11,6 +11,7 @@ struct string_handling {
     static std::string get_embedded(std::string str, int& i);
     static std::string get_name(std::string str, int& i);
     static bool check_name_character(char c);
+    static bool check_after_operator_character(char c);
 };
 
 #endif

@@ -1,6 +1,6 @@
 #include <iostream>
 #include <limits>
-#include "lib/component/parser.h"
+#include "lib/calculator.h"
 
 using namespace std;
 
@@ -28,7 +28,7 @@ todo:
     zaimplementować obsługę funkcji
     zaimplementować funkcje optymalizujące drzewo
     funkcję która wyświelta wszystkie liczby jako inty
-    checker składni
+    checker składni <-
     klasy wyjątków
     dołożyć destruktor
  */
