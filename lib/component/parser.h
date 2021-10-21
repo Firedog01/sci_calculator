@@ -1,3 +1,6 @@
+#ifndef PARSER
+#define PARSER
+
 #include <string>
 #include <limits>
 #include <stdexcept>
@@ -42,7 +45,7 @@ private:
     static std::string get_math_operator(op op, bool min, bool div, bool pow);
     
 public:
-    std::string test();
+    void test();
     std::string display_tree();
 
     parser(std::string str);
@@ -55,4 +58,6 @@ public:
 assumptions:
     2^3*4 = 2^(3*4)
     2/3*4 = (2/3)*4
+    2+^3 = 2^3
  */
+#endif

@@ -8,10 +8,13 @@ calculator::calculator() {
 
 void calculator::parse(string str) {
     checker checker(str);
-    if(checker.is_good()) {
+    string err = checker.get_err();
+    if(err.empty()) {
         parser parser(str);
+        parser.test();
     } else {
-        string err = checker.syntax_check_verboose();
-        throw new logic_error(err);
+        throw logic_error(err);
     }
 }
+
+

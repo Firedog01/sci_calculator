@@ -2,7 +2,7 @@
 
 using namespace std;
 
-string parser::test() {
+void parser::test() {
     cout << "wyswietlanie drzewa: ";
     cout << display_tree() << "\n\n";
     cout << "dostępne stałe:\n";
@@ -10,7 +10,6 @@ string parser::test() {
         cout << c_man.get_name(i) << " " << c_man.get_value(i) <<"\n";
     } 
     cout << "value: " << t_man.enumerate_tree(root) << endl;
-    return "";
 }
 
 // doaawanie zawartości node'ów

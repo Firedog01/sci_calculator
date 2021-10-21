@@ -71,4 +71,13 @@ bool string_handling::check_after_operator_character(char c) {
     if(c == FUNC_C) {
         check = true;
     }
+    return check;
+}
+
+bool string_handling::check_operator(char c) {
+    bool check = false;
+    if(c == '+' || c == '-' || c == '*' || c == '/' || c == '^') {
+        check = true;
+    }
+    return check;
 }
