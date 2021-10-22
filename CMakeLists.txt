@@ -8,7 +8,7 @@ set(SOURCE_FILES
         src/calculator.cpp
         src/component/checker.cpp
         src/component/parser.cpp
-        src/component/string_handling.cpp
+        src/component/str_hdl.cpp
         src/func/abstract_function.cpp
         src/func/sin.cpp
         src/manager/constant_manager.cpp

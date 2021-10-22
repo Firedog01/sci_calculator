@@ -3,9 +3,16 @@
 
 #include <string>
 
-struct string_handling {
+struct str_hdl {
     static const char CONST_C = '_';
     static const char FUNC_C = '?';
+    static const char O_BRACKET_C = '(';
+    static const char C_BRACKET_C = ')';
+    static const char OP_ADD_C = '+';
+    static const char OP_SUB_C = '-';
+    static const char OP_MUL_C = '*';
+    static const char OP_DIV_C = '/';
+    static const char OP_POW_C = '^';
     static void remove_spaces(std::string& str);
     static std::string get_num(std::string str, int& i);
     static std::string get_embedded(std::string str, int& i);

@@ -1,8 +1,8 @@
-#include "../../lib/component/string_handling.h"
+#include "../../lib/component/str_hdl.h"
 
 using namespace std;
 
-void string_handling::remove_spaces(string& str) {
+void str_hdl::remove_spaces(string& str) {
     string replace;
     for(char i : str) {
         if(i != ' ') {
@@ -12,7 +12,7 @@ void string_handling::remove_spaces(string& str) {
     str = replace;
 }
 
-string string_handling::get_num(string str, int& i) {
+string str_hdl::get_num(string str, int& i) {
     string num;
     while(str[i] >= '0' && str[i] <= '9') {
         num += str[i];
@@ -21,7 +21,7 @@ string string_handling::get_num(string str, int& i) {
     return num;
 }
 
-string string_handling::get_embedded(string str, int& i) {
+string str_hdl::get_embedded(string str, int& i) {
     string embedded;
     int brackets = 1; // +1 for opening -1 for closing
 
@@ -40,7 +40,7 @@ string string_handling::get_embedded(string str, int& i) {
     return embedded;
 }
 
-string string_handling::get_name(string str, int& i) {
+string str_hdl::get_name(string str, int& i) {
     string name;
     while(check_name_character(str[i])) {
         name += str[i];
@@ -49,7 +49,7 @@ string string_handling::get_name(string str, int& i) {
     return name;
 }
 
-bool string_handling::check_name_character(char c) {
+bool str_hdl::check_name_character(char c) {
     bool check = false;
     if(c >= 'a' && c <='z') {
         check = true;
@@ -60,7 +60,7 @@ bool string_handling::check_name_character(char c) {
     return check;
 }
 
-bool string_handling::check_after_operator_character(char c) {
+bool str_hdl::check_after_operator_character(char c) {
     bool check = false;
     if(c >= '0' && c <= '9') {
         check = true;
@@ -71,10 +71,13 @@ bool string_handling::check_after_operator_character(char c) {
     if(c == FUNC_C) {
         check = true;
     }
+    if(c == C_BRACKET_C || c == O_BRACKET_C) {
+        check = true;
+    }
     return check;
 }
 
-bool string_handling::check_operator(char c) {
+bool str_hdl::check_operator(char c) {
     bool check = false;
     if(c == '+' || c == '-' || c == '*' || c == '/' || c == '^') {
         check = true;

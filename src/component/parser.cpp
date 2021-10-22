@@ -23,7 +23,7 @@ void parser::test() {
 //
 parser::parser(string str): 
         c_man(), t_man() {
-    string_handling::remove_spaces(str);
+    str_hdl::remove_spaces(str);
     cout << "skrocony string: " + str + '\n';
     this->root = create_embedded_branch(str);
 }
@@ -78,56 +78,55 @@ node_ptr parser::create_node(string str, int& i, op& op) {
         // cout << "cn: " << str[i] << ", " << i << "\n"; 
         
         switch(str[i]) {
-        case '+':
+        case str_hdl::OP_ADD_C:
             if(op == def) {
                 op = add;
             }
             break;
-        case '-':
+        case str_hdl::OP_SUB_C:
             if(op == def) {
                 op = add;
             }
             min = !min;
             break;
-        case '*':
+        case str_hdl::OP_MUL_C:
             op = mul;
             break;
-        case '/':
+        case str_hdl::OP_DIV_C:
             op = mul;
             div = true;
             break;
-        case '^':
+        case str_hdl::OP_POW_C:
             op = mul;
             pow = true;
             break;
 
-        case '0': case '1': case '2': case '3': case '4':
-        case '5': case '6': case '7': case '8': case '9': {
+        CASE_NUMBER {
             if(op == def) {
                 op = mul;
             }
-            string num = string_handling::get_num(str, i);
+            string num = str_hdl::get_num(str, i);
             return create_int_node(num, min, div, pow);
         }
 
-        case '(': {
+        case str_hdl::O_BRACKET_C: {
             if(op == def) {
                 op = mul;
             }
-            string embedded = string_handling::get_embedded(str, i);
+            string embedded = str_hdl::get_embedded(str, i);
             return create_embedded_node(embedded, min, div, pow);
         }
         
-        // case string_handling::FUNC_C: {
+        // case str_hdl::FUNC_C: {
         //     i++;
-        //     string name = string_handling::get_name(str, i);
+        //     string name = str_hdl::get_name(str, i);
         //     return create_function_node(get_name(str, i), );
         // }
         
 
-        case string_handling::CONST_C: {
+        case str_hdl::CONST_C: {
             i++;
-            string name = string_handling::get_name(str, i);
+            string name = str_hdl::get_name(str, i);
             return create_constant_node(name, min, div, pow);
         }
             
@@ -183,16 +182,16 @@ string parser::display_subtree(const node_ptr& node, op op) {
 
     } else if(type == "embedded") {
         embedded_ptr ptr = static_pointer_cast<embedded_node>(node);
-        ret += "(";
+        ret += str_hdl::O_BRACKET_C;
         ret += display_subtree(ptr->get_cont(), add);
-        ret += ")";
+        ret += str_hdl::C_BRACKET_C;
     } else if(type == "constant") {
         constant_ptr ptr = static_pointer_cast<constant_node>(node);
-        ret += string_handling::CONST_C;
+        ret += str_hdl::CONST_C;
         ret += c_man.get_name(ptr->get_id_const());
     } else if(type == "function") {
         function_ptr ptr = static_pointer_cast<function_node>(node);
-        ret += string_handling::FUNC_C;
+        ret += str_hdl::FUNC_C;
         
     } else {
         ret += "type not set";
@@ -212,33 +211,33 @@ string parser::display_subtree(const node_ptr& node, op op) {
 std::string parser::get_math_operator(op op, bool min, bool div, bool pow) {
     if(op == add) {
         if(min) {
-            return "-";
+            return string(1, str_hdl::OP_SUB_C);
         } else {
-            return "+";
+            return string(1, str_hdl::OP_ADD_C);
         }
     } else if(op == mul) {
         string ret;
         if(pow) {
             if(div) {
-                ret += "^/";
+                ret += str_hdl::OP_POW_C;
+                ret += str_hdl::OP_DIV_C;
             } else {
-                ret += "^";
+                ret += str_hdl::OP_POW_C;
             }
         } else {
             if(div) {
-                ret += "/";
+                ret += str_hdl::OP_DIV_C;
             } else {
-                ret += "*";
+                ret += str_hdl::OP_MUL_C;
             }
         }
 
         if(min) {
-            ret += "-";
+            ret += str_hdl::OP_SUB_C;
         }
         return ret;
     }
-    string empty;
-    return empty;
+    return "";
 }
 
 node_ptr parser::getRoot() {

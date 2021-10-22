@@ -6,7 +6,7 @@
 #include <stdexcept>
 #include <iostream>
 
-#include "string_handling.h"
+#include "str_hdl.h"
 
 #include "../node/int_node.h"
 #include "../node/embedded_node.h"

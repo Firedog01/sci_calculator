@@ -7,9 +7,10 @@ using namespace std;
 
 int main(int argc, char** argv) {
     setlocale(LC_CTYPE, "Polish");
-
-    // ~90,935
-    string default_text = "1 - 2/_pi^3 + 5(2(3^2))";
+    //   1
+    // ------ = 0,0445
+    // pi ^ e
+    string default_text = "1/_pi^_e";
     if(argc == 1) {
         calculator calc;
         try {
@@ -34,7 +35,6 @@ todo:
     zaimplementować obsługę funkcji
     zaimplementować funkcje optymalizujące drzewo
     funkcję która wyświelta wszystkie liczby jako inty
-    checker składni <-
     klasy wyjątków
     dołożyć destruktor
  */
