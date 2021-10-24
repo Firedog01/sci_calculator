@@ -33,7 +33,7 @@ dong tree_manager::get_node_value(node_ptr node) {
         value = ptr->get_cont();
     } else if(type == "function") {
         function_ptr ptr = static_pointer_cast<function_node>(node);
-        value = ptr->enumerate();
+        value = f_man.enumerate(ptr->get_id_func());
     } else if(type == "constant") {
         constant_ptr ptr = static_pointer_cast<constant_node>(node);
         value = c_man.get_value(ptr->get_id_const());

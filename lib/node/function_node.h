@@ -2,19 +2,18 @@
 #define FUNCTION_NODE
 
 #include "math_node.h"
-#include "../func/sin.h"
+#include "../func/sin_f.h"
 #include <vector>
+#include <utility>
 
 class function_node : public math_node
 {
     std::vector<node_ptr> args;
     int id_func;
-    fpt func;
 public:
-    function_node(int id_func, std::vector<node_ptr> args, fpt func, bool min, bool div, bool pow);
-    int get_id_func();
-    node_ptr get_embed(int pos);
+    function_node(int id_func, std::vector<node_ptr> args, bool min, bool div, bool pow);
+    node_ptr get_embedded(int pos);
     std::vector<node_ptr> get_args();
-    dong enumerate();
+    int get_id_func();
 };
 #endif

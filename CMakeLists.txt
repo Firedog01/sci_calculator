@@ -9,8 +9,7 @@ set(SOURCE_FILES
         src/component/checker.cpp
         src/component/parser.cpp
         src/component/str_hdl.cpp
-        src/func/abstract_function.cpp
-        src/func/sin.cpp
+        src/func/sin_f.cpp
         src/manager/constant_manager.cpp
         src/manager/function_manager.cpp
         src/manager/tree_manager.cpp

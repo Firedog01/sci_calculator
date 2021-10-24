@@ -89,9 +89,10 @@ std::string checker::characters_check() {
             switch(str[i]) {
                 case str_hdl::CONST_C:
                 case str_hdl::FUNC_C:
+                    i++;
                     str_hdl::get_name(str, i);
                     break;
-                CASE_NUMBER
+                CASE_DIGIT
                     str_hdl::get_num(str, i);
                     break;
                 case str_hdl::O_BRACKET_C:
@@ -104,6 +105,7 @@ std::string checker::characters_check() {
                     err += '\n';
             }
         } else if(str_hdl::check_after_operator_character(str[i])) {
+            i++;
             str_hdl::get_name(str, i);
         } else {
             err += "Niewłaściwy znak: ";

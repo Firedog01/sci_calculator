@@ -7,8 +7,6 @@
 
 #include <iostream>
 
-    //other caracters
-
 class checker
 {
     std::string str;
@@ -16,9 +14,9 @@ class checker
     std::string brackets_check();
     //todo: 1.2.3
     std::string numbers_check();
-    //czy funkcje mają poprawną ilość argumentów
-    //czy dana nazwa funkcji jest poprawna
     //todo
+    //  czy funkcje mają poprawną ilość argumentów
+    //  czy dana nazwa funkcji jest poprawna
     std::string functions_check();
     std::string constants_check();
     std::string characters_check();

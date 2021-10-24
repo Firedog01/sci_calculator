@@ -10,7 +10,7 @@ int main(int argc, char** argv) {
     //   1
     // ------ = 0,0445
     // pi ^ e
-    string default_text = "1/_pi^_e";
+    string default_text = "?sin_class(1/2_pi)";
     if(argc == 1) {
         calculator calc;
         try {

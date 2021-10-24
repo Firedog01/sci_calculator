@@ -49,6 +49,20 @@ string str_hdl::get_name(string str, int& i) {
     return name;
 }
 
+vector<string> str_hdl::get_func_args(string str, int &i) {
+    vector<string> ret;
+    string func_cont = get_embedded(str, i), arg;
+    for(int j = 0; j < func_cont.length(); j++) {
+        if(func_cont[j] == F_ARG_DELIM) {
+            ret.push_back(arg);
+            arg = "";
+        } else {
+            arg += func_cont[j];
+        }
+    }
+    return ret;
+}
+
 bool str_hdl::check_name_character(char c) {
     bool check = false;
     if(c >= 'a' && c <='z') {
@@ -84,3 +98,5 @@ bool str_hdl::check_operator(char c) {
     }
     return check;
 }
+
+

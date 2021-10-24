@@ -22,7 +22,7 @@ void parser::test() {
 //
 //
 parser::parser(string str): 
-        c_man(), t_man() {
+        c_man(), f_man(), t_man() {
     str_hdl::remove_spaces(str);
     cout << "skrocony string: " + str + '\n';
     this->root = create_embedded_branch(str);
@@ -31,8 +31,8 @@ parser::parser(string str):
 node_ptr parser::create_embedded_branch(std::string str) {
     int i = 0;
     op cur_op = add;
-    cout << "emb_root\n";
-    cout << "processed string: " << str << "\n";
+//    cout << "emb_root\n";
+//    cout << "processed string: " << str << "\n";
     node_ptr emb_root = create_node(str, i, cur_op),
              active_plus = emb_root,
              active_mul = emb_root;
@@ -42,27 +42,27 @@ node_ptr parser::create_embedded_branch(std::string str) {
     
 
     while(i < str.length()) {
-        cout << str[i] << ", " << i << "\n";
+//        cout << str[i] << ", " << i << "\n";
         node_ptr new_node = create_node(str, i, cur_op);
 
         if(cur_op == add) {
-            cout << "nowy add node: ";
-            ptr = static_pointer_cast<int_node>(new_node);
-            cout << get_math_operator(cur_op, ptr->is_min(), ptr->is_div(), ptr->is_pow()) << '\n';
+//            cout << "nowy add node: ";
+//            ptr = static_pointer_cast<int_node>(new_node);
+//            cout << get_math_operator(cur_op, ptr->is_min(), ptr->is_div(), ptr->is_pow()) << '\n';
 
             active_plus->set_plus_node(new_node);
             active_mul = new_node;
             active_plus = new_node;
         } else if(cur_op == mul) {
-            cout << "nowy mul node: ";
-            ptr = static_pointer_cast<int_node>(new_node);
-            cout << get_math_operator(cur_op, ptr->is_min(), ptr->is_div(), ptr->is_pow()) << '\n';
+//            cout << "nowy mul node: ";
+//            ptr = static_pointer_cast<int_node>(new_node);
+//            cout << get_math_operator(cur_op, ptr->is_min(), ptr->is_div(), ptr->is_pow()) << '\n';
 
             active_mul->set_mul_node(new_node);
             active_mul = new_node;
         }
     }
-    cout << "koniec ------------\n";
+//    cout << "koniec ------------\n";
     return emb_root;
 }
 
@@ -101,7 +101,7 @@ node_ptr parser::create_node(string str, int& i, op& op) {
             pow = true;
             break;
 
-        CASE_NUMBER {
+        CASE_DIGIT {
             if(op == def) {
                 op = mul;
             }
@@ -117,11 +117,11 @@ node_ptr parser::create_node(string str, int& i, op& op) {
             return create_embedded_node(embedded, min, div, pow);
         }
         
-        // case str_hdl::FUNC_C: {
-        //     i++;
-        //     string name = str_hdl::get_name(str, i);
-        //     return create_function_node(get_name(str, i), );
-        // }
+         case str_hdl::FUNC_C: {
+             i++;
+             string name = str_hdl::get_name(str, i);
+             return create_function_node(name, str_hdl::get_func_args(str, i), min, div, pow);
+         }
         
 
         case str_hdl::CONST_C: {
@@ -157,14 +157,26 @@ node_ptr parser::create_constant_node(const string& name, bool min, bool div, bo
         err += name;
         err += " not defined";
         throw logic_error(err);
-        return nullptr;
     } else {
         return make_shared<constant_node>(id_const, min, div, pow);
     }
 }
 
-node_ptr parser::create_function_node(string name, string arguments, bool min, bool div, bool pow) {
-    return nullptr;
+node_ptr parser::create_function_node(string name, vector<string> args_str, bool min, bool div, bool pow) {
+    int id_func = f_man.get_id(name);
+    if(id_func == -1) {
+        string err = "function: ";
+        err += name;
+        err += " not defined";
+        throw logic_error(err);
+    } else {
+        vector<node_ptr> args;
+        for(int j = 0; j < args_str.size(); j++) {
+            args.push_back( (create_embedded_branch(args_str[j])) );
+        }
+        return make_shared<function_node>(id_func, args, min, div, pow);
+    }
+
 }
 
 string parser::display_tree() {
@@ -179,7 +191,6 @@ string parser::display_subtree(const node_ptr& node, op op) {
     if(type == "int") {
         int_ptr ptr = static_pointer_cast<int_node>(node);
         ret += to_string(ptr->get_cont());
-
     } else if(type == "embedded") {
         embedded_ptr ptr = static_pointer_cast<embedded_node>(node);
         ret += str_hdl::O_BRACKET_C;
@@ -192,7 +203,6 @@ string parser::display_subtree(const node_ptr& node, op op) {
     } else if(type == "function") {
         function_ptr ptr = static_pointer_cast<function_node>(node);
         ret += str_hdl::FUNC_C;
-        
     } else {
         ret += "type not set";
     }

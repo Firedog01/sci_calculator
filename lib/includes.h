@@ -2,8 +2,9 @@
 #define INCLUDES
 #include <memory>
 #include <vector>
+#include <exception>
 
-#define CASE_NUMBER case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
+#define CASE_DIGIT case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
 
 //node pointers
 class math_node;
