@@ -5,11 +5,10 @@
 #include <cmath>
 #include <stdexcept>
 #include "../includes.h"
-//#include "../manager/tree_manager.h"
+#include "../manager/tree_manager.h"
+#include "abstr_function.h"
 
-class sin_f {
-public:
-    sin_f() {}
-    static dong enumerate(std::vector<node_ptr> args);
+struct sin_f : abstr_function {
+    virtual dong enumerate(std::vector<node_ptr> args);
 };
 #endif

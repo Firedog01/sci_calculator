@@ -13,3 +13,14 @@ void embedded_node::set_cont(node_ptr x) {
 const node_ptr& embedded_node::get_cont() {
     return this->cont;
 }
+
+dong embedded_node::get_val() {
+    dong value = this->get_cont()->enumerate();
+    if(this->is_min()) {
+        value *= -1;
+    }
+    if(this->is_div()) {
+        value = 1 / value;
+    }
+    return value;
+}

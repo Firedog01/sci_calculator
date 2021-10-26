@@ -14,9 +14,11 @@
  */
 
 #include "../includes.h"
+#include <cmath>
 #include <cstdint>
 #include <string>
 #include <utility>
+
 
 class math_node {
 private:
@@ -25,6 +27,7 @@ private:
     uint8_t flags;
 
     void set_flag(bool val, int disp);
+    virtual dong get_val();
 protected:
     void set_type(uint8_t val);
 public:
@@ -42,6 +45,9 @@ public:
     bool is_pow() const;
     void set_pow(bool val);
     std::string get_type() const;
+
+
+    dong enumerate();
 };
 #endif
 

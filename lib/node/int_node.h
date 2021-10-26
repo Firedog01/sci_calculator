@@ -4,6 +4,8 @@
 
 class int_node : public math_node{
     uint64_t cont;
+
+    virtual dong get_val();
 public:
     int_node(const uint64_t& x, bool min, bool div, bool pow);
 

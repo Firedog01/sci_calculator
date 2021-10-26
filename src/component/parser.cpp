@@ -7,9 +7,9 @@ void parser::test() {
     cout << display_tree() << "\n\n";
     cout << "dostępne stałe:\n";
     for(int i = 0; i < 2; i++) {
-        cout << c_man.get_name(i) << " " << c_man.get_value(i) <<"\n";
+        cout << c_man->get_name(i) << " " << c_man->get_value(i) <<"\n";
     } 
-    cout << "value: " << t_man.enumerate_tree(root) << endl;
+    cout << "value: " << root->enumerate() << endl;
 }
 
 // doaawanie zawartości node'ów
@@ -21,8 +21,9 @@ void parser::test() {
 // kwestja przecinka w liczbach. np 2.34 = 2 + 34 / 100
 //
 //
-parser::parser(string str): 
-        c_man(), f_man(), t_man() {
+parser::parser(string str) {
+    f_man = make_shared<function_manager>();
+    c_man = make_shared<constant_manager>();
     str_hdl::remove_spaces(str);
     cout << "skrocony string: " + str + '\n';
     this->root = create_embedded_branch(str);
@@ -151,19 +152,19 @@ node_ptr parser::create_embedded_node(string cont, bool min, bool div, bool pow)
 }
 
 node_ptr parser::create_constant_node(const string& name, bool min, bool div, bool pow) {
-    int id_const = c_man.get_id(name);
+    int id_const = c_man->get_id(name);
     if(id_const == -1) {
         string err = "constant: ";
         err += name;
         err += " not defined";
         throw logic_error(err);
     } else {
-        return make_shared<constant_node>(id_const, min, div, pow);
+        return make_shared<constant_node>(c_man, id_const, min, div, pow);
     }
 }
 
 node_ptr parser::create_function_node(string name, vector<string> args_str, bool min, bool div, bool pow) {
-    int id_func = f_man.get_id(name);
+    int id_func = f_man->get_id_func(name);
     if(id_func == -1) {
         string err = "function: ";
         err += name;
@@ -174,9 +175,8 @@ node_ptr parser::create_function_node(string name, vector<string> args_str, bool
         for(int j = 0; j < args_str.size(); j++) {
             args.push_back( (create_embedded_branch(args_str[j])) );
         }
-        return make_shared<function_node>(id_func, args, min, div, pow);
+        return make_shared<function_node>(f_man, id_func, args, min, div, pow);
     }
-
 }
 
 string parser::display_tree() {
@@ -199,7 +199,7 @@ string parser::display_subtree(const node_ptr& node, op op) {
     } else if(type == "constant") {
         constant_ptr ptr = static_pointer_cast<constant_node>(node);
         ret += str_hdl::CONST_C;
-        ret += c_man.get_name(ptr->get_id_const());
+        ret += c_man->get_name(ptr->get_id_const());
     } else if(type == "function") {
         function_ptr ptr = static_pointer_cast<function_node>(node);
         ret += str_hdl::FUNC_C;
@@ -252,8 +252,4 @@ std::string parser::get_math_operator(op op, bool min, bool div, bool pow) {
 
 node_ptr parser::getRoot() {
     return this->root;
-}
-
-dong parser::enumerate_root() {
-    return t_man.enumerate_tree(root);
 }

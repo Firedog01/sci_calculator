@@ -96,3 +96,28 @@ void math_node::set_type(uint8_t val) {
     }
     this->flags = ((flags & ~(7 << 3)) | (val << 3));
 }
+
+dong math_node::get_val() {
+    return 0;
+}
+
+dong math_node::enumerate() {
+    dong ret_val = this->get_val();
+
+    if(mul_node != nullptr) {
+        if(mul_node->is_pow()) {
+            ret_val = pow(ret_val, mul_node->enumerate());
+        } else {
+            ret_val *= mul_node->enumerate();
+        }
+    }
+    if(plus_node != nullptr) {
+        if(plus_node->is_pow()) {
+            // syntax error
+        } else {
+            ret_val += plus_node->enumerate();
+        }
+    }
+
+    return ret_val;
+}

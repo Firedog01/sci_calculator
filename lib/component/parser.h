@@ -13,17 +13,14 @@
 #include "../node/constant_node.h"
 #include "../node/function_node.h"
 
-#include "../manager/constant_manager.h"
-#include "../manager/function_manager.h"
-#include "../manager/tree_manager.h"
-
-
 class parser {
 private:
     node_ptr root;
-    constant_manager c_man;
-    function_manager f_man;
-    tree_manager t_man;
+    f_man_ptr f_man;
+    c_man_ptr c_man;
+//    constant_manager c_man;
+//    function_manager f_man;
+//    tree_manager t_man;
 
     /**
      * main creation function. Creates new branch for root or for embeded root
@@ -62,7 +59,6 @@ public:
     parser(std::string str);
 
     node_ptr getRoot();
-    dong enumerate_root();
 };
 
 /*

@@ -7,10 +7,8 @@ dong sin_f::enumerate(vector<node_ptr> args) {
         throw logic_error("Wrong initialisation");
     }
     if(args.size() != 1) {
-        throw logic_error("wrong number of arguments in function sin_class");
+        throw logic_error("wrong number of arguments in function sin");
     } else {
-        return 0;
-//        tree_manager t_man;
-//        return sinl(t_man.enumerate_tree(args.at(0)));
+        return sinl(args.at(0)->enumerate());
     }
 }
