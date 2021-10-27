@@ -121,7 +121,8 @@ node_ptr parser::create_node(string str, int& i, op& op) {
          case str_hdl::FUNC_C: {
              i++;
              string name = str_hdl::get_name(str, i);
-             return create_function_node(name, str_hdl::get_func_args(str, i), min, div, pow);
+             vector<string> args = str_hdl::get_func_args(str, i);
+             return create_function_node(name, args, min, div, pow);
          }
         
 

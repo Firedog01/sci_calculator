@@ -60,6 +60,7 @@ vector<string> str_hdl::get_func_args(string str, int &i) {
             arg += func_cont[j];
         }
     }
+    ret.push_back(arg);
     return ret;
 }
 

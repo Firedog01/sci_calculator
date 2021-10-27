@@ -9,9 +9,9 @@
 struct function {
     int id;
     std::string name;
-    abstr_function func;
+    abstr_function_ptr func;
 
-    function(int id, std::string name, abstr_function func);
+    function(int id, std::string name, abstr_function_ptr func);
 };
 
 class function_manager
