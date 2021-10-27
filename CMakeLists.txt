@@ -8,11 +8,11 @@ set(SOURCE_FILES
         src/calculator.cpp
         src/component/checker.cpp
         src/component/parser.cpp
+        src/component/simplifier.cpp
         src/component/str_hdl.cpp
         src/func/sin_f.cpp
         src/manager/constant_manager.cpp
         src/manager/function_manager.cpp
-        src/manager/tree_manager.cpp
         src/node/constant_node.cpp
         src/node/embedded_node.cpp
         src/node/function_node.cpp
