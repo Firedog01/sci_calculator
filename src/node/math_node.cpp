@@ -103,7 +103,7 @@ dong math_node::get_val() {
 
 dong math_node::enumerate() {
     dong ret_val = this->get_val();
-    cout << "ret_val: " << ret_val << endl;
+    // cout << "ret_val: " << ret_val << endl;
     if(mul_node != nullptr) {
         if(mul_node->is_pow()) {
             ret_val = pow(ret_val, mul_node->enumerate());
