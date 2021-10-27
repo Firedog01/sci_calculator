@@ -38,5 +38,6 @@ dong function_manager::enumerate(int id, std::vector<node_ptr> args) {
             return funcs.at(i).func.enumerate(args);
         };
     }
-    return 0;
+    std::string err = "Id out of bounds";
+    throw std::logic_error(err);
 }

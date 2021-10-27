@@ -18,6 +18,7 @@ class checker
     //  czy funkcje mają poprawną ilość argumentów
     //  czy dana nazwa funkcji jest poprawna
     std::string functions_check();
+    //todo poprawić
     std::string constants_check();
     std::string characters_check();
 

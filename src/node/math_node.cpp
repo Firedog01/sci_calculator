@@ -98,7 +98,7 @@ void math_node::set_type(uint8_t val) {
 }
 
 dong math_node::get_val() {
-    return 0;
+    return -1;
 }
 
 dong math_node::enumerate() {

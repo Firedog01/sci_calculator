@@ -4,6 +4,7 @@
 #include <utility>
 
 #include "math_node.h"
+#include "../manager/function_manager.h"
 
 class function_node : public math_node
 {

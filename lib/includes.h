@@ -36,7 +36,4 @@ class function_manager;
 typedef std::shared_ptr<function_manager> f_man_ptr;
 class constant_manager;
 typedef std::shared_ptr<constant_manager> c_man_ptr;
-
-class syntax_error : public std::logic_error {};
-
 #endif
