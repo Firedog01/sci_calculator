@@ -4,13 +4,18 @@ using namespace std;
 
 void parser::test() {
     cout << "wyswietlanie drzewa: ";
-    cout << display_tree() << "\n\n";
-    cout << "dostępne stałe:\n";
-    for(int i = 0; i < 2; i++) {
-        cout << c_man->get_name(i) << " " << c_man->get_value(i) <<"\n";
-    } 
+    cout << display_tree() << "\n";
+    // cout << "dostępne stałe:\n";
+    // for(int i = 0; i < 2; i++) {
+    //     cout << c_man->get_name(i) << " " << c_man->get_value(i) <<"\n";
+    // } 
     cout << "\nsię równa: " << root->enumerate() << endl;
 }
+
+
+// todo 
+//      zrobić testy do funciton
+//      poparawić testy constant
 
 // kwestja przecinka w liczbach. np 2.34 = 2 + 34 / 100
 //
@@ -37,9 +42,8 @@ node_ptr parser::create_embedded_branch(std::string str) {
     
 
     while(i < str.length()) {
-        cout << "ceb: " << str[i] << endl;
+        // cout << "ceb: " << str[i] << endl;
         node_ptr new_node = create_node(str, i, cur_op);
-        cout << cur_op << endl;
         if(cur_op == add) {
 //            cout << "nowy add node: ";
 //            ptr = static_pointer_cast<int_node>(new_node);
@@ -69,7 +73,7 @@ node_ptr parser::create_node(string str, int& i, op& op) {
     op = def;
 
     while(i < str.length()) {
-        cout << "cn: " << str[i] << ", " << i << "\n"; 
+        // cout << "cn: " << str[i] << ", " << i << "\n"; 
         
         switch(str[i]) {
         case str_hdl::OP_ADD_C:
@@ -111,15 +115,15 @@ node_ptr parser::create_node(string str, int& i, op& op) {
             return create_embedded_node(embedded, min, div, pow);
         }
         
-         case str_hdl::FUNC_C: {
-             if(op == def) {
+        case str_hdl::FUNC_C: {
+            if(op == def) {
                 op = mul;
             }
-             i++;
-             string name = str_hdl::get_name(str, i);
-             vector<string> args = str_hdl::get_func_args(str, i);
-             return create_function_node(name, args, min, div, pow);
-         }
+            i++;
+            string name = str_hdl::get_name(str, i);
+            vector<string> args = str_hdl::get_func_args(str, i);
+            return create_function_node(name, args, min, div, pow);
+        }
         
 
         case str_hdl::CONST_C: {
@@ -128,7 +132,6 @@ node_ptr parser::create_node(string str, int& i, op& op) {
             }
             i++;
             string name = str_hdl::get_name(str, i);
-            cout << "const name parser: " << name << endl;
             return create_constant_node(name, min, div, pow);
         }
             
@@ -154,7 +157,6 @@ node_ptr parser::create_embedded_node(string cont, bool min, bool div, bool pow)
 
 node_ptr parser::create_constant_node(const string& name, bool min, bool div, bool pow) {
     int id_const = c_man->get_id(name);
-    cout << "creating constant node " << id_const << endl;
     if(id_const == -1) {
         string err = "constant: ";
         err += name;
