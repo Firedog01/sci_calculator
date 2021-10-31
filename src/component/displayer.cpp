@@ -10,7 +10,7 @@ using namespace std;
 string displayer::display_subtree(const node_ptr& node, op op) {
     string ret, type;
     type = node->get_type();
-    ret += get_math_operator(op, node->is_min(), node->is_div(), node->is_pow());
+
     
     if(type == "int") {
         int_ptr ptr = static_pointer_cast<int_node>(node);
@@ -38,11 +38,19 @@ string displayer::display_subtree(const node_ptr& node, op op) {
     }
 
     if(node->get_mul_node() != nullptr) {
-        // cout << "mul node:\n";
-        ret += display_subtree(node->get_mul_node(), mul);
+        node_ptr mul_node = node->get_mul_node();
+        ret += get_math_operator(mul, mul_node->is_min(), mul_node->is_div(), mul_node->is_pow());
+        if(mul_node->get_mul_node() != nullptr || mul_node->get_plus_node() != nullptr) {
+//            ret += str_hdl::O_BRACKET_C;
+            ret += display_subtree(mul_node, mul);
+//            ret += str_hdl::C_BRACKET_C;
+        } else {
+            ret += display_subtree(node->get_mul_node(), mul);
+        }
     }
     if(node->get_plus_node() != nullptr) {
-        // cout << "plus node:\n";
+        node_ptr plus_node = node->get_plus_node();
+        ret += get_math_operator(add, plus_node->is_min(), plus_node->is_div(), plus_node->is_pow());
         ret += display_subtree(node->get_plus_node(), add);
     }
     return ret;

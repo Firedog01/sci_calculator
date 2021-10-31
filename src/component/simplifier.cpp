@@ -22,8 +22,8 @@ void simplifier::flatten_tree(node_ptr node) {
     node_ptr plus_node = node->get_plus_node();
     if(mul_node != nullptr) {
         if(mul_node->get_type() == "embedded") {
-            embedded_ptr ptr = static_pointer_cast<embedded_node>(mul_node);
-            node_ptr embd_node = ptr->get_cont();
+//            embedded_ptr ptr = static_pointer_cast<embedded_node>(mul_node);
+//            node_ptr embd_node = ptr->get_cont();
             //przestawić środek i ustawić niższe node'y odpowiednio
         }
     }
