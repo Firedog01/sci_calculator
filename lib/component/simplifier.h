@@ -8,8 +8,10 @@
 
 class simplifier
 {
+    node_ptr traverse_tree_get_active_plus(node_ptr ptr);
+    node_ptr traverse_tree_get_active_mul(node_ptr ptr);
 public:
-    void flatten_tree(node_ptr root);
+    void flatten_tree(node_ptr node);
     
     void simplify_all(node_ptr root);
 };

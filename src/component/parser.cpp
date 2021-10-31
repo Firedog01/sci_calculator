@@ -9,7 +9,7 @@ void parser::test() {
     // for(int i = 0; i < 2; i++) {
     //     cout << c_man->get_name(i) << " " << c_man->get_value(i) <<"\n";
     // } 
-    cout << "\nsię równa: " << root->enumerate() << endl;
+    cout << "się równa: " << root->enumerate() << endl;
 }
 
 
@@ -190,7 +190,10 @@ string parser::display_tree() {
 string parser::display_subtree(const node_ptr& node, op op) {
     string ret, type;
     type = node->get_type();
-    ret += get_math_operator(op, node->is_min(), node->is_div(), node->is_pow());
+    string oper = get_math_operator(op, node->is_min(), node->is_div(), node->is_pow());
+    if(oper != "+") {
+        ret += oper;
+    }
     
     if(type == "int") {
         int_ptr ptr = static_pointer_cast<int_node>(node);
@@ -210,9 +213,13 @@ string parser::display_subtree(const node_ptr& node, op op) {
         ret += f_man->get_name(ptr->get_id_func());
         ret += str_hdl::O_BRACKET_C;
         vector<node_ptr> args = ptr->get_args();
-        for(int i = 0; i < args.size(); i++) {
-            ret += display_subtree(args.at(i), add);
+        if(args.size() > 0) {
+            ret += display_subtree(args.at(0), add);
+        }
+
+        for(int i = 1; i < args.size(); i++) {
             ret += str_hdl::F_ARG_DELIM;
+            ret += display_subtree(args.at(i), add);
         }
         ret += str_hdl::C_BRACKET_C;
     } else {
@@ -221,7 +228,9 @@ string parser::display_subtree(const node_ptr& node, op op) {
 
     if(node->get_mul_node() != nullptr) {
         // cout << "mul node:\n";
+//        ret += str_hdl::O_BRACKET_C;
         ret += display_subtree(node->get_mul_node(), mul);
+//        ret += str_hdl::C_BRACKET_C;
     }
     if(node->get_plus_node() != nullptr) {
         // cout << "plus node:\n";
