@@ -7,6 +7,7 @@ set(SOURCE_FILES
         main.cpp
         src/calculator.cpp
         src/component/checker.cpp
+        src/component/displayer.cpp
         src/component/parser.cpp
         src/component/simplifier.cpp
         src/component/str_hdl.cpp

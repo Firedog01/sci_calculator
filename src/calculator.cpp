@@ -3,7 +3,8 @@
 using namespace std;
 
 calculator::calculator() {
-
+    f_man = make_shared<function_manager>();
+    c_man = make_shared<constant_manager>();
 }
 
 void calculator::parse(string str) {
@@ -11,12 +12,13 @@ void calculator::parse(string str) {
     string err = checker.get_err();
     if(err.empty()) {
         simplifier smp;
-        parser parser(str);
-        node_ptr root = parser.getRoot();
 
-        parser.test();
-        smp.simplify_all(root);
-        parser.test();
+        displayer disp(f_man, c_man);
+        parser parser(f_man, c_man);
+        node_ptr root = parser.parse(str);
+
+        cout << disp.display(root);
+        cout << " = " << disp.enumerate(root) << endl;
     } else {
         throw logic_error(err);
     }

@@ -2,17 +2,6 @@
 
 using namespace std;
 
-void parser::test() {
-    cout << "wyswietlanie drzewa: ";
-    cout << display_tree() << "\n";
-    // cout << "dostępne stałe:\n";
-    // for(int i = 0; i < 2; i++) {
-    //     cout << c_man->get_name(i) << " " << c_man->get_value(i) <<"\n";
-    // } 
-    cout << "się równa: " << root->enumerate() << endl;
-}
-
-
 // todo 
 //      zrobić testy do funciton
 //      poparawić testy constant
@@ -20,12 +9,11 @@ void parser::test() {
 // kwestja przecinka w liczbach. np 2.34 = 2 + 34 / 100
 //
 //
-parser::parser(string str) {
-    f_man = make_shared<function_manager>();
-    c_man = make_shared<constant_manager>();
+node_ptr parser::parse(string str) {
     str_hdl::remove_spaces(str);
     cout << "skrocony string: " + str + '\n';
     this->root = create_embedded_branch(str);
+    return this->root;
 }
 
 node_ptr parser::create_embedded_branch(std::string str) {
@@ -183,94 +171,6 @@ node_ptr parser::create_function_node(string name, vector<string> args_str, bool
     }
 }
 
-string parser::display_tree() {
-    return display_subtree(root, add);
-}
-
-string parser::display_subtree(const node_ptr& node, op op) {
-    string ret, type;
-    type = node->get_type();
-    string oper = get_math_operator(op, node->is_min(), node->is_div(), node->is_pow());
-    if(oper != "+") {
-        ret += oper;
-    }
-    
-    if(type == "int") {
-        int_ptr ptr = static_pointer_cast<int_node>(node);
-        ret += to_string(ptr->get_cont());
-    } else if(type == "embedded") {
-        embedded_ptr ptr = static_pointer_cast<embedded_node>(node);
-        ret += str_hdl::O_BRACKET_C;
-        ret += display_subtree(ptr->get_cont(), add);
-        ret += str_hdl::C_BRACKET_C;
-    } else if(type == "constant") {
-        constant_ptr ptr = static_pointer_cast<constant_node>(node);
-        ret += str_hdl::CONST_C;
-        ret += c_man->get_name(ptr->get_id_const());
-    } else if(type == "function") {
-        function_ptr ptr = static_pointer_cast<function_node>(node);
-        ret += str_hdl::FUNC_C;
-        ret += f_man->get_name(ptr->get_id_func());
-        ret += str_hdl::O_BRACKET_C;
-        vector<node_ptr> args = ptr->get_args();
-        if(args.size() > 0) {
-            ret += display_subtree(args.at(0), add);
-        }
-
-        for(int i = 1; i < args.size(); i++) {
-            ret += str_hdl::F_ARG_DELIM;
-            ret += display_subtree(args.at(i), add);
-        }
-        ret += str_hdl::C_BRACKET_C;
-    } else {
-        ret += "type not set";
-    }
-
-    if(node->get_mul_node() != nullptr) {
-        // cout << "mul node:\n";
-//        ret += str_hdl::O_BRACKET_C;
-        ret += display_subtree(node->get_mul_node(), mul);
-//        ret += str_hdl::C_BRACKET_C;
-    }
-    if(node->get_plus_node() != nullptr) {
-        // cout << "plus node:\n";
-        ret += display_subtree(node->get_plus_node(), add);
-    }
-    return ret;
-}
-
-std::string parser::get_math_operator(op op, bool min, bool div, bool pow) {
-    if(op == add) {
-        if(min) {
-            return string(1, str_hdl::OP_SUB_C);
-        } else {
-            return string(1, str_hdl::OP_ADD_C);
-        }
-    } else if(op == mul) {
-        string ret;
-        if(pow) {
-            if(div) {
-                ret += str_hdl::OP_POW_C;
-                ret += str_hdl::OP_DIV_C;
-            } else {
-                ret += str_hdl::OP_POW_C;
-            }
-        } else {
-            if(div) {
-                ret += str_hdl::OP_DIV_C;
-            } else {
-                ret += str_hdl::OP_MUL_C;
-            }
-        }
-
-        if(min) {
-            ret += str_hdl::OP_SUB_C;
-        }
-        return ret;
-    }
-    return "";
-}
-
-node_ptr parser::getRoot() {
+node_ptr parser::get_root() {
     return this->root;
 }
