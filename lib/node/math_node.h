@@ -46,7 +46,6 @@ public:
     void set_pow(bool val);
     std::string get_type() const;
 
-
     dong enumerate();
 };
 #endif

@@ -24,3 +24,4 @@ dong embedded_node::get_val() {
     }
     return value;
 }
+

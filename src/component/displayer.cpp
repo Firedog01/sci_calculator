@@ -18,6 +18,7 @@ string displayer::display_subtree(const node_ptr& node, op op) {
     } else if(type == "embedded") {
         embedded_ptr ptr = static_pointer_cast<embedded_node>(node);
         ret += str_hdl::O_BRACKET_C;
+        ret += "emb";
         ret += display_subtree(ptr->get_cont(), add);
         ret += str_hdl::C_BRACKET_C;
     } else if(type == "constant") {
@@ -40,18 +41,19 @@ string displayer::display_subtree(const node_ptr& node, op op) {
     if(node->get_mul_node() != nullptr) {
         node_ptr mul_node = node->get_mul_node();
         ret += get_math_operator(mul, mul_node->is_min(), mul_node->is_div(), mul_node->is_pow());
-        if(mul_node->get_mul_node() != nullptr || mul_node->get_plus_node() != nullptr) {
+        ret += display_subtree(mul_node, mul);
+//        if(mul_node->get_mul_node() != nullptr || mul_node->get_plus_node() != nullptr) {
 //            ret += str_hdl::O_BRACKET_C;
-            ret += display_subtree(mul_node, mul);
+//            ret += display_subtree(mul_node, mul);
 //            ret += str_hdl::C_BRACKET_C;
-        } else {
-            ret += display_subtree(node->get_mul_node(), mul);
-        }
+//        } else {
+//            ret += display_subtree(mul_node, mul);
+//        }
     }
     if(node->get_plus_node() != nullptr) {
         node_ptr plus_node = node->get_plus_node();
         ret += get_math_operator(add, plus_node->is_min(), plus_node->is_div(), plus_node->is_pow());
-        ret += display_subtree(node->get_plus_node(), add);
+        ret += display_subtree(plus_node, add);
     }
     return ret;
 }

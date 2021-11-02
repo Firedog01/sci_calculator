@@ -16,7 +16,10 @@ void calculator::parse(string str) {
         displayer disp(f_man, c_man);
         parser parser(f_man, c_man);
         node_ptr root = parser.parse(str);
-
+        cout << disp.display(root);
+        cout << " = " << disp.enumerate(root) << endl;
+        cout << "simplifying...\n";
+        smp.simplify_all(root);
         cout << disp.display(root);
         cout << " = " << disp.enumerate(root) << endl;
     } else {

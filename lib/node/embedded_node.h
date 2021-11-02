@@ -2,6 +2,7 @@
 #define EMBEDDED_NODE
 
 #include "math_node.h"
+#include "../component/str_hdl.h"
 
 class embedded_node : public math_node {
     node_ptr cont;

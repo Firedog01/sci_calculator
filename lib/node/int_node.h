@@ -13,5 +13,7 @@ public:
     const uint64_t& get_cont();
 
     int_ptr operator=(node_ptr);
+
+    ;
 };
 #endif 

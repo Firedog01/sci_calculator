@@ -106,7 +106,8 @@ dong math_node::enumerate() {
     // cout << "ret_val: " << ret_val << endl;
     if(mul_node != nullptr) {
         if(mul_node->is_pow()) {
-            ret_val = pow(ret_val, mul_node->enumerate());
+            ret_val = pow(ret_val, mul_node->get_val());
+            ret_val *= mul_node->get_mul_node()->enumerate();
         } else {
             ret_val *= mul_node->enumerate();
         }
@@ -121,3 +122,5 @@ dong math_node::enumerate() {
 
     return ret_val;
 }
+
+
