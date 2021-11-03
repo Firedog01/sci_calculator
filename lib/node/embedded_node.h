@@ -8,6 +8,7 @@ class embedded_node : public math_node {
     node_ptr cont;
 
     virtual dong get_val();
+    virtual std::string disp_val();
 public:
     embedded_node(node_ptr x, bool min, bool div, bool pow);
     

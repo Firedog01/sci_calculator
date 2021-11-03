@@ -8,6 +8,10 @@
 #include "../node/constant_node.h"
 #include "../node/function_node.h"
 
+/*
+move displayer to individual nodes
+*/
+
 class displayer
 {
     f_man_ptr f_man;

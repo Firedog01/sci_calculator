@@ -14,6 +14,7 @@
  */
 
 #include "../includes.h"
+#include "../component/str_hdl.h"
 #include <cmath>
 #include <cstdint>
 #include <string>
@@ -28,6 +29,7 @@ private:
 
     void set_flag(bool val, int disp);
     virtual dong get_val();
+    virtual std::string disp_val();
 protected:
     void set_type(uint8_t val);
 public:
@@ -47,6 +49,7 @@ public:
     std::string get_type() const;
 
     dong enumerate();
+    std::string display(); 
 };
 #endif
 

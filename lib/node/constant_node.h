@@ -10,6 +10,7 @@ class constant_node : public math_node
     c_man_ptr c_man;
 
     virtual dong get_val();
+    virtual std::string disp_val();
 public:
     constant_node(c_man_ptr c_man, int id_const, bool min, bool div, bool pow);
     int get_id_const();

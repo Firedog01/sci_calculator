@@ -100,4 +100,34 @@ bool str_hdl::check_operator(char c) {
     return check;
 }
 
+std::string str_hdl::get_op(op op, bool min, bool div, bool pow) {
+    if(op == add) {
+        if(min) {
+            return string(1, str_hdl::OP_SUB_C);
+        } else {
+            return string(1, str_hdl::OP_ADD_C);
+        }
+    } else if(op == mul) {
+        string ret;
+        if(pow) {
+            if(div) {
+                ret += str_hdl::OP_POW_C;
+                ret += str_hdl::OP_DIV_C;
+            } else {
+                ret += str_hdl::OP_POW_C;
+            }
+        } else {
+            if(div) {
+                ret += str_hdl::OP_DIV_C;
+            } else {
+                ret += str_hdl::OP_MUL_C;
+            }
+        }
 
+        if(min) {
+            ret += str_hdl::OP_SUB_C;
+        }
+        return ret;
+    }
+    return "";
+}

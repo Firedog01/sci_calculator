@@ -33,3 +33,18 @@ dong function_node::get_val() {
     }
     return value;
 }
+
+std::string function_node::disp_val() {
+    std::string ret;
+    ret += f_man->get_name(get_id_func());
+    ret += str_hdl::O_BRACKET_C;
+    if(args.size() > 0) {
+        ret += args.at(0)->display();
+    }
+    for(int i = 1; i < args.size(); i++) {
+        ret += str_hdl::F_ARG_DELIM;
+        ret += args.at(i)->display();
+    }
+    ret += str_hdl::C_BRACKET_C;
+    return ret;
+}

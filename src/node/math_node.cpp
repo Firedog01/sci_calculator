@@ -101,6 +101,10 @@ dong math_node::get_val() {
     return -1;
 }
 
+std::string math_node::disp_val() {
+    return "not defined";
+}
+
 dong math_node::enumerate() {
     dong ret_val = this->get_val();
     // cout << "ret_val: " << ret_val << endl;
@@ -122,5 +126,23 @@ dong math_node::enumerate() {
 
     return ret_val;
 }
+
+std::string math_node::display() {
+    std::string ret;
+    ret += this->disp_val();
+
+    if(get_mul_node() != nullptr) {
+        node_ptr mul_node = get_mul_node();
+        ret += str_hdl::get_op(mul, mul_node->is_min(), mul_node->is_div(), mul_node->is_pow());
+        ret += mul_node->display();
+    }
+    if(get_plus_node() != nullptr) {
+        node_ptr plus_node = get_plus_node();
+        ret += str_hdl::get_op(add, plus_node->is_min(), plus_node->is_div(), plus_node->is_pow());
+        ret += plus_node->display();
+    }
+    return ret;
+}
+
 
 

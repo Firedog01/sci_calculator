@@ -12,16 +12,15 @@ void calculator::parse(string str) {
     string err = checker.get_err();
     if(err.empty()) {
         simplifier smp;
-
-        displayer disp(f_man, c_man);
+        
         parser parser(f_man, c_man);
         node_ptr root = parser.parse(str);
-        cout << disp.display(root);
-        cout << " = " << disp.enumerate(root) << endl;
+        cout << root->display();
+        cout << " = " << root->enumerate() << endl;
         cout << "simplifying...\n";
         smp.simplify_all(root);
-        cout << disp.display(root);
-        cout << " = " << disp.enumerate(root) << endl;
+        cout << root->display();
+        cout << " = " << root->enumerate() << endl;
     } else {
         throw logic_error(err);
     }

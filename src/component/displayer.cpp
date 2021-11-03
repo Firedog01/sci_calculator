@@ -10,7 +10,6 @@ using namespace std;
 string displayer::display_subtree(const node_ptr& node, op op) {
     string ret, type;
     type = node->get_type();
-
     
     if(type == "int") {
         int_ptr ptr = static_pointer_cast<int_node>(node);
@@ -95,5 +94,5 @@ dong displayer::enumerate(node_ptr root) {
 }
 
 string displayer::display(node_ptr root) {
-    return display_subtree(root, def);
+    return root->display();
 }

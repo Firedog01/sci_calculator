@@ -26,6 +26,7 @@ struct str_hdl {
     static bool check_name_character(char c);
     static bool check_after_operator_character(char c);
     static bool check_operator(char c);
+    static std::string get_op(op op, bool min, bool div, bool pow);
 };
 
 #endif

@@ -29,4 +29,8 @@ dong int_node::get_val() {
     return value;
 }
 
+std::string int_node::disp_val() {
+    return std::to_string(this->get_cont());
+}
+
 

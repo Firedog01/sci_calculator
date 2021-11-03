@@ -21,3 +21,7 @@ dong constant_node::get_val() {
     }
     return value;
 }
+
+std::string constant_node::disp_val() {
+    return c_man->get_name(get_id_const());
+}

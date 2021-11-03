@@ -25,3 +25,11 @@ dong embedded_node::get_val() {
     return value;
 }
 
+std::string embedded_node::disp_val() {
+    std::string ret;
+    ret += str_hdl::O_BRACKET_C;
+    ret += "emb";
+    ret += get_cont()->display();
+    ret += str_hdl::C_BRACKET_C;
+    return ret;
+}
