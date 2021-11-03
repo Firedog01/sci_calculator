@@ -4,7 +4,6 @@
 #include "component/parser.h"
 #include "component/checker.h"
 #include "component/simplifier.h"
-#include "component/displayer.h"
 
 class calculator
 {
@@ -16,7 +15,7 @@ public:
 };
 /*
 assumptions:
-    2^3*4 = 2^(3*4)
+    2^3*4 = (2^3)*4
     2/3*4 = (2/3)*4
     2+^3 = 2^3
  */
