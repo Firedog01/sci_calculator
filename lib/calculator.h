@@ -4,7 +4,10 @@
 #include "component/parser.h"
 #include "component/checker.h"
 #include "component/simplifier.h"
-
+/*
+todo
+    dodać prev_node do math_node
+ */
 class calculator
 {
     f_man_ptr f_man;

@@ -20,7 +20,7 @@ class simplifier
     node_ptr traverse_tree_get_active_plus(node_ptr ptr);
     node_ptr traverse_tree_get_active_mul(node_ptr ptr);
 public:
-//    bool flatten_tree(node_ptr node);
+    void group_ints(node_ptr root); 
     
     void simplify_all(node_ptr root);
 };
