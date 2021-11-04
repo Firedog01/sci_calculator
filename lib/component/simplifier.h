@@ -8,21 +8,23 @@
 
 /*
  * todo:
- *     wykonywanie operacji na intach
- *     skracanie ułamków
- *     łączenie wartości w nawiasach
- *     coś z potęgami ??
- *     skracanie funkcji trygonometrycznych
+ *	 wykonywanie operacji na intach
+ *	 skracanie ułamków
+ *	 łączenie wartości w nawiasach
+ *	 coś z potęgami ??
+ *	 skracanie funkcji trygonometrycznych
  */
-
+// sort mul branches?
 class simplifier
 {
-    node_ptr traverse_tree_get_active_plus(node_ptr ptr);
-    node_ptr traverse_tree_get_active_mul(node_ptr ptr);
+	node_ptr traverse_tree_get_active_plus(node_ptr ptr);
+	node_ptr traverse_tree_get_active_mul(node_ptr ptr);
+	void group_ints_pow(node_ptr root); 
+	void group_ints_div(node_ptr root); 
 public:
-    void group_ints(node_ptr root); 
-    
-    void simplify_all(node_ptr root);
+	
+	
+	void simplify_all(node_ptr root);
 };
 
 #endif

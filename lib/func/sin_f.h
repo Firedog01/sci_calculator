@@ -9,6 +9,6 @@
 #include "abstr_function.h"
 
 struct sin_f : abstr_function {
-    virtual dong enumerate(std::vector<node_ptr> args);
+	virtual dong enumerate(std::vector<node_ptr> args);
 };
 #endif

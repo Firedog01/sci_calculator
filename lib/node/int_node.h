@@ -3,16 +3,16 @@
 #include "math_node.h"
 
 class int_node : public math_node{
-    uint64_t cont;
+	uint64_t cont;
 
-    virtual dong get_val();
-    virtual std::string disp_val(); 
+	virtual dong get_val();
+	virtual std::string disp_val(); 
 public:
-    int_node(const uint64_t& x, bool min, bool div, bool pow);
+	int_node(const uint64_t& x, bool min, bool div, bool pow);
 
-    void set_cont(uint64_t x);
-    const uint64_t& get_cont();
+	void set_cont(uint64_t x);
+	const uint64_t& get_cont();
 
-    int_ptr operator=(node_ptr);
+	int_ptr operator=(node_ptr);
 };
 #endif 

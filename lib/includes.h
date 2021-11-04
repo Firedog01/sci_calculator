@@ -29,7 +29,7 @@ typedef long double dong;
 typedef dong (*fpt)(std::vector<node_ptr>);
 
 //needed by parser
-enum op {add, mul, def, mul_no_plus};
+enum op {add, mul, def};
 
 //managers pointers
 class function_manager;

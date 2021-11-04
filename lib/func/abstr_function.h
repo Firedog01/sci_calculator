@@ -5,9 +5,9 @@
 #include <vector>
 
 struct abstr_function {
-    virtual dong enumerate(std::vector<node_ptr> args) {
-        return 0;
-    }
+	virtual dong enumerate(std::vector<node_ptr> args) {
+		return 0;
+	}
 };
 
 
