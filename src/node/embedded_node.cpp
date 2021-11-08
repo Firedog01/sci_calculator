@@ -2,7 +2,7 @@
 
 embedded_node::embedded_node(node_ptr x, bool min, bool div, bool pow) :
 		math_node(min, div, pow) {
-	set_type(1);
+	set_type(Embedded);
 	set_cont(x);
 }
 

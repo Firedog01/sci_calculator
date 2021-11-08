@@ -29,7 +29,8 @@ typedef long double dong;
 typedef dong (*fpt)(std::vector<node_ptr>);
 
 //needed by parser
-enum op {add, mul, def};
+enum op {add, mul, def}; // todo refactor
+enum node_type {Int = 0, Embedded, Function, Constant, Variable, Undefined = 7};
 
 //managers pointers
 class function_manager;

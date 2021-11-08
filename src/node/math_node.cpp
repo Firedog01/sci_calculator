@@ -4,11 +4,11 @@
 
 
 math_node::math_node(bool min, bool div, bool pow): 
-		plus_node(nullptr), mul_node(nullptr), flags(0) {
+		plus_node(nullptr), mul_node(nullptr), prev_node(nullptr), flags(0) {
 	set_min(min);
 	set_div(div);
 	set_pow(pow);
-	set_type(7);
+	set_type(Undefined);
 }
 
 
@@ -46,6 +46,7 @@ void math_node::set_flag(bool val, int disp) {
 
 void math_node::set_plus_node(node_ptr node) {
 	this->plus_node = std::move(node);
+	this->plus_node->set_prev_node(shared_from_this());
 }
 node_ptr math_node::get_plus_node() {
 	return this->plus_node;
@@ -53,44 +54,48 @@ node_ptr math_node::get_plus_node() {
 
 void math_node::set_mul_node(node_ptr node) {
 	this->mul_node = std::move(node);
+	this->mul_node->set_prev_node(shared_from_this());
 }
 node_ptr math_node::get_mul_node() {
 	return this->mul_node;
 }
+
+void math_node::set_prev_node(node_ptr node) {
+	this->prev_node = node;
+}
+node_ptr math_node::get_prev_node() {
+	return this->prev_node;
+}
+
 using namespace std;
 
 
-string math_node::get_type() const {
+node_type math_node::get_type() const {
 	string ret;
 	char flag = this->flags >> 3 & 7;
 	switch(flag) {
 		case 0:
-		ret = "int";
-		break;
+		return Int;
 
 		case 1:
-		ret = "embedded";
-		break;
+		return Embedded;
 		
 		case 2:
-		ret = "variable";
-		break;
+		return Variable;
 		
 		case 3:
-		ret = "constant";
-		break;
+		return Constant;
 		
 		case 4:
-		ret = "function";
-		break;
+		return Function;
 		
 		default:
-		ret = "undefined";
+		return Undefined;
 	}
-	return ret;
 }
 
-void math_node::set_type(uint8_t val) {
+void math_node::set_type(node_type type) {
+	uint8_t val = (uint8_t)(type);
 	if(val > 7) {
 		val = 7;
 	}

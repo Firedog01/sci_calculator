@@ -14,11 +14,14 @@
  *	 coś z potęgami ??
  *	 skracanie funkcji trygonometrycznych
  */
-// sort mul branches?
+
 class simplifier
 {
 	node_ptr traverse_tree_get_active_plus(node_ptr ptr);
 	node_ptr traverse_tree_get_active_mul(node_ptr ptr);
+    void swap_nodes_same_plus_branch(node_ptr ptr1, node_ptr ptr2); 
+
+    void sort_mul_branches(node_ptr root);
 	void group_ints_pow(node_ptr root); 
 	void group_ints_div(node_ptr root); 
 public:

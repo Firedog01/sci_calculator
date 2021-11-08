@@ -2,7 +2,7 @@
 
 constant_node::constant_node(c_man_ptr c_man, int id_const, bool min, bool div, bool pow):
 		id_const(id_const), math_node(min, div, pow), c_man(c_man) {
-	set_type(3);
+	set_type(Constant);
 }
 int constant_node::get_id_const() {
 	return this->id_const;

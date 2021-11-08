@@ -18,6 +18,29 @@ node_ptr simplifier::traverse_tree_get_active_mul(node_ptr ptr) {
 	return active;
 }
 
+void simplifier::swap_nodes_same_plus_branch(node_ptr ptr1, node_ptr ptr2) {
+	// ptr1->get_prev_node()->set_mul_node()
+}
+
+
+/* sort mul branches 
+
+zawartość:
+    int
+    const
+    variable
+    embedded
+    func
+operacje:
+    mul, div, pow
+*/
+void simplifier::sort_mul_branches(node_ptr root) {
+	node_ptr active_plus = root;
+	while(active_plus->get_plus_node() != nullptr) {
+
+	}
+}
+
 void simplifier::group_ints_pow(node_ptr root) {
 	node_ptr active_plus = root;
 	node_ptr prev_active_mul = nullptr;
@@ -25,13 +48,13 @@ void simplifier::group_ints_pow(node_ptr root) {
 		node_ptr active_mul = active_plus->get_mul_node();
 		while(active_mul->get_mul_node() != nullptr) {
 
-			if(active_mul->get_type() == "embedded") {
+			if(active_mul->get_type() == Embedded) {
 				embedded_ptr ptr = static_pointer_cast<embedded_node>(active_mul);
 				group_ints_pow(ptr->get_cont());
 			}
 			node_ptr next_active_mul = active_mul->get_mul_node();
-			if(active_mul->get_type() == "int" && 
-					next_active_mul->get_type() == "int") {
+			if(active_mul->get_type() == Int && 
+					next_active_mul->get_type() == Int) {
 				//grupowanie potęg 
 				if(next_active_mul->is_pow()) {
 					node_ptr next_next_mul = next_active_mul->get_mul_node();

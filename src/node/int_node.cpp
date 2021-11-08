@@ -2,7 +2,7 @@
 
 int_node::int_node(const uint64_t& x, bool min, bool div, bool pow) :
 		math_node(min, div, pow) {
-	set_type(0);
+	set_type(Int);
 	set_cont(x);
 }
 

@@ -20,7 +20,7 @@ int function_node::get_id_func() {
 
 function_node::function_node(f_man_ptr f_man, int func_id, vector<node_ptr> args, bool min, bool div, bool pow) :
 		math_node(min, div, pow), args(move(args)), id_func(func_id), f_man(f_man) {
-	set_type(4);
+	set_type(Function);
 }
 
 dong function_node::get_val() {
