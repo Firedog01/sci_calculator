@@ -4,6 +4,7 @@ embedded_node::embedded_node(node_ptr x, bool min, bool div, bool pow) :
 		math_node(min, div, pow) {
 	set_type(Embedded);
 	set_cont(x);
+	x->set_prev_node(shared_from_this());
 }
 
 void embedded_node::set_cont(node_ptr x) {

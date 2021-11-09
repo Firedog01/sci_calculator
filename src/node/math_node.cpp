@@ -38,6 +38,14 @@ void math_node::set_pow(bool val) {
 	set_flag(val, 2);
 }
 
+bool math_node::is_pair() const {
+	return (flags & (1 << 6));
+}
+
+void math_node::set_pair(bool val) {
+	set_flag(val, 6);
+}
+
 
 void math_node::set_flag(bool val, int disp) {
 	flags = ((flags & ~(1 << disp)) | (val << disp));
@@ -45,16 +53,20 @@ void math_node::set_flag(bool val, int disp) {
 
 
 void math_node::set_plus_node(node_ptr node) {
-	this->plus_node = std::move(node);
-	this->plus_node->set_prev_node(shared_from_this());
+	this->plus_node = node;
+	if(node != nullptr) {
+		this->plus_node->set_prev_node(shared_from_this());
+	}
 }
 node_ptr math_node::get_plus_node() {
 	return this->plus_node;
 }
 
 void math_node::set_mul_node(node_ptr node) {
-	this->mul_node = std::move(node);
-	this->mul_node->set_prev_node(shared_from_this());
+	this->mul_node = node;
+	if(node != nullptr) {
+		this->mul_node->set_prev_node(shared_from_this());
+	}
 }
 node_ptr math_node::get_mul_node() {
 	return this->mul_node;
@@ -75,22 +87,17 @@ node_type math_node::get_type() const {
 	char flag = this->flags >> 3 & 7;
 	switch(flag) {
 		case 0:
-		return Int;
-
+			return Int;
 		case 1:
-		return Embedded;
-		
+			return Embedded;
 		case 2:
-		return Variable;
-		
+			return Variable;
 		case 3:
-		return Constant;
-		
+			return Constant;
 		case 4:
-		return Function;
-		
+			return Function;
 		default:
-		return Undefined;
+			return Undefined;
 	}
 }
 
@@ -134,6 +141,19 @@ dong math_node::enumerate() {
 
 std::string math_node::display() {
 	std::string ret;
+	if(prev_node == nullptr) {
+		if(is_div() || is_pow()) {
+			ret += str_hdl::get_op(mul, is_min(), is_div(), is_pow());
+		} else if(is_min()) {
+			ret += str_hdl::get_op(add, is_min(), is_div(), is_pow());
+		}
+	} else if(prev_node->get_type() == Embedded) {
+		if(is_div() || is_pow()) {
+			ret += str_hdl::get_op(mul, is_min(), is_div(), is_pow());
+		} else if(is_min()) {
+			ret += str_hdl::get_op(add, is_min(), is_div(), is_pow());
+		}
+	}
 	ret += this->disp_val();
 
 	if(get_mul_node() != nullptr) {

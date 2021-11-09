@@ -5,12 +5,13 @@
  * 0b000000x0 - division flag   /
  * 0b00000x00 - power flag	  ^
  * 0b00xxx000 - val flags:
- *	 000	- int
- *	 001	- embedded
- *	 010	- variable
- *	 011	- constant
- *	 100	- function
- *	 111	- undefined
+ *	   000	    - Int
+ *	   001	    - Embedded
+ *	   010	    - Variable
+ *	   011	    - Constant
+ *	   100	    - Function
+ *	   111	    - Undefined
+ * 0b0x000000 - pair flag
  */
 
 #include "../includes.h"
@@ -49,8 +50,10 @@ public:
 	void set_div(bool val);
 	bool is_pow() const;
 	void set_pow(bool val);
-	node_type get_type() const;
+	bool is_pair() const;
+	void set_pair(bool val);
 
+	node_type get_type() const;
 	dong enumerate();
 	std::string display(); 
 };
