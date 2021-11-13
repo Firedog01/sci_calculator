@@ -17,18 +17,15 @@
 
 class simplifier
 {
-	std::shared_ptr<node_ptr> root;
+    void swap_nodes(node_ptr& ptr1, node_ptr& ptr2, node_ptr& root); 
 
-	node_ptr traverse_tree_get_active_plus(node_ptr ptr);
-	node_ptr traverse_tree_get_active_mul(node_ptr ptr);
-    void swap_nodes(node_ptr ptr1, node_ptr ptr2); 
-
-    void sort_mul_branches();
-	void group_ints_pow(); 
-	void group_ints_div(); 
+    void sort_mul_branches(node_ptr& root);
+	void group_ints_pow(node_ptr& root); 
+	void group_ints_div(node_ptr& root); 
 public:
-	
-	void simplify_all(node_ptr root);
+	void simplify_all(node_ptr& root);
+
+	// friend class math_node;
 };
 
 #endif

@@ -22,6 +22,8 @@
 #include <utility>
 #include <iostream>
 
+class simplifier;
+
 class math_node : public std::enable_shared_from_this<math_node>  {
 private:
 	node_ptr plus_node;
@@ -32,6 +34,9 @@ private:
 	void set_flag(bool val, int disp);
 	virtual dong get_val();
 	virtual std::string disp_val();
+
+	void set_flags(uint8_t flags);
+	uint8_t get_flags() const;
 protected:
 	void set_type(node_type type);
 public:
@@ -56,6 +61,7 @@ public:
 	node_type get_type() const;
 	dong enumerate();
 	std::string display(); 
+	friend class simplifier;
 };
 #endif
 

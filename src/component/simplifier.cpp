@@ -2,74 +2,73 @@
 
 using namespace std;
 
-node_ptr simplifier::traverse_tree_get_active_plus(node_ptr ptr) {
-	node_ptr active = ptr;
-	while(active->get_mul_node() != nullptr) {
-		active = active->get_mul_node();
-	}
-	return active;
-}
-
-node_ptr simplifier::traverse_tree_get_active_mul(node_ptr ptr) {
-	node_ptr active = ptr;
-	while(active->get_plus_node() != nullptr) {
-		active = active->get_plus_node();
-	}
-	return active;
-}
 
 //todo test -  on it ma boi
-void simplifier::swap_nodes(node_ptr ptr1, node_ptr ptr2) {
-	node_ptr temp = nullptr;
-	temp = ptr1->get_plus_node();
-	ptr1->set_plus_node(ptr2->get_plus_node());
-	ptr2->set_plus_node(temp);
-	temp = ptr1->get_mul_node();
-	ptr1->set_mul_node(ptr2->get_mul_node());
-	ptr2->set_mul_node(temp);
+void simplifier::swap_nodes(node_ptr& ptr1, node_ptr& ptr2, node_ptr& root) {
+	node_ptr temp = ptr1;
+	ptr1 = ptr2;
+	ptr2 = temp;
+	temp->get_flags();
 
-	if(ptr1->get_prev_node() != nullptr) {
-		if(ptr1->get_prev_node()->get_mul_node() == ptr1)
-			ptr1->get_prev_node()->set_mul_node(ptr2);
-		else if(ptr1->get_prev_node()->get_plus_node() == ptr1)
-			ptr1->get_prev_node()->set_plus_node(ptr2);
-		else if(ptr1->get_prev_node()->get_type() == Embedded) {
-			node_ptr ptr = ptr1->get_prev_node();
-			embedded_ptr ptr_e = std::static_pointer_cast<embedded_node>(ptr);
-			ptr_e->set_cont(ptr2);
-		}
-	}
-	if(ptr2->get_prev_node() != nullptr) {
-		if(ptr2->get_prev_node()->get_mul_node() == ptr2)
-			ptr2->get_prev_node()->set_mul_node(ptr1);
-		else if(ptr2->get_prev_node()->get_plus_node() == ptr2)
-			ptr2->get_prev_node()->set_plus_node(ptr1);
-		else if(ptr1->get_prev_node()->get_type() == Embedded) {
-			node_ptr ptr = ptr1->get_prev_node();
-			embedded_ptr ptr_e = std::static_pointer_cast<embedded_node>(ptr);
-			ptr_e->set_cont(ptr2);
-		}
-	}
-	temp = ptr1->get_prev_node();
-	ptr1->set_prev_node(ptr2->get_prev_node());
-	ptr2->set_prev_node(temp);
+	// zamienić zawartości dwóch node'ów?
+	// do zamiany:
+	// * contents
+	// * flags
+	// temp = ptr1->get_plus_node();
+	// ptr1->set_plus_node(ptr2->get_plus_node());
+	// ptr2->set_plus_node(temp);
 
-	if(this->root == ptr1) {
-		cout << "podmiana\n";
-		*this->root = ptr2;
-	} else if(this->root == ptr2) {
-		cout << "podmiana2\n";
-		*this->root = ptr1;
-	}
+	// temp = ptr1->get_mul_node();
+	// ptr1->set_mul_node(ptr2->get_mul_node());
+	// ptr2->set_mul_node(temp);
+
+	// if(ptr1->get_prev_node() != nullptr) {
+	// 	if(ptr1->get_prev_node()->get_mul_node() == ptr1)
+	// 		ptr1->get_prev_node()->set_mul_node(ptr2);
+	// 	else if(ptr1->get_prev_node()->get_plus_node() == ptr1)
+	// 		ptr1->get_prev_node()->set_plus_node(ptr2);
+	// 	else if(ptr1->get_prev_node()->get_type() == Embedded) {
+	// 		node_ptr ptr = ptr1->get_prev_node();
+	// 		embedded_ptr ptr_e = std::static_pointer_cast<embedded_node>(ptr);
+	// 		ptr_e->set_cont(ptr2);
+	// 	}
+	// }
+	// if(ptr2->get_prev_node() != nullptr) {
+	// 	if(ptr2->get_prev_node()->get_mul_node() == ptr2)
+	// 		ptr2->get_prev_node()->set_mul_node(ptr1);
+	// 	else if(ptr2->get_prev_node()->get_plus_node() == ptr2)
+	// 		ptr2->get_prev_node()->set_plus_node(ptr1);
+	// 	else if(ptr1->get_prev_node()->get_type() == Embedded) {
+	// 		node_ptr ptr = ptr1->get_prev_node();
+	// 		embedded_ptr ptr_e = std::static_pointer_cast<embedded_node>(ptr);
+	// 		ptr_e->set_cont(ptr2);
+	// 	}
+	// }
+	// temp = ptr1->get_prev_node();
+	// ptr1->set_prev_node(ptr2->get_prev_node());
+	// ptr2->set_prev_node(temp);
+
+	// if(root == ptr1) {
+	// 	root = ptr2;
+	// } else if(root == ptr2) {
+	// 	root = ptr1;
+	// }
 }
 
-void simplifier::sort_mul_branches() {
-	node_ptr active_plus = *root;
+void simplifier::sort_mul_branches(node_ptr& root) {
+	node_ptr active_plus = root;
+	if(active_plus->get_plus_node() == nullptr) {
+		cout << "!\n";
+	} else {
+		cout << "ok\n";
+	}
 	node_type type_order[5] {Int, Constant, Variable, Embedded, Function};
-	// default operation order: min, div, pow
-	do {
+	// default operation order: none, min, div, pow
+	while(active_plus->get_plus_node() != nullptr) {
 		cout << "plus branch\n";
 		bool changed = true;
+
+		//problem: podczas swappowania pierwszych dwóch node'ów zmienia się pozycja 
 		while(changed) {
 			cout << "mul---\n";
 			node_ptr active_mul = active_plus;
@@ -95,7 +94,7 @@ void simplifier::sort_mul_branches() {
 				}
 				cout << "next_i: " << next_i << endl;
 				if(act_i > next_i) {
-					swap_nodes(active_mul, next_node);
+					swap_nodes(active_mul, next_node, root);
 					changed = true;
 					cout << "swapped\n";
 				}
@@ -123,7 +122,7 @@ void simplifier::sort_mul_branches() {
 				}
 				cout << "next_ops: " << next_ops << endl;
 				if(act_ops > next_ops) {
-					swap_nodes(active_mul, next_node);
+					swap_nodes(active_mul, next_node, root);
 					changed = true;
 					cout << "swapped\n";
 				}
@@ -132,12 +131,16 @@ void simplifier::sort_mul_branches() {
 				cout << "-----\n";
 			}
 		}
+		
 		active_plus = active_plus->get_plus_node();
-	} while(active_plus->get_plus_node() != nullptr);
+		if(active_plus == nullptr) {
+			cout << "err\n";
+		}
+	}
 }
 
-void simplifier::group_ints_pow() {
-	node_ptr active_plus = *root;
+void simplifier::group_ints_pow(node_ptr& root) {
+	node_ptr active_plus = root;
 	node_ptr prev_active_mul = nullptr;
 	while(active_plus->get_plus_node() != nullptr) {
 		node_ptr active_mul = active_plus->get_mul_node();
@@ -170,17 +173,13 @@ void simplifier::group_ints_pow() {
 	}
 }
 
-void simplifier::group_ints_div() {}
+void simplifier::group_ints_div(node_ptr& root) {}
 
-void simplifier::simplify_all(node_ptr root) {
+void simplifier::simplify_all(node_ptr& root) {
 	// group_ints_pow(root);
 	// sort_mul_branches(root);
 	// group_ints_div(root);
-	cout << "simplifier\n";
-	root = root->get_mul_node();
-	// this->root = root;
-	// swap_nodes(root, (root)->get_mul_node());
+
+	node_ptr temp = root->get_mul_node();
+	swap_nodes(root, temp, root);
 }
-
-
-

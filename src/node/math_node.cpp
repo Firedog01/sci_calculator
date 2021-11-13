@@ -12,6 +12,16 @@ math_node::math_node(bool min, bool div, bool pow):
 }
 
 
+
+void math_node::set_flags(uint8_t flags) {
+	this->flags = flags;
+}
+
+uint8_t math_node::get_flags() const {
+	return flags;
+}
+
+
 bool math_node::is_min() const {
 	return (flags & (1 << 0));
 }
