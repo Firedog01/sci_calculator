@@ -25,7 +25,6 @@
 class simplifier;
 
 class math_node : public std::enable_shared_from_this<math_node>  {
-private:
 	node_ptr plus_node;
 	node_ptr mul_node;
     node_ptr prev_node;
@@ -37,10 +36,13 @@ private:
 
 	void set_flags(uint8_t flags);
 	uint8_t get_flags() const;
+
 protected:
 	void set_type(node_type type);
+	
 public:
 	math_node(bool min, bool div, bool pow);
+	~math_node();
 
 	node_ptr get_plus_node();
 	void set_plus_node(node_ptr node);
@@ -58,9 +60,12 @@ public:
 	bool is_pair() const;
 	void set_pair(bool val);
 
+	//util
 	node_type get_type() const;
 	dong enumerate();
-	std::string display(); 
+	std::string display();
+	node_ptr get_root();
+
 	friend class simplifier;
 };
 #endif

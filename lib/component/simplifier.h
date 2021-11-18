@@ -17,9 +17,16 @@
 
 class simplifier
 {
-    void swap_nodes(node_ptr& ptr1, node_ptr& ptr2, node_ptr& root); 
-
+	const node_type type_order[5] {
+		Int, Constant, Variable, Embedded, Function
+	};
+    
+	void handle_prev_nodes(node_ptr& ptr1, node_ptr& ptr2);
+	void swap_nodes(node_ptr& ptr1, node_ptr& ptr2, node_ptr& root); 
+	int get_order_type(node_ptr node);
+	int get_order_oper(node_ptr node);
     void sort_mul_branches(node_ptr& root);
+
 	void group_ints_pow(node_ptr& root); 
 	void group_ints_div(node_ptr& root); 
 public:

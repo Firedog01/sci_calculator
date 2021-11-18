@@ -5,10 +5,15 @@
 
 math_node::math_node(bool min, bool div, bool pow): 
 		plus_node(nullptr), mul_node(nullptr), prev_node(nullptr), flags(0) {
+	prev_node = nullptr; //?
 	set_min(min);
 	set_div(div);
 	set_pow(pow);
 	set_type(Undefined);
+}
+
+math_node::~math_node() {
+	// std::cout << "a\n";
 }
 
 
@@ -179,5 +184,14 @@ std::string math_node::display() {
 	return ret;
 }
 
-
+node_ptr math_node::get_root() {
+	// std::cout << "a\n";
+	if(get_prev_node() == nullptr) {
+		// cout << "b\n";
+		return shared_from_this();
+	} else {
+		// cout << "c " << get_prev_node() << "\n";
+		return get_prev_node()->get_root();
+	}
+}
 
