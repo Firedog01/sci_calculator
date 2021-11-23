@@ -28,8 +28,8 @@ class simplifier
 	void get_node(node_ptr& node, node_ptr& root, int p, int m);
 	int get_n_plus(node_ptr root);
 	int get_n_mul(node_ptr active_plus);
-    //set_prev_node
-	void handle_prev_nodes(node_ptr& ptr1, node_ptr& ptr2);
+    // gets previous from to_prev node and swaps to_prev with to_set
+	void set_prev_node(node_ptr& to_prev, node_ptr& to_set);
 	
 	void swap_nodes(node_ptr& ptr1, node_ptr& ptr2, node_ptr& root); 
 	int get_order_type(node_ptr node);

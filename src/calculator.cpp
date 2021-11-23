@@ -17,8 +17,10 @@ void calculator::parse(string str) {
 
 		cout << root->display();
 		cout << " = " << root->enumerate() << endl;
+
 		cout << "simplifying...\n";
 		smp.simplify_all(root);
+
 		cout << root->display();
 		cout << " = " << root->enumerate() << endl;
 	} else {

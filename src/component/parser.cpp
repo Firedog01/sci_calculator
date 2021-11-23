@@ -118,7 +118,9 @@ node_ptr parser::create_int_node(const string& cont, bool min, bool div, bool po
 
 node_ptr parser::create_embedded_node(string cont, bool min, bool div, bool pow) {
 	node_ptr root_branch = create_embedded_branch(cont);
-	return make_shared<embedded_node>(root_branch, min, div, pow);
+	embedded_ptr new_embd = make_shared<embedded_node>(root_branch, min, div, pow);
+	root_branch->set_prev_node(new_embd);
+	return new_embd;
 }
 
 node_ptr parser::create_constant_node(const string& name, bool min, bool div, bool pow) {
@@ -132,7 +134,9 @@ node_ptr parser::create_function_node(string name, vector<string> args_str, bool
 	for(int j = 0; j < args_str.size(); j++) {
 		args.push_back( (create_embedded_branch(args_str[j])) );
 	}
-	return make_shared<function_node>(f_man, id_func, args, min, div, pow);
+	function_ptr new_func = make_shared<function_node>(f_man, id_func, args, min, div, pow);
+	
+	return new_func;
 }
 
 node_ptr parser::get_root() {

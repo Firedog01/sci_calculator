@@ -29,7 +29,7 @@ int simplifier::get_n_plus(node_ptr root) {
 		n++;
 		root = root->get_plus_node();
 	}
-	// cout << "n_plus_branches = " << n << endl;
+	 cout << "n_plus_branches = " << n << endl;
 	return n;
 }
 
@@ -40,24 +40,25 @@ int simplifier::get_n_mul(node_ptr active_plus) {
 		n++;
 		active_plus = active_plus->get_mul_node();
 	}
-	// cout << "n_mul = " << n << endl;
+	 cout << "n_mul = " << n << endl;
 	return n;
 }
 
-// gets previous from ptr1 node and swaps ptr1 with ptr2
-void simplifier::handle_prev_nodes(node_ptr& ptr1, node_ptr& ptr2) {
-	node_ptr prev = ptr1->get_prev_node();
+
+
+void simplifier::set_prev_node(node_ptr& to_prev, node_ptr& to_set) {
+	node_ptr prev = to_prev->get_prev_node();
 	if(prev != nullptr) {
-		if(prev->get_mul_node() == ptr1) {
-			prev->mul_node = ptr2;
+		if(prev->get_mul_node() == to_prev) {
+			prev->mul_node = to_set;
 		}
-		else if(prev->get_plus_node() == ptr1) {
-			prev->plus_node = ptr2;
+		else if(prev->get_plus_node() == to_prev) {
+			prev->plus_node = to_set;
 		}
 		else if(prev->get_type() == Embedded) {
 			node_ptr ptr = prev;
 			embedded_ptr ptr_e = std::static_pointer_cast<embedded_node>(ptr);
-			ptr_e->set_cont(ptr2);
+			ptr_e->set_cont(to_set);
 		}
 	} else {
 		cout << "root\n";
@@ -74,8 +75,8 @@ void simplifier::swap_nodes(node_ptr& ptr1, node_ptr& ptr2, node_ptr& root) {
 	ptr1->set_mul_node(ptr2->get_mul_node());
 	ptr2->set_mul_node(temp);
 
-	handle_prev_nodes(ptr1, ptr2);
-	handle_prev_nodes(ptr2, ptr1);
+    set_prev_node(ptr1, ptr2);
+    set_prev_node(ptr2, ptr1);
 	
 	temp = ptr1->get_prev_node();
 	ptr1->set_prev_node(ptr2->get_prev_node());
@@ -154,19 +155,29 @@ void simplifier::group_pows(node_ptr& root) {
 		bool changed = true;
 		while(changed) {
 			changed = false;
-			for(int i_mul = 0; i_mul < get_n_mul(root); i_mul++) { 
+			for(int i_mul = 0; i_mul < get_n_mul(root); i_mul++) {
+                cout << "i_plus: " << i_plus << " i_mul: " << i_mul << "\n";
 				get_node(active, root, i_plus, i_mul);
+                cout << "node set\n";
 				node_ptr next_node = active->get_mul_node();
 				if(next_node->is_pow()) {
+                    cout << "is pow\n";
 					node_ptr cont = active;
+
+                    next_node->get_plus_node();
+                    next_node->set_plus_node(nullptr);
+                    cout << "assign\n";
 					embedded_ptr new_node = make_shared<embedded_node>(
-						cont,
-						active->is_min(),
-						active->is_div(),
-						active->is_pow()
+						cont, active->is_min(), active->is_div(), active->is_pow()
 					);
-					node_ptr new_node_base = static_cast<node_ptr>(new_node);
-					handle_prev_nodes(active, new_node_base);
+                    active->set_min(false);
+                    active->set_div(false);
+                    active->set_pow(false);
+
+                    cout << "created new node\n";
+					node_ptr new_node_base = static_pointer_cast<math_node>(new_node);
+                    cout << "cast done\n";
+                    set_prev_node(active, new_node_base);
 					node_ptr next_next_node = next_node->get_mul_node();
 					if(next_next_node != nullptr) {
 						//move new_node->next_mul to next_next_node
@@ -185,7 +196,7 @@ void simplifier::group_pows(node_ptr& root) {
 void simplifier::group_ints_div(node_ptr& root) {}
 
 void simplifier::simplify_all(node_ptr& root) {
-	group_pows(root);
-	sort_mul_branches(root);
+//	group_pows(root);
+//	sort_mul_branches(root);
 	// group_ints_div(root);
 }

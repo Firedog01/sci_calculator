@@ -10,7 +10,7 @@ int main(int argc, char** argv) {
 	//   1
 	// ------ = 0,0445
 	// pi ^ e
-	string default_text = "/3*9/5*-4";
+	string default_text = "1(2-4)/3*9^6/5*-4";
 	if(argc == 1) {
 		calculator calc;
 		try {

@@ -4,7 +4,7 @@
 #include "math_node.h"
 #include "../component/str_hdl.h"
 
-// embedded branch root has prev_node set to this
+// embedded branch root needs to be set manually to prev_node
 class embedded_node : public math_node {
 	node_ptr cont;
 
