@@ -1,9 +1,9 @@
 #include "../../lib/component/str_hdl.h"
 
-using namespace std;
+using namespace calculator;
 
-void str_hdl::remove_spaces(string& str) {
-	string replace;
+void str_hdl::remove_spaces(std::string& str) {
+	std::string replace;
 	for(char i : str) {
 		if(i != ' ') {
 			replace += i;
@@ -12,8 +12,8 @@ void str_hdl::remove_spaces(string& str) {
 	str = replace;
 }
 
-string str_hdl::get_num(string str, int& i) {
-	string num;
+std::string str_hdl::get_num(std::string str, int& i) {
+	std::string num;
 	while(str[i] >= '0' && str[i] <= '9') {
 		num += str[i];
 		i++;
@@ -21,8 +21,8 @@ string str_hdl::get_num(string str, int& i) {
 	return num;
 }
 
-string str_hdl::get_embedded(string str, int& i) {
-	string embedded;
+std::string str_hdl::get_embedded(std::string str, int& i) {
+	std::string embedded;
 	int brackets = 1; // +1 for opening -1 for closing
 
 	i++;
@@ -40,8 +40,8 @@ string str_hdl::get_embedded(string str, int& i) {
 	return embedded;
 }
 
-string str_hdl::get_name(string str, int& i) {
-	string name;
+std::string str_hdl::get_name(std::string str, int& i) {
+	std::string name;
 	while(check_name_character(str[i])) {
 		name += str[i];
 		i++;
@@ -49,9 +49,9 @@ string str_hdl::get_name(string str, int& i) {
 	return name;
 }
 
-vector<string> str_hdl::get_func_args(string str, int &i) {
-	vector<string> ret;
-	string func_cont = get_embedded(str, i), arg;
+std::vector<std::string> str_hdl::get_func_args(std::string str, int &i) {
+	std::vector<std::string> ret;
+	std::string func_cont = get_embedded(str, i), arg;
 	for(int j = 0; j < func_cont.length(); j++) {
 		if(func_cont[j] == F_ARG_DELIM) {
 			ret.push_back(arg);
@@ -103,12 +103,12 @@ bool str_hdl::check_operator(char c) {
 std::string str_hdl::get_op(op op, bool min, bool div, bool pow) {
 	if(op == add) {
 		if(min) {
-			return string(1, str_hdl::OP_SUB_C);
+			return std::string(1, str_hdl::OP_SUB_C);
 		} else {
-			return string(1, str_hdl::OP_ADD_C);
+			return std::string(1, str_hdl::OP_ADD_C);
 		}
 	} else if(op == mul) {
-		string ret;
+		std::string ret;
 		if(pow) {
 			if(div) {
 				ret += str_hdl::OP_POW_C;

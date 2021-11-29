@@ -1,30 +1,29 @@
 #include "../lib/calculator.h"
 
-using namespace std;
+using namespace calculator;
 
-calculator::calculator() {
-	f_man = make_shared<function_manager>();
-	c_man = make_shared<constant_manager>();
+calc::calc() {
+	f_man = std::make_shared<manager::function_manager>();
+	c_man = std::make_shared<manager::constant_manager>();
 }
 
-void calculator::parse(string str) {
+void calc::parse(std::string str) {
 	checker checker(str);
-	string err = checker.get_err();
+	std::string err = checker.get_err();
 	if(err.empty()) {
 		parser parser(f_man, c_man);
 		node_ptr root = parser.parse(str);
 		simplifier smp;
 
-		cout << root->display();
-		cout << " = " << root->enumerate() << endl;
+		std::cout << root->display();
+		std::cout << " = " << root->enumerate() << std::endl;
 
-		cout << "simplifying...\n";
+		std::cout << "simplifying...\n";
 		smp.simplify_all(root);
 
-		cout << root->display();
-		cout << " = " << root->enumerate() << endl;
+		std::cout << root->display();
+		std::cout << " = " << root->enumerate() << std::endl;
 	} else {
-		throw logic_error(err);
+		throw std::logic_error(err);
 	}
 }
-

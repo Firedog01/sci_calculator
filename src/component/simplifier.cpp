@@ -1,6 +1,7 @@
 #include "../../lib/component/simplifier.h"
 
 using namespace std;
+using namespace calculator;
 
 void simplifier::get_mul_root(node_ptr& active_mul, int p) {
 	//update root position
@@ -57,9 +58,30 @@ void simplifier::set_prev_node(node_ptr& to_prev, node_ptr& to_set) {
 		}
 		else if(prev->get_type() == Embedded) {
 			node_ptr ptr = prev;
-			embedded_ptr ptr_e = std::static_pointer_cast<embedded_node>(ptr);
+			embedded_ptr ptr_e = std::static_pointer_cast<node::embedded_node>(ptr);
 			ptr_e->set_cont(to_set);
-		}
+		}	class parser {
+	private:
+		node_ptr root;
+		calculator::f_man_ptr f_man;
+		c_man_ptr c_man;
+
+		/**
+		 * main creation function. Creates new branch for root or for embeded root
+		 */
+		node_ptr create_embedded_branch(std::string str);
+
+		node_ptr create_node(std::string str, int& i, op& op);
+		node_ptr create_int_node(const std::string& cont, bool min, bool div, bool pow);
+		node_ptr create_embedded_node(std::string cont, bool min, bool div, bool pow);
+		node_ptr create_constant_node(const std::string& name, bool min, bool div, bool pow);
+		node_ptr create_function_node(std::string name, std::vector<std::string> args, bool min, bool div, bool pow);
+		
+	public:
+		parser(f_man_ptr f_man, c_man_ptr c_man) : f_man(f_man), c_man(c_man) {}
+		node_ptr parse(std::string str);
+		node_ptr get_root();
+	};
 	} else {
 		cout << "root\n";
 	}
@@ -167,7 +189,7 @@ void simplifier::group_pows(node_ptr& root) {
                     next_node->get_plus_node();
                     next_node->set_plus_node(nullptr);
                     cout << "assign\n";
-					embedded_ptr new_node = make_shared<embedded_node>(
+					embedded_ptr new_node = make_shared<node::embedded_node>(
 						cont, active->is_min(), active->is_div(), active->is_pow()
 					);
                     active->set_min(false);
@@ -175,7 +197,7 @@ void simplifier::group_pows(node_ptr& root) {
                     active->set_pow(false);
 
                     cout << "created new node\n";
-					node_ptr new_node_base = static_pointer_cast<math_node>(new_node);
+					node_ptr new_node_base = static_pointer_cast<node::math_node>(new_node);
                     cout << "cast done\n";
                     set_prev_node(active, new_node_base);
 					node_ptr next_next_node = next_node->get_mul_node();
@@ -184,7 +206,7 @@ void simplifier::group_pows(node_ptr& root) {
 					}
 				}
 				if(active->get_type() == Embedded) {
-					embedded_ptr ptr = static_pointer_cast<embedded_node>(active);
+					embedded_ptr ptr = static_pointer_cast<node::embedded_node>(active);
 					node_ptr cont = ptr->get_cont();
 					group_pows(cont);
 				}

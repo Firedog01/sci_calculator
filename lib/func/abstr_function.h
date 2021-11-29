@@ -4,11 +4,13 @@
 #include "../includes.h"
 #include <vector>
 
-struct abstr_function {
-	virtual dong enumerate(std::vector<node_ptr> args) {
-		return 0;
-	}
-};
+namespace calculator::func {
 
+	struct abstr_function {
+		virtual dong enumerate(std::vector<node_ptr> args) {
+			return 0;
+		}
+	};
 
+}
 #endif

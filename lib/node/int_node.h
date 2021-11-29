@@ -2,17 +2,21 @@
 #define INT_NODE
 #include "math_node.h"
 
-class int_node : public math_node{
-	uint64_t cont;
+namespace calculator::node {
 
-	virtual dong get_val();
-	virtual std::string disp_val(); 
-public:
-	int_node(const uint64_t& x, bool min, bool div, bool pow);
+	class int_node : public math_node{
+		uint64_t cont;
 
-	void set_cont(uint64_t x);
-	const uint64_t& get_cont();
+		virtual calculator::dong get_val();
+		virtual std::string disp_val(); 
+	public:
+		int_node(const uint64_t& x, bool min, bool div, bool pow);
 
-	int_ptr operator=(node_ptr);
-};
+		void set_cont(uint64_t x);
+		const uint64_t& get_cont();
+
+		calculator::int_ptr operator=(calculator::node_ptr);
+	};
+
+}
 #endif 

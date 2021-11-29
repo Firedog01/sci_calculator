@@ -1,5 +1,7 @@
 #include "../../lib/node/int_node.h"
 
+using namespace calculator::node;
+
 int_node::int_node(const uint64_t& x, bool min, bool div, bool pow) :
 		math_node(min, div, pow) {
 	set_type(Int);
@@ -14,12 +16,12 @@ const uint64_t& int_node::get_cont() {
 	return this->cont;
 }
 
-int_ptr int_node::operator=(node_ptr ptr) {
+calculator::int_ptr int_node::operator=(calculator::node_ptr ptr) {
 	return std::static_pointer_cast<int_node>(ptr);
 }
 
-dong int_node::get_val() {
-	dong value = this->get_cont();
+calculator::dong int_node::get_val() {
+	calculator::dong value = this->get_cont();
 	if(this->is_min()) {
 		value *= -1;
 	}

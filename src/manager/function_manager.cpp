@@ -1,11 +1,11 @@
 #include "../../lib/manager/function_manager.h"
 
+using namespace calculator::manager;
+
 function::function(int id, std::string name, abstr_function_ptr func) : id(id), name(name), func(func) {}
 
-using namespace std;
-
 function_manager::function_manager() {
-	sin_f_ptr sinF = make_shared<sin_f>();
+	sin_f_ptr sinF = std::make_shared<func::sin_f>();
 	funcs.emplace_back(0, "sin", sinF);
 }
 
@@ -27,7 +27,7 @@ int function_manager::get_id_func(std::string name) {
 	return -1;
 }
 
-dong function_manager::enumerate(int id, std::vector<node_ptr> args) {
+calculator::dong function_manager::enumerate(int id, std::vector<node_ptr> args) {
 	if(id == -1) {
 		std::string err = "Function not found";
 		throw std::logic_error(err);

@@ -6,6 +6,8 @@
 #include "../func/abstr_function.h"
 #include "../func/sin_f.h"
 
+namespace calculator::manager {
+
 struct function {
 	int id;
 	std::string name;
@@ -24,5 +26,5 @@ public:
 	dong enumerate(int id, std::vector<node_ptr> args);
 };
 
-
+}
 #endif

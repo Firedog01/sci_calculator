@@ -2,6 +2,7 @@
 
 #include <utility>
 
+using namespace calculator::node;
 
 math_node::math_node(bool min, bool div, bool pow): 
 		plus_node(nullptr), mul_node(nullptr), prev_node(nullptr), flags(0) {
@@ -73,7 +74,7 @@ void math_node::set_plus_node(node_ptr node) {
 		this->plus_node->set_prev_node(shared_from_this());
 	}
 }
-node_ptr math_node::get_plus_node() {
+calculator::node_ptr math_node::get_plus_node() {
 	return this->plus_node;
 }
 
@@ -83,21 +84,21 @@ void math_node::set_mul_node(node_ptr node) {
 		this->mul_node->set_prev_node(shared_from_this());
 	}
 }
-node_ptr math_node::get_mul_node() {
+calculator::node_ptr math_node::get_mul_node() {
 	return this->mul_node;
 }
 
 void math_node::set_prev_node(node_ptr node) {
 	this->prev_node = node;
 }
-node_ptr math_node::get_prev_node() {
+calculator::node_ptr math_node::get_prev_node() {
 	return this->prev_node;
 }
 
 using namespace std;
 
 
-node_type math_node::get_type() const {
+calculator::node_type math_node::get_type() const {
 	string ret;
 	char flag = this->flags >> 3 & 7;
 	switch(flag) {
@@ -124,7 +125,7 @@ void math_node::set_type(node_type type) {
 	this->flags = ((flags & ~(7 << 3)) | (val << 3));
 }
 
-dong math_node::get_val() {
+calculator::dong math_node::get_val() {
 	return -1;
 }
 
@@ -132,7 +133,7 @@ std::string math_node::disp_val() {
 	return "not defined";
 }
 
-dong math_node::enumerate() {
+calculator::dong math_node::enumerate() {
 	dong ret_val = this->get_val();
 	// cout << "ret_val: " << ret_val << endl;
 	if(mul_node != nullptr) {
@@ -184,7 +185,7 @@ std::string math_node::display() {
 	return ret;
 }
 
-node_ptr math_node::get_root() {
+calculator::node_ptr math_node::get_root() {
 	// std::cout << "a\n";
 	if(get_prev_node() == nullptr) {
 		// cout << "b\n";

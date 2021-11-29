@@ -2,7 +2,7 @@
 
 using namespace std;
 
-string checker::operator_check() {
+string calculator::checker::operator_check() {
 	string err;
 
 //	if(str_hdl::check_operator(str[0])) { // nie zaczyna się operatorem
@@ -24,7 +24,7 @@ string checker::operator_check() {
 	return err;
 }
 
-string checker::brackets_check() {
+string calculator::checker::brackets_check() {
 	string err;
 	int bracket = 0;
 	for(char i : str) {
@@ -41,7 +41,7 @@ string checker::brackets_check() {
 	return err;
 }
 
-string checker::numbers_check() {
+string calculator::checker::numbers_check() {
 	string err;
 	for(int i = 0; i < str.length(); i++) {
 		if(str[i] >= '0' && str[i] <= '9') {
@@ -57,17 +57,17 @@ string checker::numbers_check() {
 	return err;
 }
 
-string checker::functions_check() {
+string calculator::checker::functions_check() {
 	return "";
 }
 
-string checker::constants_check() {
+string calculator::checker::constants_check() {
 	string err;
 	for(int i = 0; i < str.length(); i++) {
 		if(i == str_hdl::CONST_C) {
 			i++;
 			string name = str_hdl::get_name(str, i);
-			constant_manager c_man;
+			manager::constant_manager c_man;
 			int id = c_man.get_id(name);
 			if(id == -1) {
 				err += "Nie znaleziono stałej: ";
@@ -79,7 +79,7 @@ string checker::constants_check() {
 	return err;
 }
 
-std::string checker::characters_check() {
+string calculator::checker::characters_check() {
 	string err;
 	for(int i = 0; i < str.length(); i++) {
 		if(str_hdl::check_operator(str[i])) {
@@ -117,9 +117,9 @@ std::string checker::characters_check() {
 }
 
 
-checker::checker(string str) : str(str) {}
+calculator::checker::checker(string str) : str(str) {}
 
-string checker::get_err() {
+string calculator::checker::get_err() {
 	string err;
 	err += operator_check();
 	err += brackets_check();

@@ -3,28 +3,28 @@
 #include <locale>
 #include "lib/calculator.h"
 
-using namespace std;
+using namespace calculator;
 
 int main(int argc, char** argv) {
 	setlocale(LC_CTYPE, "Polish");
 	//   1
 	// ------ = 0,0445
 	// pi ^ e
-	string default_text = "1(2-4)/3*9^6/5*-4";
+	std::string default_text = "1(2-4)/3*9^6/5*-4";
 	if(argc == 1) {
-		calculator calc;
+		calc calc;
 		try {
 			calc.parse(default_text);
-		} catch(logic_error e) {
-			cout << e.what() << endl;
+		} catch(std::logic_error e) {
+			std::cout << e.what() << std::endl;
 		}
 	} else if(argc == 2) {
-		calculator calc;
+		calc calc;
 		calc.parse(argv[1]);
 	} else {
-		cout << "number of arguments: " << argc << '\n';
+		std::cout << "number of arguments: " << argc << '\n';
 		for(int i = 0; i < argc; i++) {
-			cout << argv[i] << '\n';
+			std::cout << argv[i] << '\n';
 		}
 	}
 	return 0;

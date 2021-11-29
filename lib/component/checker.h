@@ -7,6 +7,8 @@
 
 #include <iostream>
 
+namespace calculator {
+
 class checker
 {
 	std::string str;
@@ -27,4 +29,5 @@ public:
 	std::string get_err();
 };
 
+}
 #endif
