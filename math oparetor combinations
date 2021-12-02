@@ -1,0 +1,8 @@
+kolejność operatorów nie ma znaczenia, domyślne wyświetlanie to:
+    
+operator '+' oznacza dodawanie tylko jeśli występuje sam w ciągu (np '++++' lub '+' ale '+*' = '*')
+operator '-' zmienia znak za każdym wystąpieniem ('---' = '-', '----' = '+')
+operator '*' w większości przypadków zbędny, wymagany tylko w przypadku '-*'
+opeartor '/', co najmniej jedno wystąpienie oznacza dzielenie
+operator '^', co najmniej jedno wystąpienie oznacza potęgowanie
+brak opeartora domyślnie oznacza mnożenie (jeśli nie wywołuje błędu)

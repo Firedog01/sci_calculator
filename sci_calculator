@@ -1,0 +1,31 @@
+flattening tree:
+    mamy node, którego mul_node lub plus_node jest typu embedded
+    trzeba mieć adresy:
+        pierwszego node'a z embedded
+        ostatniego 'active mul' embedded
+        ostatniego 'active plus' embedded
+    przestawić:
+        adres obecnego mul_node lub plus_node na głowę embedded
+        adres mul_node ostatniego active_mul z embedded
+        adres plus_node...
+    usunąć embbeded node
+compound ints:
+    jeśli dwa nody są intami i operacja nie jest div ani pow to wykonaj operację pomiędzy tymi node'ami
+reduce fractions:
+    musi być po compound ints
+    jeśli dwa node'y są intami i operacja to div to znajdź nwd i podziel je przez nie
+???potęgi???
+compound variables:
+    zmiana skróktówy drzewa żeby wszystko z daną zmienną było w jednym miejscu
+
+
+funkcja do wyświetlania np sin(2x/4)
+    funkcja pomija znaki poprzedzające
+funkcja do enumerowania np 43.387198
+    najpierw check czy jest to możliwe
+
+variable node:
+    przechowuje stringa? raczej char który jest zmienną
+    (w zapisie zmienna nie musi być niczym poprzedzona)
+    
+    jeśli jest variable node to nie można zrobić enumerate
