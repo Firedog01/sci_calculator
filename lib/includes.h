@@ -1,13 +1,12 @@
 #ifndef INCLUDES
 #define INCLUDES
+#define CASE_DIGIT case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
+
 #include <memory>
 #include <vector>
 #include <exception>
 
 namespace calculator {
-
-    #define CASE_DIGIT case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
-
 
     //node pointers
     namespace node {
@@ -22,6 +21,14 @@ namespace calculator {
     typedef std::shared_ptr<node::embedded_node> embedded_ptr;
     typedef std::shared_ptr<node::constant_node> constant_ptr;
     typedef std::shared_ptr<node::function_node> function_ptr;
+
+    //observer/observee pointers
+    namespace node::observer {
+        class node_obervee;
+        class update_tree;
+    }
+    typedef std::shared_ptr<node::observer::node_obervee> node_observee_ptr;
+    typedef std::shared_ptr<node::observer::update_tree> update_tree_ptr;
 
     //func pointers
     namespace func {
@@ -39,7 +46,7 @@ namespace calculator {
     typedef std::shared_ptr<manager::function_manager> f_man_ptr;
     typedef std::shared_ptr<manager::constant_manager> c_man_ptr;
 
-
+    
     //stronke
     typedef long double dong;
 

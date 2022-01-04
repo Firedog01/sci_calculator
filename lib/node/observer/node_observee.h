@@ -1,16 +1,18 @@
 #ifndef CALCULATOR_NODEOBSERVEE;
 #define CALCULATOR_NODEOBSERVEE;
 
+#include "update_tree.h"
+#include "../../includes.h"
+
 #include <vector>
+#include <algorithm>
 //https://www.dreamincode.net/forums/topic/197421-the-listener-pattern/
 namespace calculator::node::observer {
 
-    class node_observee {
-        std::vector<update_tree*> m_ObserverVec;
-	    // -------------------------
-	    // Disabling default copy constructor and default
-	    // assignment operator.
-	    // -------------------------
+    class node_observee { //node being observed
+        std::vector<update_tree_ptr> observers;
+
+		//disabled
 	    node_observee(const node_observee& yRef);                                
 	    node_observee& operator=(const node_observee& yRef);
 	protected:
@@ -18,12 +20,12 @@ namespace calculator::node::observer {
 	    node_observee();
 
     public:
-	    virtual ~node_observee();        //destructor
+	    virtual ~node_observee() {}        //destructor
 	 
-	    bool Addnode_observee(update_tree* observer);
-	    bool RemoveObserver(update_tree* observer);
-	    bool NotifyObservers();
-    }
+	    bool add_observer(update_tree_ptr observer);
+	    bool remove_observer(update_tree_ptr observer);
+	    bool notify();
+    };
     
 }
 
