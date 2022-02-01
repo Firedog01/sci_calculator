@@ -11,11 +11,12 @@ int main(int argc, char** argv) {
 	// ------ = 0,0445
 	// pi ^ e
 	std::string default_text = "1(2-4)/3*9^6/5*-4";
+    // std::string default_text = "(1)^3*2";
 	if(argc == 1) {
 		calc calc;
 		try {
 			calc.parse(default_text);
-		} catch(std::logic_error e) {
+		} catch(std::logic_error &e) {
 			std::cout << e.what() << std::endl;
 		}
 	} else if(argc == 2) {

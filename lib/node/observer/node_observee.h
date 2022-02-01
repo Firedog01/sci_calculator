@@ -1,5 +1,5 @@
-#ifndef CALCULATOR_NODEOBSERVEE;
-#define CALCULATOR_NODEOBSERVEE;
+#ifndef CALCULATOR_NODEOBSERVEE
+#define CALCULATOR_NODEOBSERVEE
 
 #include "update_tree.h"
 #include "../../includes.h"

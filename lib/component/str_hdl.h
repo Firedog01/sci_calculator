@@ -16,6 +16,7 @@ namespace calculator {
 		static const char CONST_C = '_';
 		static const char FUNC_C = '?';
 		static const char F_ARG_DELIM = ',';
+		static const char DEC_PLACE_DELIM = '.';
 		static const char O_BRACKET_C = '(';
 		static const char C_BRACKET_C = ')';
 

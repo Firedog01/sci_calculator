@@ -163,22 +163,22 @@ std::string math_node::display() {
 		} else if(is_min()) {
 			ret += str_hdl::get_op(add, is_min(), is_div(), is_pow());
 		}
-	} else if(prev_node->get_type() == Embedded) {
-		if(is_div() || is_pow()) {
-			ret += str_hdl::get_op(mul, is_min(), is_div(), is_pow());
-		} else if(is_min()) {
-			ret += str_hdl::get_op(add, is_min(), is_div(), is_pow());
-		}
 	}
+//	prawdopodobnie niepotrzebne
+//	else if(prev_node->get_type() == Embedded) {
+//		if(is_div() || is_pow()) {
+//			ret += str_hdl::get_op(mul, is_min(), is_div(), is_pow());
+//		} else if(is_min()) {
+//			ret += str_hdl::get_op(add, is_min(), is_div(), is_pow());
+//		}
+//	}
 	ret += this->disp_val();
 
-	if(get_mul_node() != nullptr) {
-		node_ptr mul_node = get_mul_node();
+	if(mul_node != nullptr) {
 		ret += str_hdl::get_op(mul, mul_node->is_min(), mul_node->is_div(), mul_node->is_pow());
 		ret += mul_node->display();
 	}
-	if(get_plus_node() != nullptr) {
-		node_ptr plus_node = get_plus_node();
+	if(plus_node != nullptr) {
 		ret += str_hdl::get_op(add, plus_node->is_min(), plus_node->is_div(), plus_node->is_pow());
 		ret += plus_node->display();
 	}
