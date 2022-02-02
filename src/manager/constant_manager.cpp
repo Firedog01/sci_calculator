@@ -31,42 +31,39 @@ constant_manager::constant_manager() {
 		}
 		file.close();
 	} else {
-//		std::cout << "Could not access file \'constants\', using default preset\n";
-		constants pi(0, "pi", 3.14159265358979324);
-		constants e(1, "e", 2.71828182845904524);
-		
-		this->const_list.push_back(pi);
-		this->const_list.push_back(e);
+		std::cout << "Standalone mode\n";
+		this->const_list.emplace_back(0, "pi", 3.14159265358979324);
+		this->const_list.emplace_back(1, "e", 2.71828182845904524);
 	}
 }
 
 std::string constant_manager::get_name(int id) {
-	for(int i = 0; i < const_list.size(); i++) {
-		if(const_list[i].id == id) {
-			return const_list[i].name;
+	for(auto & i : const_list) {
+		if(i.id == id) {
+			return i.name;
 		}
 	}
 	return "";
 }
 
-calculator::dong constant_manager::get_value(calculator::constant_ptr node) {
+calculator::dong constant_manager::get_value(const calculator::constant_ptr& node) {
 	int id = node->get_id_const();
 	return get_value(id);
 }
 
 calculator::dong constant_manager::get_value(int id) {
-	for(int i = 0; i < const_list.size(); i++) {
-		if(const_list[i].id == id) {
-			return const_list[i].value;
+	for(auto & i : const_list) {
+		if(i.id == id) {
+			return i.value;
 		}
 	}
 	return 0;
 }
 
-int constant_manager::get_id(std::string name) {
-	for(int i = 0; i < const_list.size(); i++) {
-		if(const_list[i].name == name) {
-			return const_list[i].id;
+int constant_manager::get_id(const std::string& name) {
+	for(auto & i : const_list) {
+		if(i.name == name) {
+			return i.id;
 		}
 	}
 	return -1;

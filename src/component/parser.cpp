@@ -11,7 +11,7 @@ using namespace calculator;
 //
 node_ptr parser::parse(std::string str) {
 	str_hdl::remove_spaces(str);
-	std::cout << "skrócony string: " + str + '\n';
+//	std::cout << "skrócony string: " + str + '\n';
 	this->root = create_embedded_branch(str);
 	return this->root;
 }

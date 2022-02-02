@@ -134,25 +134,26 @@ std::string math_node::disp_val() {
 
 calculator::dong math_node::enumerate() {
 	dong ret_val = this->get_val();
-	cout << "ret_val: " << ret_val << endl;
+//	cout << "ret_val: " << ret_val << endl;
 	if(mul_node != nullptr) {
-		cout << "mul\n";
 		if(mul_node->is_pow()) {
 			ret_val = pow(ret_val, mul_node->get_val());
-			ret_val *= mul_node->get_mul_node()->enumerate();
+            if(mul_node->get_mul_node() != nullptr) {
+			    ret_val *= mul_node->get_mul_node()->enumerate();
+            } else if(mul_node->get_plus_node() != nullptr) {
+                ret_val += mul_node->get_plus_node()->enumerate();
+            }
 		} else {
 			ret_val *= mul_node->enumerate();
 		}
 	}
 	if(plus_node != nullptr) {
-		cout << "plus\n";
 		if(plus_node->is_pow()) {
 			// syntax error
 		} else {
 			ret_val += plus_node->enumerate();
 		}
 	}
-	cout << "before ret\n";
 	return ret_val;
 }
 

@@ -23,9 +23,9 @@ namespace calculator::manager {
 	public:
 		constant_manager();
 		std::string get_name(int id);
-		dong get_value(constant_ptr node);
+		dong get_value(const constant_ptr& node);
 		dong get_value(int id);
-		int get_id(std::string name);
+		int get_id(const std::string& name);
 	};
 
 }

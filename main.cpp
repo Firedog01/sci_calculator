@@ -12,8 +12,7 @@ int main(int argc, char** argv) {
 	std::cout << "Command line calculator program\n"
 			  << "Made by Jan Rubacha\n"
 	          << "Version: 0.0.1\n"
-			  << "Default input: " << default_text << "\n"
-	          << "\n";
+			  << "Default input: " << default_text << "\n";
 	
 	if(argc == 1) {
 		calc calc;
