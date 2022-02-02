@@ -11,7 +11,7 @@ int main(int argc, char** argv) {
 	
 	std::cout << "Command line calculator program\n"
 			  << "Made by Jan Rubacha\n"
-	          << "Version: 0.0.1\n"
+	          << "Version: 0.0.2\n"
 			  << "Default input: " << default_text << "\n";
 	
 	if(argc == 1) {
@@ -22,15 +22,20 @@ int main(int argc, char** argv) {
 		
 		while(true) {
 			std::cout << "# ";
-			std::cin >> input;
+            std::getline(std::cin, input);
 			
 			if(input == "q") {
 				break;
 			} else if(input == "d") {
 				equation = default_text;
-			} else {
-				equation = input;
-			}
+			} else if(input == "h") {
+                while(true) {
+                    std::cout << "There is no help.\n";
+                }
+            } else {
+                    equation = input;
+                }
+            }
 			
 			try {
 				calc.parse(equation);

@@ -159,6 +159,7 @@ calculator::dong math_node::enumerate() {
 
 std::string math_node::display() {
 	std::string ret;
+    // displaying sign
 	if(prev_node == nullptr) {
 		if(is_div() || is_pow()) {
 			ret += str_hdl::get_op(mul, is_min(), is_div(), is_pow());

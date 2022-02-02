@@ -64,16 +64,18 @@ string calculator::checker::functions_check() {
 string calculator::checker::constants_check() {
 	string err;
 	for(int i = 0; i < str.length(); i++) {
-		if(i == str_hdl::CONST_C) {
+		if(str[i] == str_hdl::CONST_C) {
 			i++;
 			string name = str_hdl::get_name(str, i);
 			manager::constant_manager c_man;
 			int id = c_man.get_id(name);
 			if(id == -1) {
-				err += "Nie znaleziono stałej: ";
+				err += "Constant not found: ";
 				err += name;
 				err += '\n';
-			}
+			} else {
+                cout << name << to_string(id) << "\n";
+            }
 		}
 	}
 	return err;
@@ -81,6 +83,9 @@ string calculator::checker::constants_check() {
 
 string calculator::checker::characters_check() {
 	string err;
+    string str = this->str;
+    str_hdl::remove_spaces(str);
+
 	for(int i = 0; i < str.length(); i++) {
 		if(str_hdl::check_operator(str[i])) {
 			do {

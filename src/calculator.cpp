@@ -7,7 +7,7 @@ calc::calc() {
 	c_man = std::make_shared<manager::constant_manager>();
 }
 
-void calc::parse(std::string str) {
+void calc::parse(const std::string& str) {
 	checker checker(str);
 	std::string err = checker.get_err();
 	if(err.empty()) {

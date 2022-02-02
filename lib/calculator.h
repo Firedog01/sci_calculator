@@ -16,7 +16,7 @@ namespace calculator {
 		c_man_ptr c_man;
 	public:
 		calc();
-		void parse(std::string str);
+		void parse(const std::string& str);
 	};
 
 }
