@@ -31,7 +31,12 @@ constant_manager::constant_manager() {
 		}
 		file.close();
 	} else {
-		throw std::logic_error("nie można uzyskać dostępu do pliku constants");
+//		std::cout << "Could not access file \'constants\', using default preset\n";
+		constants pi(0, "pi", 3.14159265358979324);
+		constants e(1, "e", 2.71828182845904524);
+		
+		this->const_list.push_back(pi);
+		this->const_list.push_back(e);
 	}
 }
 

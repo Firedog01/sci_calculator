@@ -45,7 +45,7 @@ namespace calculator::node {
 
 	public:
 		math_node(bool min, bool div, bool pow);
-		~math_node();
+		~math_node() = default;
 
 		node_ptr get_plus_node();
 		void set_plus_node(node_ptr node);

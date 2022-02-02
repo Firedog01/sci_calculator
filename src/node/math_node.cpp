@@ -6,21 +6,20 @@ using namespace calculator::node;
 
 math_node::math_node(bool min, bool div, bool pow): 
 		plus_node(nullptr), mul_node(nullptr), prev_node(nullptr), flags(0) {
-	prev_node = nullptr; //?
 	set_min(min);
 	set_div(div);
 	set_pow(pow);
 	set_type(Undefined);
 }
 
-math_node::~math_node() {
-	// std::cout << "a\n";
-}
+//math_node::~math_node() {
+//	// std::cout << "a\n";
+//}
 
 
 
-void math_node::set_flags(uint8_t flags) {
-	this->flags = flags;
+void math_node::set_flags(uint8_t _flags) {
+	this->flags = _flags;
 }
 
 uint8_t math_node::get_flags() const {
@@ -100,7 +99,7 @@ using namespace std;
 
 calculator::node_type math_node::get_type() const {
 	string ret;
-	char flag = this->flags >> 3 & 7;
+	char flag = (char)(this->flags >> 3 & 7);
 	switch(flag) {
 		case 0:
 			return Int;
@@ -135,8 +134,9 @@ std::string math_node::disp_val() {
 
 calculator::dong math_node::enumerate() {
 	dong ret_val = this->get_val();
-	// cout << "ret_val: " << ret_val << endl;
+	cout << "ret_val: " << ret_val << endl;
 	if(mul_node != nullptr) {
+		cout << "mul\n";
 		if(mul_node->is_pow()) {
 			ret_val = pow(ret_val, mul_node->get_val());
 			ret_val *= mul_node->get_mul_node()->enumerate();
@@ -145,13 +145,14 @@ calculator::dong math_node::enumerate() {
 		}
 	}
 	if(plus_node != nullptr) {
+		cout << "plus\n";
 		if(plus_node->is_pow()) {
 			// syntax error
 		} else {
 			ret_val += plus_node->enumerate();
 		}
 	}
-
+	cout << "before ret\n";
 	return ret_val;
 }
 

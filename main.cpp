@@ -2,25 +2,43 @@
 #include <limits>
 #include <locale>
 #include "lib/calculator.h"
+#include "windows.h"
 
 using namespace calculator;
 
 int main(int argc, char** argv) {
-	//   1
-	// ------ = 0,0445
-	// pi ^ e
 	std::string default_text = "1(2-4)/3*9^6/5*-4";
-    // std::string default_text = "(1)^3*2";
+	
+	std::cout << "Command line calculator program\n"
+			  << "Made by Jan Rubacha\n"
+	          << "Version: 0.0.1\n"
+			  << "Default input: " << default_text << "\n"
+	          << "\n";
+	
 	if(argc == 1) {
 		calc calc;
-		try {
-			calc.parse(default_text);
-		} catch(std::logic_error &e) {
-			std::cout << e.what() << std::endl;
+		std::string input;
+		std::string equation;
+		
+		
+		while(true) {
+			std::cout << "# ";
+			std::cin >> input;
+			
+			if(input == "q") {
+				break;
+			} else if(input == "d") {
+				equation = default_text;
+			} else {
+				equation = input;
+			}
+			
+			try {
+				calc.parse(equation);
+			} catch(std::logic_error &e) {
+				std::cout << e.what() << std::endl;
+			}
 		}
-	} else if(argc == 2) {
-		calc calc;
-		calc.parse(argv[1]);
 	} else {
 		std::cout << "number of arguments: " << argc << '\n';
 		for(int i = 0; i < argc; i++) {

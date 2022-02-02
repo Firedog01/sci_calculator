@@ -18,11 +18,11 @@ void calc::parse(std::string str) {
 		std::cout << root->display();
 		std::cout << " = " << root->enumerate() << std::endl;
 
-		std::cout << "simplifying...\n";
-		smp.simplify_all(root);
-
-		std::cout << root->display();
-		std::cout << " = " << root->enumerate() << std::endl;
+//		std::cout << "simplifying...\n";
+//		smp.simplify_all(root);
+//
+//		std::cout << root->display();
+//		std::cout << " = " << root->enumerate() << std::endl;
 	} else {
 		throw std::logic_error(err);
 	}
