@@ -14,7 +14,7 @@ bool node_observee::add_observer(update_tree_ptr observer) {
 
 bool node_observee::remove_observer(update_tree_ptr observer) {
     std::vector<update_tree_ptr>::iterator temp = std::find(observers.begin(), observers.end(), observer);
-	//Return false if the observer could not be found (and evidently can’t be removed.
+	//Return false if the observer could not be found (and evidently can’t be removed.)
 	if ( temp == observers.end() )
 		return false;
 	else

@@ -6,7 +6,6 @@
 using namespace calculator;
 
 int main(int argc, char** argv) {
-	setlocale(LC_CTYPE, "Polish");
 	//   1
 	// ------ = 0,0445
 	// pi ^ e
@@ -35,7 +34,7 @@ int main(int argc, char** argv) {
 todo:
 	zaimplementować obsługę funkcji
 	zaimplementować funkcje optymalizujące drzewo
-	funkcję która wyświelta wszystkie liczby jako inty
+	funkcję która wyświetla wszystkie liczby jako int
 	klasy wyjątków
 	dołożyć destruktor
  */

@@ -6,12 +6,12 @@ using namespace calculator;
 //	  zrobić testy do funciton
 //	  poparawić testy constant
 
-// kwestja przecinka w liczbach. np 2.34 = 2 + 34 / 100
+// Kwesta przecinka w liczbach. np 2.34 = 2 + 34 / 100
 //
 //
 node_ptr parser::parse(std::string str) {
 	str_hdl::remove_spaces(str);
-	std::cout << "skrocony string: " + str + '\n';
+	std::cout << "skrócony string: " + str + '\n';
 	this->root = create_embedded_branch(str);
 	return this->root;
 }

@@ -4,7 +4,7 @@
 #include "../includes.h"
 #include <vector>
 
-namespace calculator::func {
+namespace calculator { namespace func {
 
 	struct abstr_function {
 		virtual dong enumerate(std::vector<node_ptr> args) {
@@ -12,5 +12,5 @@ namespace calculator::func {
 		}
 	};
 
-}
+} }
 #endif
