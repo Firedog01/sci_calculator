@@ -57,7 +57,7 @@ void simplifier::set_prev_node(node_ptr& to_prev, node_ptr& to_set) {
 			prev->plus_node = to_set;
 		}
 		else if(prev->get_type() == Embedded) {
-			node_ptr ptr = prev;
+			const node_ptr& ptr = prev;
 			embedded_ptr ptr_e = std::static_pointer_cast <node::embedded_node>(ptr);
 			ptr_e->set_cont(to_set);
 		}
@@ -197,7 +197,19 @@ void simplifier::group_pows(node_ptr& root) {
 void simplifier::group_ints_div(node_ptr& root) {}
 
 void simplifier::simplify_all(node_ptr& root) {
-//	group_pows(root);
+	/**
+	 *  szczerze nie wiem co tu jest nie tak.
+	 *  czy nie lepiej tworzyć kopię drzewa niż operować na tym samym?
+	 *  wtedy można by po kolei wybierać node'y a nie je podmieniać
+	 *
+	 *  czy implementowanie grupowania ułamków jest konieczne?
+	 *  może po prostu zrobić mechanizm tworzący nowy embedded node dla zadanej części drzewa, np podgałęzi mul
+	 *
+	 *  kwestia listenera, może nie jest potrzebny? z tego co widzę, nie ma za bardzo potrzeby
+	 *
+	 *  dodać do parsera ogarnianie floatów
+	 */
+	//	group_pows(root);
 //	sort_mul_branches(root);
 	// group_ints_div(root);
 	auto one = root->get_mul_node();

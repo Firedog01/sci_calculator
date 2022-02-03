@@ -1,5 +1,7 @@
 #include "../../lib/component/parser.h"
 
+#include <utility>
+
 using namespace calculator;
 
 // todo 
@@ -41,7 +43,7 @@ node_ptr parser::create_node(std::string str, int& i, op& op) {
 	bool min = false, div = false, pow = false;
 	op = def;
 
-	while(i < str.length()) {
+	for(; i < str.length(); i++) {
 		switch(str[i]) {
 		case str_hdl::OP_ADD_C:
 			if(op == def) {
@@ -106,7 +108,6 @@ node_ptr parser::create_node(std::string str, int& i, op& op) {
 			err += str[i];
 			throw std::logic_error(err);
 		}
-		i++;
 	}
 	return nullptr;
 }
@@ -117,7 +118,7 @@ node_ptr parser::create_int_node(const std::string& cont, bool min, bool div, bo
 }
 
 node_ptr parser::create_embedded_node(std::string cont, bool min, bool div, bool pow) {
-	node_ptr root_branch = create_embedded_branch(cont);
+	node_ptr root_branch = create_embedded_branch(std::move(cont));
 	embedded_ptr new_embd = std::make_shared<node::embedded_node>(root_branch, min, div, pow);
 	root_branch->set_prev_node(new_embd);
 	return new_embd;
@@ -128,11 +129,12 @@ node_ptr parser::create_constant_node(const std::string& name, bool min, bool di
 	return std::make_shared<node::constant_node>(c_man, id_const, min, div, pow);
 }
 
-node_ptr parser::create_function_node(std::string name, std::vector<std::string> args_str, bool min, bool div, bool pow) {
-	int id_func = f_man->get_id_func(name);
+node_ptr parser::create_function_node(std::string name, const std::vector<std::string>& args_str, bool min, bool div, bool pow) {
+	int id_func = f_man->get_id_func(std::move(name));
 	std::vector<node_ptr> args;
-	for(int j = 0; j < args_str.size(); j++) {
-		args.push_back( (create_embedded_branch(args_str[j])) );
+	args.reserve(args_str.size());
+	for(auto & j : args_str) {
+		args.push_back( (create_embedded_branch(j)) );
 	}
 	function_ptr new_func = std::make_shared<node::function_node>(f_man, id_func, args, min, div, pow);
 	

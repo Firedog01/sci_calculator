@@ -46,6 +46,14 @@ namespace calculator {
     typedef std::shared_ptr<manager::function_manager> f_man_ptr;
     typedef std::shared_ptr<manager::constant_manager> c_man_ptr;
 
+	//component pointers
+	class parser;
+	class simplifier;
+	class checker;
+	typedef std::shared_ptr<calculator::parser> parser_ptr;
+	typedef std::shared_ptr<calculator::simplifier> simplifier_ptr;
+	typedef std::shared_ptr<calculator::checker> checker_ptr;
+	
     
     //stronke
     typedef long double dong;

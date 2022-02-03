@@ -1,15 +1,11 @@
 #include "../../lib/component/str_hdl.h"
 
+#include <utility>
+
 using namespace calculator;
 
 void str_hdl::remove_spaces(std::string& str) {
-	std::string replace;
-	for(char i : str) {
-		if(i != ' ') {
-			replace += i;
-		}
-	}
-	str = replace;
+	str.erase(remove(str.begin(), str.end(), ' '), str.end());
 }
 
 std::string str_hdl::get_num(std::string str, int& i) {
@@ -51,13 +47,13 @@ std::string str_hdl::get_name(std::string str, int& i) {
 
 std::vector<std::string> str_hdl::get_func_args(std::string str, int &i) {
 	std::vector<std::string> ret;
-	std::string func_cont = get_embedded(str, i), arg;
-	for(int j = 0; j < func_cont.length(); j++) {
-		if(func_cont[j] == F_ARG_DELIM) {
+	std::string func_cont = get_embedded(std::move(str), i), arg;
+	for(char j : func_cont) {
+		if(j == F_ARG_DELIM) {
 			ret.push_back(arg);
 			arg = "";
 		} else {
-			arg += func_cont[j];
+			arg += j;
 		}
 	}
 	ret.push_back(arg);

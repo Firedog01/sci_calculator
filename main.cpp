@@ -9,25 +9,41 @@ using namespace std;
 void display_help();
 
 int main(int argc, char** argv) {
-	std::string default_text = "1(2-4)/3*9^6/5*-4";
+	string default_text = "1(2-4)/3*9^6/5*-4";
 	
 	cout << "Command line calculator program\n"
          << "Made by Jan Rubacha\n"
          << "Version: 0.0.2\n"
          << "\n"
-         << "Default input: " << default_text << "\n"
          << "For help type h\n";
-
+	
+	fstream constants;
+	constants.open("../memory/constants", ios::in);
+	bool installed = false;
+	if(constants.good()) {
+		installed = true;
+	}
 	
 	if(argc == 1) {
 		calculator::calc calc;
 		string input;
 		string equation;
 		
+		try {
+			calc.parse(default_text);
+		} catch(logic_error &e) {
+			cout << e.what() << endl;
+		}
 		
 		while(true) {
-			std::cout << "# ";
-            std::getline(std::cin, input);
+			break;
+			if(installed) {
+				cout << "<I>: ";
+			} else {
+				cout << "<S>: ";
+			}
+			
+            getline(cin, input);
 			
 			if(input == "q") {
 				break;
@@ -42,14 +58,15 @@ int main(int argc, char** argv) {
 			
 			try {
 				calc.parse(equation);
-			} catch(std::logic_error &e) {
-				std::cout << e.what() << std::endl;
+			} catch(logic_error &e) {
+				cout << e.what() << endl;
 			}
 		}
+		system("pause");
 	} else {
-		std::cout << "number of arguments: " << argc << '\n';
+		cout << "number of arguments: " << argc << '\n';
 		for(int i = 0; i < argc; i++) {
-			std::cout << argv[i] << '\n';
+			cout << argv[i] << '\n';
 		}
 	}
 	return 0;
@@ -85,6 +102,11 @@ void display_help() {
          << "\t- in floating point decimals use \'.\' as separator\n"
          << "\t- in functions with many arguments separate them with \',\'\n"
          << "\n"
+		 
+		 << "Modes:\n"
+		 << "<I>  - installed, you will be able to save your own constants\n"
+		 << "<S>  - standalone, all changes will be lost upon exit\n"
+		 << "\n"
 
          << "Implemented constants:\n"
          << "pi, e\n"

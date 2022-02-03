@@ -31,7 +31,7 @@ constant_manager::constant_manager() {
 		}
 		file.close();
 	} else {
-		std::cout << "Standalone mode\n";
+		std::cout << "1\n";
 		this->const_list.emplace_back(0, "pi", 3.14159265358979324);
 		this->const_list.emplace_back(1, "e", 2.71828182845904524);
 	}

@@ -14,7 +14,12 @@
  *	 coś z potęgami ??
  *	 skracanie funkcji trygonometrycznych
  */
-
+/*
+jak iterować po wszystkich elementach
+funkcje:
+początek mul_branch dla danego i_plus
+następny mul_node - jeśli następny poza zakresem to zwróć początek
+*/
 namespace calculator {
 
 	class simplifier
@@ -47,10 +52,4 @@ namespace calculator {
 		// friend class math_node;
 	};
 }
-/*
-jak iterować po wszystkich elementach 
-funkcje: 
-początek mul_branch dla danego i_plus
-następny mul_node - jeśli następny poza zakresem to zwróć początek
-*/
 #endif
