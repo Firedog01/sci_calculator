@@ -62,7 +62,7 @@ int main(int argc, char** argv) {
 				cout << e.what() << endl;
 			}
 		}
-		system("pause");
+//		system("pause");
 	} else {
 		cout << "number of arguments: " << argc << '\n';
 		for(int i = 0; i < argc; i++) {
