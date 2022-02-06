@@ -3,14 +3,14 @@
 using namespace calculator::node;
 
 
-calculator::node_ptr function_node::get_embedded(int pos) {
+calculator::_node_ptr function_node::get_embedded(int pos) {
 	if(pos >= 0 && pos <= args.size()) 
 		return args.at(pos);
 	else 
 		return nullptr;
 }
 
-std::vector<calculator::node_ptr> function_node::get_args() {
+std::vector<calculator::_node_ptr> function_node::get_args() {
 	return args;
 }
 
@@ -18,7 +18,7 @@ int function_node::get_id_func() {
 	return id_func;
 }
 
-function_node::function_node(f_man_ptr f_man, int func_id, std::vector<node_ptr> args, bool min, bool div, bool pow) :
+function_node::function_node(f_man_ptr f_man, int func_id, std::vector<_node_ptr> args, bool min, bool div, bool pow) :
 		math_node(min, div, pow), args(move(args)), id_func(func_id), f_man(f_man) {
 	set_type(Function);
 }

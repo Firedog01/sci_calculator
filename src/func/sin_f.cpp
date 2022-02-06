@@ -2,7 +2,7 @@
 
 using namespace std;
 
-calculator::dong calculator::func::sin_f::enumerate(vector<node_ptr> args) {
+calculator::dong calculator::func::sin_f::enumerate(vector<_node_ptr> args) {
 	if(args.size() == 0) {
 		throw logic_error("Wrong initialisation");
 	}

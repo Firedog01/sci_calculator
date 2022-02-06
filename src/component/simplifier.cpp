@@ -3,7 +3,7 @@
 using namespace std;
 using namespace calculator;
 
-void simplifier::get_mul_root(node_ptr& active_mul, int p) {
+void simplifier::get_mul_root(_node_ptr& active_mul, int p) {
 	//update root position
 	active_mul = active_mul->get_root();
 	for(int i = 0; i < p; i++) {
@@ -11,7 +11,7 @@ void simplifier::get_mul_root(node_ptr& active_mul, int p) {
 	}
 }
 
-void simplifier::get_node(node_ptr& node, node_ptr& root, int p, int m) {
+void simplifier::get_node(_node_ptr& node, _node_ptr& root, int p, int m) {
 	get_mul_root(node, p); //node równy szczytowi
 	int n_mul = get_n_mul(node);
 	if(m > n_mul) { // ? >=
@@ -23,7 +23,7 @@ void simplifier::get_node(node_ptr& node, node_ptr& root, int p, int m) {
 	}
 }
 
-int simplifier::get_n_plus(node_ptr root) {
+int simplifier::get_n_plus(_node_ptr root) {
 	int n = 1;
 	
 	while(root->get_plus_node() != nullptr) {
@@ -34,7 +34,7 @@ int simplifier::get_n_plus(node_ptr root) {
 	return n;
 }
 
-int simplifier::get_n_mul(node_ptr active_plus) {
+int simplifier::get_n_mul(_node_ptr active_plus) {
 	int n = 0; //nie dokońca wiem dlaczego, ale inaczej nie działa
 
 	while(active_plus->get_mul_node() != nullptr) {
@@ -47,8 +47,8 @@ int simplifier::get_n_mul(node_ptr active_plus) {
 
 
 
-void simplifier::set_prev_node(node_ptr& to_prev, node_ptr& to_set) {
-	node_ptr prev = to_prev->get_prev_node();
+void simplifier::set_prev_node(_node_ptr& to_prev, _node_ptr& to_set) {
+	_node_ptr prev = to_prev->get_prev_node();
 	if(prev != nullptr) {
 		if(prev->get_mul_node() == to_prev) {
 			prev->mul_node = to_set;
@@ -57,7 +57,7 @@ void simplifier::set_prev_node(node_ptr& to_prev, node_ptr& to_set) {
 			prev->plus_node = to_set;
 		}
 		else if(prev->get_type() == Embedded) {
-			const node_ptr& ptr = prev;
+			const _node_ptr& ptr = prev;
 			embedded_ptr ptr_e = std::static_pointer_cast <node::embedded_node>(ptr);
 			ptr_e->set_cont(to_set);
 		}
@@ -66,8 +66,8 @@ void simplifier::set_prev_node(node_ptr& to_prev, node_ptr& to_set) {
 	}
 }
 
-void simplifier::swap_nodes(node_ptr& ptr1, node_ptr& ptr2, node_ptr& root) {
-	node_ptr temp = nullptr;
+void simplifier::swap_nodes(_node_ptr& ptr1, _node_ptr& ptr2, _node_ptr& root) {
+	_node_ptr temp = nullptr;
 	temp = ptr1->get_plus_node();
 	ptr1->set_plus_node(ptr2->get_plus_node());
 	ptr2->set_plus_node(temp);
@@ -86,7 +86,7 @@ void simplifier::swap_nodes(node_ptr& ptr1, node_ptr& ptr2, node_ptr& root) {
 	root = ptr1->get_root();
 }
 
-int simplifier::get_order_type(node_ptr node) {
+int simplifier::get_order_type(_node_ptr node) {
 	if(node == nullptr) {
 		return -2;
 	}
@@ -98,7 +98,7 @@ int simplifier::get_order_type(node_ptr node) {
 	return -1;
 }
 
-int simplifier::get_order_oper(node_ptr node) {
+int simplifier::get_order_oper(_node_ptr node) {
 	if(node == nullptr) {
 		return -1;
 	}
@@ -115,8 +115,8 @@ int simplifier::get_order_oper(node_ptr node) {
 	return ops;
 }
 
-void simplifier::sort_mul_branches(node_ptr& root) {
-	node_ptr active = root;
+void simplifier::sort_mul_branches(_node_ptr& root) {
+	_node_ptr active = root;
 	
 	for(int i_plus = 0; i_plus < get_n_plus(root); i_plus++) {
 		bool changed = true;
@@ -125,7 +125,7 @@ void simplifier::sort_mul_branches(node_ptr& root) {
 			for(int i_mul = 0; i_mul < get_n_mul(root); i_mul++) { 
 
 				get_node(active, root, i_plus, i_mul);
-				node_ptr next_node = active->get_mul_node();
+				_node_ptr next_node = active->get_mul_node();
 				
 				int act_type = get_order_type(active);
 				cout << "act_type: " << act_type << endl;
@@ -149,8 +149,8 @@ void simplifier::sort_mul_branches(node_ptr& root) {
 }
 
 //math_node->set_pair(true);
-void simplifier::group_pows(node_ptr& root) {
-	node_ptr active = root;
+void simplifier::group_pows(_node_ptr& root) {
+	_node_ptr active = root;
 	
 	for(int i_plus = 0; i_plus < get_n_plus(root); i_plus++) {
 		bool changed = true;
@@ -160,10 +160,10 @@ void simplifier::group_pows(node_ptr& root) {
                 cout << "i_plus: " << i_plus << " i_mul: " << i_mul << "\n";
 				get_node(active, root, i_plus, i_mul);
                 cout << "node set\n";
-				node_ptr next_node = active->get_mul_node();
+				_node_ptr next_node = active->get_mul_node();
 				if(next_node->is_pow()) {
                     cout << "is pow\n";
-					node_ptr cont = active;
+					_node_ptr cont = active;
 
                     next_node->get_plus_node();
                     next_node->set_plus_node(nullptr);
@@ -176,17 +176,17 @@ void simplifier::group_pows(node_ptr& root) {
                     active->set_pow(false);
 
                     cout << "created new node\n";
-					node_ptr new_node_base = static_pointer_cast<node::math_node>(new_node);
+					_node_ptr new_node_base = static_pointer_cast<node::math_node>(new_node);
                     cout << "cast done\n";
                     set_prev_node(active, new_node_base);
-					node_ptr next_next_node = next_node->get_mul_node();
+					_node_ptr next_next_node = next_node->get_mul_node();
 					if(next_next_node != nullptr) {
 						//move new_node->next_mul to next_next_node
 					}
 				}
 				if(active->get_type() == Embedded) {
 					embedded_ptr ptr = static_pointer_cast<node::embedded_node>(active);
-					node_ptr cont = ptr->get_cont();
+					_node_ptr cont = ptr->get_cont();
 					group_pows(cont);
 				}
 			}
@@ -194,9 +194,9 @@ void simplifier::group_pows(node_ptr& root) {
 	}
 }
 
-void simplifier::group_ints_div(node_ptr& root) {}
+void simplifier::group_ints_div(_node_ptr& root) {}
 
-void simplifier::simplify_all(node_ptr& root) {
+void simplifier::simplify_all(_node_ptr& root) {
 	/**
 	 *  szczerze nie wiem co tu jest nie tak.
 	 *  czy nie lepiej tworzyć kopię drzewa niż operować na tym samym?

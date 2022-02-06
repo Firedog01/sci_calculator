@@ -97,13 +97,13 @@ bool str_hdl::check_operator(char c) {
 }
 
 std::string str_hdl::get_op(op op, bool min, bool div, bool pow) {
-	if(op == add) {
+	if(op == add_) {
 		if(min) {
 			return std::string(1, str_hdl::OP_SUB_C);
 		} else {
 			return std::string(1, str_hdl::OP_ADD_C);
 		}
-	} else if(op == mul) {
+	} else if(op == mul_) {
 		std::string ret;
 		if(pow) {
 			if(div) {

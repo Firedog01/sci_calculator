@@ -31,9 +31,9 @@ namespace calculator::node {
 	class math_node : public std::enable_shared_from_this<math_node>  {
 		friend class calculator::simplifier;
 
-		node_ptr plus_node;
-		node_ptr mul_node;
-		node_ptr prev_node;
+		_node_ptr plus_node;
+		_node_ptr mul_node;
+		_node_ptr prev_node;
 		uint8_t flags;
 
 		void set_flag(bool val, int disp);
@@ -47,12 +47,12 @@ namespace calculator::node {
 		math_node(bool min, bool div, bool pow);
 		~math_node() = default;
 
-		node_ptr get_plus_node();
-		void set_plus_node(node_ptr node);
-		node_ptr get_mul_node();
-		void set_mul_node(node_ptr node);
-		node_ptr get_prev_node();
-		void set_prev_node(node_ptr node);
+		_node_ptr get_plus_node();
+		void set_plus_node(_node_ptr node);
+		_node_ptr get_mul_node();
+		void set_mul_node(_node_ptr node);
+		_node_ptr get_prev_node();
+		void set_prev_node(_node_ptr node);
 
 		bool is_min() const;
 		void set_min(bool val);
@@ -63,13 +63,13 @@ namespace calculator::node {
 		bool is_pair() const;
 		void set_pair(bool val);
 
-		node_type get_type() const;
-		void set_type(node_type type);
+		old_node_type get_type() const;
+		void set_type(old_node_type type);
 
 		//util
 		dong enumerate();
 		std::string display();
-		node_ptr get_root();
+		_node_ptr get_root();
 	};
 }
 #endif

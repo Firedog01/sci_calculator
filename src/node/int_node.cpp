@@ -16,7 +16,7 @@ const uint64_t& int_node::get_cont() {
 	return this->cont;
 }
 
-calculator::int_ptr int_node::operator=(calculator::node_ptr ptr) {
+calculator::int_ptr int_node::operator=(calculator::_node_ptr ptr) {
 	return std::static_pointer_cast<int_node>(ptr);
 }
 

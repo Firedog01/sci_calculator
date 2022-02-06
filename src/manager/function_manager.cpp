@@ -27,7 +27,7 @@ int function_manager::get_id_func(std::string name) {
 	return -1;
 }
 
-calculator::dong function_manager::enumerate(int id, std::vector<node_ptr> args) {
+calculator::dong function_manager::enumerate(int id, std::vector<_node_ptr> args) {
 	if(id == -1) {
 		std::string err = "Function not found";
 		throw std::logic_error(err);

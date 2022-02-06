@@ -15,12 +15,16 @@ namespace calculator {
         class embedded_node;
         class constant_node;
         class function_node;
+
+        class node;
     }
-    typedef std::shared_ptr<node::math_node> node_ptr;
+    typedef std::shared_ptr<node::math_node> _node_ptr;
     typedef std::shared_ptr<node::int_node> int_ptr;
     typedef std::shared_ptr<node::embedded_node> embedded_ptr;
     typedef std::shared_ptr<node::constant_node> constant_ptr;
     typedef std::shared_ptr<node::function_node> function_ptr;
+
+    typedef std::shared_ptr<node::node> node_ptr;
 
     //observer/observee pointers
     namespace node::observer {
@@ -59,10 +63,36 @@ namespace calculator {
     typedef long double dong;
 
     // pointer to function implementation  --- unused ---
-    typedef dong (*fpt)(std::vector<node_ptr>);
+    typedef dong (*fpt)(std::vector<_node_ptr>);
 
     //needed by parser
-    enum op {add, mul, def}; // todo refactor
-    enum node_type {Int = 0, Embedded, Function, Constant, Variable, Undefined = 7};
+    enum op {add_, mul_, def_}; // todo refactor
+    enum old_node_type {
+        Int = 0,
+        Embedded,
+        Function,
+        Constant,
+        Variable,
+        Undefined = 7
+    };
+
+    enum nd_type {
+        integer  = 0b000,
+        variable = 0b001,
+        constant = 0b010,
+        function = 0b011,
+
+        ambiguous = 0b111
+    };
+    enum op_type {
+        add = 0b000,
+        min = 0b001,
+        mul = 0b010,
+        div = 0b011,
+        pow = 0b100,
+        rot = 0b101,
+
+        amb = 0b111
+    };
 }
 #endif

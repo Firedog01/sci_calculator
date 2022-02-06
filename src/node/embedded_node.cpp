@@ -2,7 +2,7 @@
 
 using namespace calculator::node;
 
-embedded_node::embedded_node(node_ptr x, bool min, bool div, bool pow) :
+embedded_node::embedded_node(_node_ptr x, bool min, bool div, bool pow) :
 		math_node(min, div, pow) {
 	set_type(Embedded);
 	set_cont(std::move(x));
@@ -10,11 +10,11 @@ embedded_node::embedded_node(node_ptr x, bool min, bool div, bool pow) :
     //x->set_prev_node(math_node::shared_from_this());
 }
 
-void embedded_node::set_cont(node_ptr x) {
+void embedded_node::set_cont(_node_ptr x) {
 	this->cont = std::move(x);
 }
 
-const calculator::node_ptr& embedded_node::get_cont() {
+const calculator::_node_ptr& embedded_node::get_cont() {
 	return this->cont;
 }
 

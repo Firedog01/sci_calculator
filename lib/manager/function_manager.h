@@ -23,7 +23,7 @@ public:
 	function_manager();
 	std::string get_name(int id);
 	int get_id_func(std::string name);
-	dong enumerate(int id, std::vector<node_ptr> args);
+	dong enumerate(int id, std::vector<_node_ptr> args);
 };
 
 }

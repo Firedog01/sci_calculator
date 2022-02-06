@@ -28,7 +28,7 @@ set(SOURCE_FILES
 		src/node/function_node.cpp
 		src/node/int_node.cpp
 		src/node/math_node.cpp
-		)
+		src/manager/tree_manager.cpp lib/manager/tree_manager.h src/node/node.cpp lib/node/node.h src/component/parser2.cpp lib/component/parser2.h)
 
 add_executable(sci_calculator ${SOURCE_FILES})
 

@@ -7,7 +7,7 @@
 namespace calculator { namespace func {
 
 	struct abstr_function {
-		virtual dong enumerate(std::vector<node_ptr> args) {
+		virtual dong enumerate(std::vector<_node_ptr> args) {
 			return 0;
 		}
 	};

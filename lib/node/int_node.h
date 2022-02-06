@@ -15,7 +15,7 @@ namespace calculator::node {
 		void set_cont(uint64_t x);
 		const uint64_t& get_cont();
 
-		calculator::int_ptr operator=(calculator::node_ptr);
+		calculator::int_ptr operator=(calculator::_node_ptr);
 	};
 
 }

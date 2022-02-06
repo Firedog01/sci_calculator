@@ -67,37 +67,37 @@ void math_node::set_flag(bool val, int disp) {
 }
 
 
-void math_node::set_plus_node(node_ptr node) {
+void math_node::set_plus_node(_node_ptr node) {
 	this->plus_node = node;
 	if(node != nullptr) {
 		this->plus_node->set_prev_node(shared_from_this());
 	}
 }
-calculator::node_ptr math_node::get_plus_node() {
+calculator::_node_ptr math_node::get_plus_node() {
 	return this->plus_node;
 }
 
-void math_node::set_mul_node(node_ptr node) {
+void math_node::set_mul_node(_node_ptr node) {
 	this->mul_node = node;
 	if(node != nullptr) {
 		this->mul_node->set_prev_node(shared_from_this());
 	}
 }
-calculator::node_ptr math_node::get_mul_node() {
+calculator::_node_ptr math_node::get_mul_node() {
 	return this->mul_node;
 }
 
-void math_node::set_prev_node(node_ptr node) {
+void math_node::set_prev_node(_node_ptr node) {
 	this->prev_node = node;
 }
-calculator::node_ptr math_node::get_prev_node() {
+calculator::_node_ptr math_node::get_prev_node() {
 	return this->prev_node;
 }
 
 using namespace std;
 
 
-calculator::node_type math_node::get_type() const {
+calculator::old_node_type math_node::get_type() const {
 	string ret;
 	char flag = (char)(this->flags >> 3 & 7);
 	switch(flag) {
@@ -116,7 +116,7 @@ calculator::node_type math_node::get_type() const {
 	}
 }
 
-void math_node::set_type(node_type type) {
+void math_node::set_type(old_node_type type) {
 	uint8_t val = (uint8_t)(type);
 	if(val > 7) {
 		val = 7;
@@ -162,9 +162,9 @@ std::string math_node::display() {
     // displaying sign
 	if(prev_node == nullptr) {
 		if(is_div() || is_pow()) {
-			ret += str_hdl::get_op(mul, is_min(), is_div(), is_pow());
+			ret += str_hdl::get_op(mul_, is_min(), is_div(), is_pow());
 		} else if(is_min()) {
-			ret += str_hdl::get_op(add, is_min(), is_div(), is_pow());
+			ret += str_hdl::get_op(add_, is_min(), is_div(), is_pow());
 		}
 	}
 //	prawdopodobnie niepotrzebne
@@ -172,23 +172,23 @@ std::string math_node::display() {
 //		if(is_div() || is_pow()) {
 //			ret += str_hdl::get_op(mul, is_min(), is_div(), is_pow());
 //		} else if(is_min()) {
-//			ret += str_hdl::get_op(add, is_min(), is_div(), is_pow());
+//			ret += str_hdl::get_op(add_, is_min(), is_div(), is_pow());
 //		}
 //	}
 	ret += this->disp_val();
 
 	if(mul_node != nullptr) {
-		ret += str_hdl::get_op(mul, mul_node->is_min(), mul_node->is_div(), mul_node->is_pow());
+		ret += str_hdl::get_op(mul_, mul_node->is_min(), mul_node->is_div(), mul_node->is_pow());
 		ret += mul_node->display();
 	}
 	if(plus_node != nullptr) {
-		ret += str_hdl::get_op(add, plus_node->is_min(), plus_node->is_div(), plus_node->is_pow());
+		ret += str_hdl::get_op(add_, plus_node->is_min(), plus_node->is_div(), plus_node->is_pow());
 		ret += plus_node->display();
 	}
 	return ret;
 }
 
-calculator::node_ptr math_node::get_root() {
+calculator::_node_ptr math_node::get_root() {
 	// std::cout << "a\n";
 	if(get_prev_node() == nullptr) {
 		// cout << "b\n";

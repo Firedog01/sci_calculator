@@ -12,13 +12,17 @@ calculator::calc::calc() {
 
 void calculator::calc::parse(const string& str) {
 	checker checker(str);
+    parser2 parser2(f_man, c_man);
+
 	string err = checker.get_err();
 	if(err.empty()) {
 		
-		node_ptr root = parser->parse(str);
+		_node_ptr root = parser->parse(str);
+        node_ptr toot = parser2.parse(str);
 		
 		cout << "before: " << root->display() << " = " << root->enumerate() << "\n";
-		simplifier->simplify_all(root);
+		cout << "alt:    " <<
+        simplifier->simplify_all(root);
 		cout << "after:  " << root->display() << " = " << root->enumerate() << "\n";
 	} else {
 		throw logic_error(err);
