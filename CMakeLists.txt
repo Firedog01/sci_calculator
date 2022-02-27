@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 3.17)
 
 project(sci_calculator VERSION 0.1.0)
 
+set(BOOST_ROOT "C:\\Program Files\\boost\\boost_1_78_0") # either set it here or from the command line
+set(Boost_USE_STATIC_LIBS OFF)
+set(Boost_USE_MULTITHREADED ON)
+set(Boost_USE_STATIC_RUNTIME OFF)
+# find_package(Boost REQUIRED COMPONENTS unit_test_framework)
 
 set(CMAKE_CXX_COMPILER "g++")
 set(CMAKE_C_COMPILER "gcc")
@@ -31,7 +36,9 @@ set(SOURCE_FILES
 		src/manager/tree_manager.cpp lib/manager/tree_manager.h src/node/node.cpp lib/node/node.h src/component/parser2.cpp lib/component/parser2.h)
 
 add_executable(sci_calculator ${SOURCE_FILES})
-
+include_directories (${Boost_INCLUDE_DIRS})
+target_include_directories(sci_calculator PUBLIC ${Boost_INCLUDE_DIRS})
+target_link_libraries(sci_calculator ${Boost_LIBRARIES})
 #target_link_libraries(sci_calculator CalculatorLib)
 
 include(CPack)
